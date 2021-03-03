@@ -4,7 +4,7 @@ import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 
 
-const LoginForm = ({ authenticated, setAuthenticated, setShowLogModal }) => {
+const LoginForm = ({ authenticated, setAuthenticated, setShowModal }) => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
@@ -18,7 +18,7 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLogModal }) => {
     } else {
       setErrors(user.errors);
     }
-    setShowLogModal(false);
+    setShowModal(false);
   };
 
   const updateEmail = (e) => {
