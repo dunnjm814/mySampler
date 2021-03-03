@@ -1,0 +1,86 @@
+#modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modal-content {
+  position: absolute;
+  background-color: white;
+  border-radius: 12px;
+  animation-name: slideup;
+  /* animation-delay: 0.5s; */
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+
+#modal-content > form {
+  width: 600px;
+  height: 100%;
+  border-radius: 12px;
+  padding: 30px 24px 30px 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Airbnb;
+}
+
+#modal-content > form > div > input {
+  border-radius: 8px;
+  width: 520px;
+  height: 50px;
+  border: 0.25px solid rgb(170, 166, 166);
+  padding-left: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+#modal-content > form > button {
+  background: linear-gradient(
+    to right,
+    rgb(230, 30, 77) 0%,
+    rgb(227, 28, 95) 50%,
+    rgb(215, 4, 102) 100%
+  );
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  color: white;
+  width: 500px;
+  height: 50px;
+  border-radius: 8px;
+  border: none;
+}
+#modal-content > form > span {
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    "Helvetica Neue", sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+@keyframes slideup {
+  0% {
+    bottom: 50px;
+  }
+  100% {
+    bottom: 100px;
+  }
+}
