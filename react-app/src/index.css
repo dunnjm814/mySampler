@@ -1,1 +1,10 @@
 /* TODO Add site wide styles */
+
+main {
+  display: flex;
+  position: relative;
+}
+html {
+  height: 100%;
+}
+

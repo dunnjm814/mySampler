@@ -1,21 +1,30 @@
 import React, { useState } from "react";
-import { Redirect } from 'react-router-dom';
-import { signUp } from '../../services/auth';
+import { useDispatch } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { signUp } from "../../store/session";
 
-const SignUpForm = ({authenticated, setAuthenticated}) => {
+
+const SignUpForm = ({ authenticated, setAuthenticated, setShowSignModal }) => {
+  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [errors, setErrors] = useState([]);
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const user = await signUp(username, email, password);
+      const user = await dispatch(signUp(username, email, password));
       if (!user.errors) {
         setAuthenticated(true);
+      } else {
+        setErrors([...user.errors]);
       }
+    } else {
+      setErrors(["Please confirm password"]);
     }
+    setShowSignModal(false);
   };
 
   const updateUsername = (e) => {
@@ -40,6 +49,15 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
 
   return (
     <form onSubmit={onSignUp}>
+      <div>
+        <ul>
+          {errors.map((error, i) => (
+            <li key={i} style={{ color: "red" }}>
+              {error}
+            </li>
+          ))}
+        </ul>
+      </div>
       <div>
         <label>User Name</label>
         <input
