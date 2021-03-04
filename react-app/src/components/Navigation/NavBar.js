@@ -1,24 +1,25 @@
 import React, {useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import LoginModal from '../Modals/LoginModal'
 import SignupModal from '../Modals/SignupModal'
+import './Nav.css'
+import logo from '../../img/mySamplerLogo.png'
 
 
-
-const NavBar = ({ setAuthenticated }) => {
+const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
-  const [showLinks, setShowLinks] = useState(false);
+  // const [showLinks, setShowLinks] = useState(false);
 
-  function toggleShowAuth() {
-    setShowLinks(!showLinks);
-  }
+  // function toggleShowAuth() {
+  //   setShowLinks(!showLinks);
+  // }
   return (
     <nav>
       <div id="home-wrap">
-        <img id="mysampler-logo" src={"/mySamplerLogo.png"} alt="home" />
-        <NavLink to="/" exact={true} activeClassName="active">
+        <img id="mysampler-logo" src={logo} alt="home" />
+        <NavLink to="/" exact={true} activeClassName="active" className='home-link'>
           mySampler
         </NavLink>
       </div>
