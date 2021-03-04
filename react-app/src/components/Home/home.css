@@ -1,22 +1,44 @@
-#sampler-wrap{
+#home-wrap{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+#sampler-wrap{
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  border: 10px solid black;
+  width: 400px;
+  background-color: #a1a1a1;;
+}
+#bpm-slider{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 50px;
+
+}
+#tempo{
+  width: 315px;
 }
 input[type="file"] {
     display: none;
 }
 .sample-load{
     border: 1px solid #ccc;
+    height: 50px;
+    width: 50px;
     display: inline-block;
     padding: 6px 12px;
     cursor: pointer;
-    margin: 5px
+    margin: 10px
 }
 
 #samples-wrap{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  margin-bottom: 10px;
 
 }

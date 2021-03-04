@@ -24,7 +24,7 @@
 }
 
 .sidebar a:hover {
-  color: #f1f1f1;
+  color: #ad9889;
 }
 
 #home .sidebar {
@@ -33,6 +33,16 @@
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+}
+
+.side-link{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.side-icon{
+  margin-right: 70px;
 }
 
 @media screen and (max-height: 450px) {

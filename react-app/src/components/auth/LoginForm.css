@@ -3,6 +3,20 @@
   flex-direction: row;
   justify-content: space-between;
 } */
-.hidden{
-  display: none;
+
+
+#buttons-wrap{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
+
+#demo{
+  margin-left: 5px;
+}
+#demo:hover{
+  background-color: #998476;
+}
+/* #login:hover{
+  background-color: #998476;
+} */

@@ -21,24 +21,41 @@ function SideBar() {
   return (
     <>
       <div
-        id="sidebar"
-        class="sidebar"
+        className="sidebar"
         onMouseOver={toggleSideBar}
         onMouseOut={toggleSideBar}
       >
-        <NavLink to={`/profile/${userName}`}>
-          <AiFillProfile />
-          <span>Profile</span>{" "}
-        </NavLink>
         <Link>
-          <span>Samplers</span>{" "}
+          <div className="side-link">
+            <div className="side-icon">
+              <img
+                src={logo}
+                alt="logo"
+                style={{ width: "25px", height: "25px" }}
+              />
+            </div>
+            <span>Samplers</span>{" "}
+          </div>
         </Link>
+        <NavLink to={`/profile/${userName}`}>
+          <div className="side-link">
+            <div className="side-icon">
+              <AiFillProfile />
+            </div>
+            <span>Profile</span>{" "}
+          </div>
+        </NavLink>
+
         <Link>
-          <FaUserFriends />
-          <span>Friends</span>{" "}
+          <div className="side-link">
+            <div className="side-icon">
+              <FaUserFriends />
+            </div>
+            <span>Friends</span>{" "}
+          </div>
         </Link>
       </div>
-      <div id='home'>
+      <div id="home">
         <Home />
       </div>
     </>
