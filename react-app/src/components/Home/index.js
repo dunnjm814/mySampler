@@ -1,8 +1,10 @@
 import React, { useState , useEffect} from "react";
 // import { Slider } from "@material-ui/core";
+import {useDispatch} from 'react-redux'
 import "./home.css";
 
 function Home() {
+  const dispatch = useDispatch();
   const [tempo, setTempo] = useState(120);
   const [sample1, setSample1] = useState();
   const [sample2, setSample2] = useState();
@@ -12,13 +14,14 @@ function Home() {
   const [sample6, setSample6] = useState();
   const [sample7, setSample7] = useState();
   const [sample8, setSample8] = useState();
-  
+
   useEffect(() => {
     loadSamples()
+    console.log(sample1)
   }, [sample1, sample2, sample3, sample4, sample5, sample6, sample7, sample8])
 
-  const loadSamples = () => {
-    await dispatch(setSamples(sample1, sample2, sample3, sample4, sample5, sample6, sample7, sample8))
+  const loadSamples = async () => {
+    // await dispatch(setSamples(sample1, sample2, sample3, sample4, sample5, sample6, sample7, sample8))
   }
 
   const slideTempo = (e) => {

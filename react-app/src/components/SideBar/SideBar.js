@@ -8,22 +8,14 @@ import { NavLink, Link } from 'react-router-dom'
 import Home from "../Home"
 
 function SideBar() {
-  let mini = true;
+
   const sessionUser = useSelector((state) => state.session.user);
   const userName = sessionUser.username;
-
-  const toggleSideBar = () => {
-    if (mini) {
-
-    }
-  }
 
   return (
     <>
       <div
         className="sidebar"
-        onMouseOver={toggleSideBar}
-        onMouseOut={toggleSideBar}
       >
         <Link>
           <div className="side-link">

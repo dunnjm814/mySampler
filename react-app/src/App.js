@@ -28,30 +28,35 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar  />
-      <Switch>
-        <Route path="/" exact={true}>
-        </Route>
-        <Route path="/login" exact={true}>
-          <LoginForm  />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm  />
-        </Route>
-        <ProtectedRoute path="/users" exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} >
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path="/home" exact={true} >
-          <SideBar />
-        
-        </ProtectedRoute>
-        <ProtectedRoute path='/profile/:userName' exact={true}>
+      <div style={{ display: "flex", flexDirection: "column"} }>
+        <NavBar  />
+        <div style={{height: '100%' }}>
+          <Switch>
+            <Route path="/" exact={true}>
+            </Route>
+            <Route path="/login" exact={true}>
+              <LoginForm  />
+            </Route>
+            <Route path="/sign-up" exact={true}>
+              <SignUpForm  />
+            </Route>
+            <ProtectedRoute path="/users" exact={true} >
+              <UsersList/>
+            </ProtectedRoute>
+            <ProtectedRoute path="/users/:userId" exact={true} >
+              <User />
+            </ProtectedRoute>
+            <ProtectedRoute path="/home" exact={true} >
+              <SideBar />
 
-        </ProtectedRoute>
-      </Switch>
+            </ProtectedRoute>
+            <ProtectedRoute path='/profile/:userName' exact={true}>
+
+            </ProtectedRoute>
+          </Switch>
+        </div>
+
+      </div>
     </BrowserRouter>
   );
 }
