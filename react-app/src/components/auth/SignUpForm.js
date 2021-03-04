@@ -59,8 +59,8 @@ const SignUpForm = ({ authenticated, setAuthenticated, setShowModal }) => {
         </ul>
       </div>
       <div>
-        <label>User Name</label>
         <input
+          placeholder="Username"
           type="text"
           name="username"
           onChange={updateUsername}
@@ -68,8 +68,8 @@ const SignUpForm = ({ authenticated, setAuthenticated, setShowModal }) => {
         ></input>
       </div>
       <div>
-        <label>Email</label>
         <input
+          placeholder="Email"
           type="text"
           name="email"
           onChange={updateEmail}
@@ -77,8 +77,8 @@ const SignUpForm = ({ authenticated, setAuthenticated, setShowModal }) => {
         ></input>
       </div>
       <div>
-        <label>Password</label>
         <input
+          placeholder="Password"
           type="password"
           name="password"
           onChange={updatePassword}
@@ -86,8 +86,8 @@ const SignUpForm = ({ authenticated, setAuthenticated, setShowModal }) => {
         ></input>
       </div>
       <div>
-        <label>Repeat Password</label>
         <input
+          placeholder="Confirm Password"
           type="password"
           name="repeat_password"
           onChange={updateRepeatPassword}

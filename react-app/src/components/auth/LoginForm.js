@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-
+import './LoginForm.css'
 
 
 const LoginForm = ({setShowModal }) => {
@@ -11,6 +11,7 @@ const LoginForm = ({setShowModal }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [hidden, setHidden] = useState('hidden')
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -32,16 +33,20 @@ const LoginForm = ({setShowModal }) => {
   if (sessionUser) {
     return <Redirect to="/" />;
   }
-
+  const toggle = () => {
+    if (hidden === '') {
+        setHidden('hidden')
+    }
+    setHidden('')
+  }
   return (
-    <form onSubmit={onLogin}>
+    <form id="loginform" onSubmit={onLogin}>
       <div>
         {errors.map((error) => (
           <div>{error}</div>
         ))}
       </div>
-      <div>
-        <label htmlFor="email">Email</label>
+      <div id="email">
         <input
           name="email"
           type="text"
@@ -50,8 +55,7 @@ const LoginForm = ({setShowModal }) => {
           onChange={updateEmail}
         />
       </div>
-      <div>
-        <label htmlFor="password">Password</label>
+      <div id="password">
         <input
           name="password"
           type="password"
@@ -59,10 +63,16 @@ const LoginForm = ({setShowModal }) => {
           value={password}
           onChange={updatePassword}
         />
-        <button type="submit">Login</button>
-      </div>
+        <div>
+          <button type="submit">Login</button>
+          <div onMouseOver={toggle} onMouseOut={toggle}>Demo?</div>
+            Demo:
+            <p>Login: demo@aa.io </p>
+            <p>Password: password</p>
+          </div>
+        </div>
     </form>
   );
 };
 
-export default LoginForm;
+export default LoginForm

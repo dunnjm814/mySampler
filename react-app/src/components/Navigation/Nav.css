@@ -1,6 +1,7 @@
 nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 20px;
   background-color: #1f878f;
   margin-top: 0;
@@ -15,6 +16,15 @@ nav {
 .home-link {
   text-decoration: none;
   color: white;
-
   font-size: 75px;
+}
+
+#home-wrap{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#signlogin-wrap{
+  display: flex;
+  justify-content: space-between;
 }

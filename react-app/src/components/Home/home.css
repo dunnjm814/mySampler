@@ -1,0 +1,22 @@
+#sampler-wrap{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+input[type="file"] {
+    display: none;
+}
+.sample-load{
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    margin: 5px
+}
+
+#samples-wrap{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+}

@@ -1,0 +1,16 @@
+#logout{
+  outline: none;
+  width: auto;
+  height: 50px;
+  background-color: #A18C7d;
+  color: #F1EEEC;
+  border-radius: 10px;
+  border: none;
+  padding: 20px;
+  text-align: center;
+  vertical-align: middle;
+  box-shadow: .5px .5px
+}
+#logout:hover{
+  background-color: #998476;
+}

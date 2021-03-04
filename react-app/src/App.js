@@ -5,9 +5,11 @@ import { authenticate } from "./store/session";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/Navigation/NavBar";
+import SideBar from './components/SideBar/SideBar.js'
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
+
 // import { authenticate } from "./services/auth";
 
 function App() {
@@ -42,8 +44,12 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true} >
-          <h1>My Home Page</h1>
+        <ProtectedRoute path="/home" exact={true} >
+          <SideBar />
+        
+        </ProtectedRoute>
+        <ProtectedRoute path='/profile/:userName' exact={true}>
+
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

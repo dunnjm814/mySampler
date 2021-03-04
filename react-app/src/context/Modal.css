@@ -33,15 +33,20 @@
   width: 600px;
   height: 100%;
   border-radius: 12px;
-  padding: 30px 24px 30px 24px;
+  padding: 40px 20px 40px 20px;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: Airbnb;
+
 }
 
+/* #modal-content > form > div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+} */
 #modal-content > form > div > input {
   border-radius: 8px;
   width: 520px;
@@ -52,35 +57,24 @@
   font-size: 16px;
 }
 
-#modal-content > form > button {
-  background: linear-gradient(
-    to right,
-    rgb(230, 30, 77) 0%,
-    rgb(227, 28, 95) 50%,
-    rgb(215, 4, 102) 100%
-  );
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
-    "Helvetica Neue", sans-serif;
+button {
+  background-color: #A18C7D;
   font-size: 16px;
   color: white;
-  width: 500px;
+  width: auto;
   height: 50px;
   border-radius: 8px;
   border: none;
+  outline: none;
+
 }
-#modal-content > form > span {
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
-    "Helvetica Neue", sans-serif;
-  font-size: 17px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
+
 
 @keyframes slideup {
   0% {
     bottom: 50px;
   }
   100% {
-    bottom: 100px;
+    bottom: 300px;
   }
 }
