@@ -30,7 +30,7 @@ export const receiveSamples = (sendData) => async () => {
   data.append('sample6', sample6)
   data.append('sample7', sample7)
   data.append('sample8', sample8)
-  console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$', data)
+  console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$', data.get('sample1'))
   const res = await fetch(`/api/aws/sampler/${userId}`, {
     method: 'PUT',
     body: data

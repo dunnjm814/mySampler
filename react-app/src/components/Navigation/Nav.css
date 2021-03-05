@@ -5,21 +5,27 @@ nav {
   padding: 20px;
   background-color: #1f878f;
   margin-top: 0;
-  box-shadow: 0 2px 7px 2px #125458
+  box-shadow: 0 2px 7px 2px #125458;
+  position: static;
 }
 
 #mysampler-logo {
   height: 100px;
   width: auto;
   margin-right: 5px;
+  position: sticky;
 }
 .home-link {
   text-decoration: none;
   color: white;
   font-size: 75px;
+  transition: 0.5s;
+}
+.home-link:hover {
+  color: #ad9889;
 }
 
-#home-wrap{
+#nav-wrap{
   display: flex;
   flex-direction: row;
   align-items: center;

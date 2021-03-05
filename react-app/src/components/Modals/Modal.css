@@ -1,34 +1,36 @@
 #signup-button{
   outline: none;
   width: auto;
-  height: 50px;
-  background-color: #A18C7d;
+  height: auto;
+  background-color: #1f878f;
   color: #F1EEEC;
   border-radius: 5px;
   border: none;
   padding: 20px;
   text-align: center;
   vertical-align: middle;
-  box-shadow: .5px .5px
+  font-size: 40px;
+  transition: 0.5s;
 }
 #signup-button:hover{
-  background-color: #998476;
+  color: #ad9889;
 }
 #login-button{
   outline: none;
-  width: 86px;
-  height: 50px;
-  background-color: #A18C7d;
+  width: auto;
+  height: auto;
+  background-color: #1f878f;
   color: #F1EEEC;
   border-radius: 5px;
   border: none;
   padding: 20px;
   text-align: center;
   vertical-align: middle;
-  box-shadow: .5px .5px;
   margin-right: 0.4px;
   border-right: 8px #463c35;
+  font-size: 40px;
+  transition: 0.5s;
 }
 #login-button:hover{
-  background-color: #998476;
+  color: #ad9889;
 }

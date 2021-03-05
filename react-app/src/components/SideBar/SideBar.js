@@ -48,7 +48,7 @@ function SideBar() {
         </Link>
       </div>
       <div id="home">
-        <Home />
+        
       </div>
     </>
   );

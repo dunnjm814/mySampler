@@ -26,6 +26,8 @@ def set_sampler(userId):
   if sampler:
     pass
   else:
-    file = request.get_json()
-    print('####################################', file)
+    form = request.form
+    file = request.files.filename
+    print('####################################', form)
+    print('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&', file)
     return(file)

@@ -17,11 +17,13 @@ const NavBar = () => {
   // }
   return (
     <nav>
-      <div id="home-wrap">
+      <div >
+        <div id="nav-wrap">
         <img id="mysampler-logo" src={logo} alt="home" />
         <NavLink to="/" exact={true} activeClassName="active" className='home-link'>
           mySampler
         </NavLink>
+        </div>
       </div>
       {!sessionUser && (
         <div id="signlogin-wrap">

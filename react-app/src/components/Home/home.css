@@ -2,15 +2,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  position: fixed;
+  height: auto;
 }
 #sampler-wrap{
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  align-items: center;
   justify-content: center;
-  border: 10px solid black;
+  border: 15px solid black;
+  border-radius: 7px;
   width: 400px;
-  background-color: #a1a1a1;;
+  background-color: #a1a1a1;
+
+}
+#knobs-wrap{
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+}
+#knob-container{
+  padding: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 60px;
 }
 #bpm-slider{
   display: flex;
@@ -32,9 +48,12 @@ input[type="file"] {
     display: inline-block;
     padding: 6px 12px;
     cursor: pointer;
-    margin: 10px
+    margin: 10px;
+    text-align: center;
+    vertical-align: center;
+    font-weight: bold;
+    font-size: 30px;
 }
-
 #samples-wrap{
   display: flex;
   flex-direction: row;

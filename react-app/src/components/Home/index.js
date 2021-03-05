@@ -1,5 +1,6 @@
 import React, { useState , useEffect} from "react";
 // import { Slider } from "@material-ui/core";
+import { Knob } from "react-rotary-knob";
 import { useDispatch, useSelector } from 'react-redux'
 import {receiveSamples} from '../../store/samples'
 import "./home.css";
@@ -18,8 +19,8 @@ function Home() {
   const [sample7, setSample7] = useState('');
   const [sample8, setSample8] = useState('');
 
+  const userId = sessionUser.id
   useEffect(() => {
-    const userId = sessionUser.id
       const sendData = {
         userId,
         sample1,
@@ -31,7 +32,7 @@ function Home() {
         sample7,
         sample8,
       };
-      console.log(sendData)
+      console.log(sample1)
       dispatch(receiveSamples(sendData))
     console.log(sample1)
   }, [sample1, sample2, sample3, sample4, sample5, sample6, sample7, sample8])
@@ -43,7 +44,24 @@ function Home() {
   return (
     <div id="home-wrap">
       <div id="sampler-wrap">
-        <div id="knobs-wrap"></div>
+        <div id="knobs-wrap">
+          <div id='knob-container'>
+            <span></span>
+            <Knob min={0} max={1} defaultValue={0} step={0.1}/>
+          </div>
+          <div id='knob-container'>
+            <span></span>
+            <Knob min={0} max={1} defaultValue={0} step={0.1}/>
+          </div>
+          <div id='knob-container'>
+            <span></span>
+            <Knob min={0} max={1} defaultValue={0} step={0.1}/>
+          </div>
+          <div id='knob-container'>
+            <span></span>
+            <Knob min={0} max={1} defaultValue={0} step={0.1}/>
+          </div>
+        </div>
         <label className="sample-load">
           <input type="file" />
         </label>
