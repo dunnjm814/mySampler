@@ -14,8 +14,8 @@ class Sampler(db.Model):
   sampleSix = db.Column(db.String)
   sampleSeven = db.Column(db.String)
   sampleEight = db.Column(db.String)
-  private = db.Column(db.Boolean)
-  createdAt = datetime.now()
+  private = db.Column(db.Boolean, nullable=False, default=False)
+  createdAt = db.Column(db.DateTime, nullable = False)
 
   user = db.relationship("User", back_populates="sampler")
 

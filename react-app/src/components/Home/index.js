@@ -1,28 +1,41 @@
 import React, { useState , useEffect} from "react";
 // import { Slider } from "@material-ui/core";
-import {useDispatch} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import {receiveSamples} from '../../store/samples'
 import "./home.css";
 
 function Home() {
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
+
   const [tempo, setTempo] = useState(120);
-  const [sample1, setSample1] = useState();
-  const [sample2, setSample2] = useState();
-  const [sample3, setSample3] = useState();
-  const [sample4, setSample4] = useState();
-  const [sample5, setSample5] = useState();
-  const [sample6, setSample6] = useState();
-  const [sample7, setSample7] = useState();
-  const [sample8, setSample8] = useState();
+  const [sample1, setSample1] = useState('');
+  const [sample2, setSample2] = useState('');
+  const [sample3, setSample3] = useState('');
+  const [sample4, setSample4] = useState('');
+  const [sample5, setSample5] = useState('');
+  const [sample6, setSample6] = useState('');
+  const [sample7, setSample7] = useState('');
+  const [sample8, setSample8] = useState('');
 
   useEffect(() => {
-    loadSamples()
+    const userId = sessionUser.id
+      const sendData = {
+        userId,
+        sample1,
+        sample2,
+        sample3,
+        sample4,
+        sample5,
+        sample6,
+        sample7,
+        sample8,
+      };
+      console.log(sendData)
+      dispatch(receiveSamples(sendData))
     console.log(sample1)
   }, [sample1, sample2, sample3, sample4, sample5, sample6, sample7, sample8])
 
-  const loadSamples = async () => {
-    // await dispatch(setSamples(sample1, sample2, sample3, sample4, sample5, sample6, sample7, sample8))
-  }
 
   const slideTempo = (e) => {
     setTempo(e.target.value);
