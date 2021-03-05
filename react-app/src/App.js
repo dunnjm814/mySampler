@@ -12,6 +12,7 @@ import User from "./components/User";
 import LoginModal from "./components/Modals/LoginModal";
 import SignupModal from "./components/Modals/SignupModal";
 import Home from './components/Home'
+import Sampler from "./components/Sampler";
 // import { authenticate } from "./services/auth";
 
 function App() {
@@ -19,10 +20,10 @@ function App() {
   const dispatch = useDispatch()
   const [loaded, setLoaded] = useState(false);
 
-  useEffect(async () => {
-      await dispatch(authenticate())
-      await setLoaded(true);
-  }, []);
+  useEffect(() => {
+    dispatch(authenticate()).then(() => {
+      setLoaded(true);
+    })}, []);
 
   if (!loaded) {
     return null;
@@ -33,7 +34,9 @@ function App() {
       <NavBar />
       <div style={{ display: "flex", flexDirection: "column" }}>
         <Switch>
-          <Route path="/" exact={true}></Route>
+          <Route path="/" exact={true}>
+            <h2>hello</h2>
+          </Route>
           <Route path="/login" exact={true}>
             <LoginModal />
           </Route>
@@ -50,6 +53,7 @@ function App() {
           <div style={{display: "flex", flexDirection: "row", alignItems: 'center' }}>
               <SideBar />
               <Home />
+              <Sampler />
           </div>
             </ProtectedRoute>
 

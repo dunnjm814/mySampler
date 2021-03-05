@@ -58,7 +58,9 @@ export const login = (email, password) => async (dispatch) => {
     }),
   });
   const user = await response.json();
-  dispatch(setUser(user));
+  if (!user.errors) {
+    dispatch(setUser(user));
+  }
   return user;
 };
 
@@ -74,12 +76,14 @@ export const logout = () => async (dispatch) => {
 };
 
 const sessionReducer = (state = { user: null }, action) => {
-  let newState = { ...state };
+  let newState;
   switch (action.type) {
     case SET_USER:
+      newState = {};
       newState.user = action.payload;
       return newState;
     case REMOVE_USER:
+      newState = {};
       newState.user = null;
       return newState;
     default:

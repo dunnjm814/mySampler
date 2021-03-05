@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {useLocation} from 'react-router-dom'
 import { Modal } from "../../context/Modal";
 import LoginForm from '../auth/LoginForm'
@@ -10,9 +10,11 @@ function LoginModal() {
   console.log(pathname)
   const [showModal, setShowModal] = useState(false);
 
-  if (pathname === '/login') {
-      setShowModal(true)
-  }
+  useEffect(() => {
+    if (pathname === '/login') {
+        setShowModal(true)
+    }
+  }, [pathname])
   if(pathname === '/login'){
     return (
       <Modal onClose={() => setShowModal(false)}>

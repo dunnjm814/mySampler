@@ -2,7 +2,7 @@
   outline: none;
   width: auto;
   height: auto;
-  background-color: #A18C7d;
+  background-color: #1f878f;
   color: #F1EEEC;
   border-radius: 10px;
   border: none;
@@ -10,7 +10,8 @@
   text-align: center;
   vertical-align: middle;
   font-size: 40px;
+  transition: 0.5s;
 }
 #logout:hover{
-  background-color: #998476;
+  color: #998476;
 }

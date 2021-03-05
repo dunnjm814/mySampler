@@ -15,6 +15,7 @@ const NavBar = () => {
   // function toggleShowAuth() {
   //   setShowLinks(!showLinks);
   // }
+  console.log(sessionUser)
   return (
     <nav>
       <div >

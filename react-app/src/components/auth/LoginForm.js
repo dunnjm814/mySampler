@@ -16,12 +16,18 @@ const LoginForm = ({setShowModal }) => {
 
   const onLogin = async (e) => {
     e.preventDefault();
+
     const user = await dispatch(login(email, password));
+    console.log(user)
     if (user.errors) {
+
       setErrors(user.errors);
+
+    } else {
+      console.log("hey im in the else")
+      history.push("/home");
     }
-    setShowModal(false);
-    history.push("/home");
+
   };
 
   const demoLogin = async (e) => {
@@ -29,9 +35,10 @@ const LoginForm = ({setShowModal }) => {
     const user = await dispatch(login("demo@aa.io", "password"));
     if (user.errors) {
       setErrors(user.errors);
+    } else {
+      setShowModal(false);
+      history.push("/home");
     }
-    setShowModal(false);
-    history.push("/home");
   }
 
 
@@ -75,7 +82,7 @@ const LoginForm = ({setShowModal }) => {
         </div>
         <div id='buttons-wrap'>
           <button type="submit" id='log-in'>Login</button>
-          <button id='demo' onClick={demoLogin}>demo</button>
+          <button type='button' id='demo' onClick={demoLogin}>demo</button>
         </div>
     </form>
   );

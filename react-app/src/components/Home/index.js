@@ -10,32 +10,33 @@ function Home() {
   const sessionUser = useSelector((state) => state.session.user);
 
   const [tempo, setTempo] = useState(120);
-  const [sample1, setSample1] = useState('');
-  const [sample2, setSample2] = useState('');
-  const [sample3, setSample3] = useState('');
-  const [sample4, setSample4] = useState('');
-  const [sample5, setSample5] = useState('');
-  const [sample6, setSample6] = useState('');
-  const [sample7, setSample7] = useState('');
-  const [sample8, setSample8] = useState('');
 
-  const userId = sessionUser.id
+  const [samples, setSamples] = useState({
+    sample1: '',
+    sample2:'',
+    sample3:'',
+    sample4:'',
+    sample5:'',
+    sample6:'',
+    sample7:'',
+    sample8:'',
+  });
+
   useEffect(() => {
-      const sendData = {
-        userId,
-        sample1,
-        sample2,
-        sample3,
-        sample4,
-        sample5,
-        sample6,
-        sample7,
-        sample8,
-      };
-      console.log(sample1)
+    const userId = sessionUser.id
+    if (
+      Object.values(samples).every((sample) => {
+          return sample === ''
+        })
+      ) return
+        const sendData = {
+          userId,
+          ...samples
+        };
+
       dispatch(receiveSamples(sendData))
-    console.log(sample1)
-  }, [sample1, sample2, sample3, sample4, sample5, sample6, sample7, sample8])
+
+  }, [samples])
 
 
   const slideTempo = (e) => {
@@ -45,21 +46,21 @@ function Home() {
     <div id="home-wrap">
       <div id="sampler-wrap">
         <div id="knobs-wrap">
-          <div id='knob-container'>
+          <div id="knob-container">
             <span></span>
-            <Knob min={0} max={1} defaultValue={0} step={0.1}/>
+            <Knob min={0} max={1} defaultValue={0} step={0.1} />
           </div>
-          <div id='knob-container'>
+          <div id="knob-container">
             <span></span>
-            <Knob min={0} max={1} defaultValue={0} step={0.1}/>
+            <Knob min={0} max={1} defaultValue={0} step={0.1} />
           </div>
-          <div id='knob-container'>
+          <div id="knob-container">
             <span></span>
-            <Knob min={0} max={1} defaultValue={0} step={0.1}/>
+            <Knob min={0} max={1} defaultValue={0} step={0.1} />
           </div>
-          <div id='knob-container'>
+          <div id="knob-container">
             <span></span>
-            <Knob min={0} max={1} defaultValue={0} step={0.1}/>
+            <Knob min={0} max={1} defaultValue={0} step={0.1} />
           </div>
         </div>
         <label className="sample-load">
@@ -85,7 +86,9 @@ function Home() {
                   1
                   <input
                     type="file"
-                    onChange={(e) => setSample1(e.target.files[0])}
+                    onChange={(e) =>
+                      setSamples({ ...samples, sample1: e.target.files[0] })
+                    }
                   ></input>
                 </label>
               </form>
@@ -94,7 +97,9 @@ function Home() {
                   2
                   <input
                     type="file"
-                    onChange={(e) => setSample2(e.target.files[0])}
+                    onChange={(e) =>
+                      setSamples({ ...samples, sample2: e.target.files[0] })
+                    }
                   ></input>
                 </label>
               </form>
@@ -103,7 +108,9 @@ function Home() {
                   3
                   <input
                     type="file"
-                    onChange={(e) => setSample3(e.target.files[0])}
+                    onChange={(e) =>
+                      setSamples({ ...samples, sample3: e.target.files[0] })
+                    }
                   ></input>
                 </label>
               </form>
@@ -112,7 +119,9 @@ function Home() {
                   4
                   <input
                     type="file"
-                    onChange={(e) => setSample4(e.target.files[0])}
+                    onChange={(e) =>
+                      setSamples({ ...samples, sample4: e.target.files[0] })
+                    }
                   ></input>
                 </label>
               </form>
@@ -125,7 +134,9 @@ function Home() {
                   5
                   <input
                     type="file"
-                    onChange={(e) => setSample5(e.target.files[0])}
+                    onChange={(e) =>
+                      setSamples({ ...samples, sample5: e.target.files[0] })
+                    }
                   ></input>
                 </label>
               </form>
@@ -134,7 +145,9 @@ function Home() {
                   6
                   <input
                     type="file"
-                    onChange={(e) => setSample6(e.target.files[0])}
+                    onChange={(e) =>
+                      setSamples({ ...samples, sample6: e.target.files[0] })
+                    }
                   ></input>
                 </label>
               </form>
@@ -143,7 +156,9 @@ function Home() {
                   7
                   <input
                     type="file"
-                    onChange={(e) => setSample7(e.target.files[0])}
+                    onChange={(e) =>
+                      setSamples({ ...samples, sample7: e.target.files[0] })
+                    }
                   ></input>
                 </label>
               </form>
@@ -153,7 +168,9 @@ function Home() {
                   <input
                     type="file"
                     name="sample8"
-                    onChange={(e) => setSample8(e.target.files[0])}
+                    onChange={(e) =>
+                      setSamples({ ...samples, sample8: e.target.files[0] })
+                    }
                   ></input>
                 </label>
               </form>
