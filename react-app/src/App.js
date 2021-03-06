@@ -49,14 +49,30 @@ function App() {
           <ProtectedRoute path="/users/:userId" exact={true}>
             <User />
           </ProtectedRoute>
-            <ProtectedRoute path="/home" exact={true}>
-          <div style={{display: "flex", flexDirection: "row", alignItems: 'center' }}>
+          <ProtectedRoute path="/home" exact={true}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
               <SideBar />
               <Home />
+            </div>
+          </ProtectedRoute>
+          <ProtectedRoute path="/sampler" exact={true}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <SideBar />
               <Sampler />
-          </div>
-            </ProtectedRoute>
-
+            </div>
+          </ProtectedRoute>
           <ProtectedRoute
             path="/profile/:userName"
             exact={true}

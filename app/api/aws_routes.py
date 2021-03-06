@@ -9,6 +9,7 @@ from datetime import datetime
 from app.models import db, Sampler
 
 
+
 aws_routes = Blueprint('aws', __name__)
 
 @aws_routes.route('/sampler/<int:userId>')
@@ -17,7 +18,8 @@ def find_user_samplers(userId):
   sampler = Sampler.query.filter(userId=userId).findAll()
   if sampler:
     return sampler.to_dict()
-  pass
+  return {'noSamplers': 'No Samplers to show :('}
+
 
 @aws_routes.route('/sampler/<int:userId>', methods=['PUT'])
 @login_required

@@ -8,11 +8,10 @@ import './LoginForm.css'
 const LoginForm = ({setShowModal }) => {
   const dispatch = useDispatch();
   const history = useHistory()
-  // const sessionUser = useSelector((state) => state.session.user);
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [hidden, setHidden] = useState('hidden')
+
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -20,14 +19,10 @@ const LoginForm = ({setShowModal }) => {
     const user = await dispatch(login(email, password));
     console.log(user)
     if (user.errors) {
-
       setErrors(user.errors);
-
     } else {
-      console.log("hey im in the else")
       history.push("/home");
     }
-
   };
 
   const demoLogin = async (e) => {
@@ -50,12 +45,6 @@ const LoginForm = ({setShowModal }) => {
     setPassword(e.target.value);
   };
 
-  // const toggle = () => {
-  //   if (hidden === '') {
-  //       setHidden('hidden')
-  //   }
-  //   setHidden('')
-  // }
   return (
     <form id="loginform" onSubmit={onLogin}>
       <div>

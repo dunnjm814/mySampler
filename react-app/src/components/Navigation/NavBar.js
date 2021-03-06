@@ -10,11 +10,7 @@ import logo from '../../img/mySamplerLogo.png'
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
-  // const [showLinks, setShowLinks] = useState(false);
 
-  // function toggleShowAuth() {
-  //   setShowLinks(!showLinks);
-  // }
   console.log(sessionUser)
   return (
     <nav>
@@ -41,17 +37,6 @@ const NavBar = () => {
           <LogoutButton />
         </div>
       )}
-      {/* <NavLink to="/login" exact={true} activeClassName="active">
-        Login
-      </NavLink>
-
-      <NavLink to="/sign-up" exact={true} activeClassName="active">
-        Sign Up
-      </NavLink>
-
-      <NavLink to="/users" exact={true} activeClassName="active">
-        Users
-      </NavLink> */}
     </nav>
   );
 }

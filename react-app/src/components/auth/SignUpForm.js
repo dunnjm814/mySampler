@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
 
 
-const SignUpForm = ({ authenticated, setAuthenticated, setShowModal }) => {
+const SignUpForm = ({ setShowModal }) => {
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");

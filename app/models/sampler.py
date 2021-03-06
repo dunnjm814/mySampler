@@ -1,10 +1,11 @@
 from .db import db
-from datetime import datetime
+from flask_login import UserMixin
 
-class Sampler(db.Model):
+class Sampler(db.Model, UserMixin):
   __tablename__ = 'samplers'
 
   id = db.Column(db.Integer, primary_key=True)
+  title = db.Column(db.String, nullable=False)
   userId = db.Column(db.Integer, db.ForeignKey("users.id"))
   sampleOne = db.Column(db.String)
   sampleTwo = db.Column(db.String)
@@ -14,7 +15,7 @@ class Sampler(db.Model):
   sampleSix = db.Column(db.String)
   sampleSeven = db.Column(db.String)
   sampleEight = db.Column(db.String)
-  private = db.Column(db.Boolean, nullable=False, default=False)
+  priv = db.Column(db.Boolean, nullable=False, default=False)
   createdAt = db.Column(db.DateTime, nullable = False)
 
   user = db.relationship("User", back_populates="sampler")
@@ -31,6 +32,7 @@ class Sampler(db.Model):
       'sampleSix': self.sampleSix,
       'sampleSeven': self.sampleSeven,
       'sampleEight': self.sampleEight,
-      'private': self.private,
       'createdAt': self.createdAt,
+      'title': self.title,
+      'priv': self.priv,
     }
