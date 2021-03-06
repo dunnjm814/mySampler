@@ -12,18 +12,18 @@ const NewSamplerForm = ({ setShowModal }) => {
   const [title, setTitle] = useState("");
   const [priv, setPriv] = useState(false);
   const [errors, setErrors] = useState([]);
-  const userId = sessionUser.id;
-  console.log(userId)
+
+
   const submitSampler = async (e) => {
     e.preventDefault();
 
-    const sampler = await dispatch(newSampler(title, userId, priv));
+    const sampler = await dispatch(newSampler(title, priv));
     console.log('after form dispatch', sampler)
     if (sampler.errors) {
       setErrors([...sampler.errors]);
     }
     setShowModal(false);
-    history.push('/sampler')
+    history.push(`/sampler/${sampler.id}`)
   };
 
   const updateTitle = (e) => {

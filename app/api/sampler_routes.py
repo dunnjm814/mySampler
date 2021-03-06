@@ -10,13 +10,21 @@ from app.forms import SamplerForm
 sampler_routes = Blueprint('/sampler', __name__)
 
 
+@sampler_routes.route('/<int:samplerId>')
+def get_one_sampler(samplerId):
+  sampler = Sampler.query.filter_by(id=samplerId).first()
+  print(sampler)
+  if sampler:
+    print("hey Im in the GETONESAMPLER")
+    return sampler.to_dict()
+  else:
+    return {'errors': 'Sampler not found :('}
+
 @sampler_routes.route('/new', methods=['POST'])
 @login_required
 def new_sampler():
-  print('*****************************', current_user.id)
   form = SamplerForm()
-  print('hello2', form.title)
-  # form['csrf_token'].data = request.cookies['csrf_token']
+  form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
     sampler = Sampler(
       title=form.data['title'],
@@ -30,13 +38,20 @@ def new_sampler():
       sampleSeven='',
       sampleEight='',
       priv=form.data['priv'],
-      createdAt=datetime.now,
+      createdAt=datetime.now(),
     )
-    print('hello')
     db.session.add(sampler)
     db.session.commit()
-    print('hello2')
     return sampler.to_dict()
   else:
-    print('hello error')
     return {'error': "Something went wrong, please try again."}
+
+@sampler_routes.route('/delete/<int:samplerId>', methods=["DELETE"])
+def delete_sampler(samplerId):
+  sampler = Sampler.query.filter_by(id=samplerId).first()
+  if sampler:
+    db.session.delete(sampler)
+    db.session.commit()
+    return sampler.to_dict()
+  else:
+    return {'errors': 'something went wrong :('}

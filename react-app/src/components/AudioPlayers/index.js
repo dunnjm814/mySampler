@@ -6,6 +6,7 @@ function AudioPlayers() {
   const playSample1 = (e) => {
     e.preventDefault();
     console.log("z pressed!");
+    
   };
   const playSample2 = (e) => {
     e.preventDefault();

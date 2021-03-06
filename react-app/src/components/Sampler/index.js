@@ -1,13 +1,27 @@
 import React, { useState , useEffect} from "react";
-// import { Slider } from "@material-ui/core";
 import { Knob } from "react-rotary-knob";
+import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
-import {receiveSamples} from '../../store/samples'
+import { receiveSamples } from '../../store/samples'
+import { getSampler, deleteSampler } from '../../store/sampler'
 import "./sampler.css";
 
 function Sampler() {
+  const { samplerId } = useParams()
   const dispatch = useDispatch();
+  const history = useHistory();
+
+    useEffect(() => {
+      dispatch(getSampler(samplerId))
+    },[samplerId])
+
   const sessionUser = useSelector((state) => state.session.user);
+  const samplerState = useSelector((state) => {
+    console.log("incoming sampler state", state);
+    return state.sampler;
+  });
+
+  console.log("yay userState", sessionUser)
 
   const [tempo, setTempo] = useState(120);
 
@@ -24,6 +38,7 @@ function Sampler() {
 
   useEffect(() => {
     const userId = sessionUser.id
+    // change to userSampler.id
     if (
       Object.values(samples).every((sample) => {
           return sample === ''
@@ -40,8 +55,23 @@ function Sampler() {
   const slideTempo = (e) => {
     setTempo(e.target.value);
   };
+
+  const destroySampler = async (e) => {
+    e.preventDefault();
+    const destroy = dispatch(deleteSampler(samplerId))
+    if (destroy.errors) {
+      // future error handling
+    } else {
+      history.push("/home");
+    }
+  }
+
   return (
-    <div id="home-wrap">
+    <div id="sampler-show-wrap">
+
+    {<div id="sampler-credentials">
+        <h2>{samplerState.title}</h2><button type='delete' onClick={destroySampler}>Delete?</button>
+      </div>}
       <div id="sampler-wrap">
         <div id="knobs-wrap">
           <div id="knob-container">

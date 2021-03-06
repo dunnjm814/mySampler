@@ -12,11 +12,38 @@
 }
 
 #demo{
-  margin-left: 5px;
+  outline: none;
+  width: auto;
+  height: auto;
+  background-color: white;
+  color: #1f878f;
+  border-radius: 5px;
+  border: none;
+  padding: 20px;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 0.4px;
+  font-size: 40px;
+  transition: 0.5s;
 }
 #demo:hover{
-  background-color: #998476;
+  color: #39a6ad;
 }
-/* #login:hover{
-  background-color: #998476;
-} */
+#log-in{
+  outline: none;
+  width: auto;
+  height: auto;
+  background-color: white;
+  color: #1f878f;
+  border-radius: 5px;
+  border: none;
+  padding: 20px;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 0.4px;
+  font-size: 40px;
+  transition: 0.5s;
+}
+#log-in:hover{
+  color: #39a6ad;
+}

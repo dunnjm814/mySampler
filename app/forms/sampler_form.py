@@ -4,4 +4,4 @@ from wtforms.validators import DataRequired
 
 class SamplerForm(FlaskForm):
   title = StringField('Title', validators=[DataRequired()])
-  priv = BooleanField('Priv', validators=[DataRequired()])
+  priv = BooleanField('Priv')

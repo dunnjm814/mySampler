@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
+import './signup.css'
 
 
 const SignUpForm = ({ setShowModal }) => {
@@ -95,7 +96,7 @@ const SignUpForm = ({ setShowModal }) => {
           required={true}
         ></input>
       </div>
-      <button type="submit">Sign Up</button>
+      <button type="submit" id='signup'>Sign Up</button>
     </form>
   );
 };

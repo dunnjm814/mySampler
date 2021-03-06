@@ -57,7 +57,7 @@
   font-size: 16px;
 }
 
-button {
+/* button {
   background-color: #A18C7D;
   font-size: 16px;
   color: white;
@@ -67,7 +67,7 @@ button {
   border: none;
   outline: none;
 
-}
+} */
 
 
 @keyframes slideup {

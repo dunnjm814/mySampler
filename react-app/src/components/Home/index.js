@@ -1,6 +1,6 @@
 import React from 'react'
 import NewSamplerModal from '../Modals/NewSamplerModal'
-import Sampler from '../Sampler'
+
 
 function Home() {
   return (
@@ -12,7 +12,6 @@ function Home() {
           <h1>Some Beats!</h1>
           <NewSamplerModal />
         </div>
-        <Sampler />
       </div>
     </>
   );
