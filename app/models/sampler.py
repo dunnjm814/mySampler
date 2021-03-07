@@ -1,5 +1,6 @@
 from .db import db
 from flask_login import UserMixin
+import datetime
 
 class Sampler(db.Model, UserMixin):
   __tablename__ = 'samplers'
@@ -16,7 +17,7 @@ class Sampler(db.Model, UserMixin):
   sampleSeven = db.Column(db.String)
   sampleEight = db.Column(db.String)
   priv = db.Column(db.Boolean, nullable=False, default=False)
-  createdAt = db.Column(db.DateTime, nullable = False)
+  createdAt = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
   user = db.relationship("User", back_populates="sampler")
 

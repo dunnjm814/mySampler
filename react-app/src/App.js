@@ -11,6 +11,7 @@ import LoginModal from "./components/Modals/LoginModal";
 import SignupModal from "./components/Modals/SignupModal";
 import Home from './components/Home'
 import Sampler from "./components/Sampler";
+import AudioPlayers from './components/AudioPlayers'
 
 
 function App() {
@@ -68,6 +69,9 @@ function App() {
             >
               <SideBar />
               <Sampler />
+              <div style={{display: 'none'} }>
+                <AudioPlayers />
+              </div>
             </div>
           </ProtectedRoute>
           <ProtectedRoute

@@ -1,16 +1,23 @@
 import React from 'react'
 import KeyHandler, { KEYPRESS } from "react-key-handler";
+import * as Tone from 'tone'
 
 
 function AudioPlayers() {
   const playSample1 = (e) => {
     e.preventDefault();
     console.log("z pressed!");
-    
+    const synth = new Tone.Synth().toDestination();
+    const now = Tone.now();
+    synth.triggerAttackRelease("C4", "8n", now);
+
   };
   const playSample2 = (e) => {
     e.preventDefault();
     console.log("x pressed!");
+    const synth = new Tone.Synth().toDestination();
+    const now = Tone.now();
+    synth.triggerAttackRelease("G4", "8n", now);
   };
   const playSample3 = (e) => {
     e.preventDefault();

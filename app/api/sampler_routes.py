@@ -20,6 +20,16 @@ def get_one_sampler(samplerId):
   else:
     return {'errors': 'Sampler not found :('}
 
+@sampler_routes.route('/all/<int:userId>')
+def get_all_samplers(userId):
+  print("hey im in the GETALLUSERSAMPLES")
+  samplers = Sampler.query.filter_by(userId=userId).all()
+  if samplers:
+    data = [sampler.to_dict() for sampler in samplers]
+    return jsonify(data)
+  else:
+    return {"message": "Lets make a beat!"}
+
 @sampler_routes.route('/new', methods=['POST'])
 @login_required
 def new_sampler():
