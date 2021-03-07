@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { useSelector } from "react-redux";
@@ -10,8 +10,6 @@ import logo from '../../img/mySamplerLogo.png'
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
-
-  console.log(sessionUser)
   return (
     <nav>
       <div >

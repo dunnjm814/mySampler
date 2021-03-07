@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {newSampler} from '../../store/sampler'
 import './samplerform.css'
 
 const NewSamplerForm = ({ setShowModal }) => {
-  const sessionUser = useSelector((state) => state.session.user);
+
   const history = useHistory();
   const dispatch = useDispatch();
 

@@ -11,18 +11,17 @@ function Sampler() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-    useEffect(() => {
-      dispatch(getSampler(samplerId))
-    },[samplerId])
+  useEffect(() => {
+    dispatch(getSampler(samplerId))
+    }, [dispatch, samplerId])
 
-  const sessionUser = useSelector((state) => state.session.user);
+  // const sessionUser = useSelector((state) => state.session.user); //unused?
   const samplerState = useSelector((state) => {
     console.log("incoming sampler state", state);
     return state.sampler.sampler;
   });
 
   console.log("yay samplerState", samplerState)
-
   const [tempo, setTempo] = useState(120);
 
   const [samples, setSamples] = useState({
@@ -37,19 +36,18 @@ function Sampler() {
   });
 
   useEffect(() => {
-    const userId = sessionUser.id
-    // change to userSampler.id
+    // const userId = sessionUser.id
     if (
       Object.values(samples).every((sample) => {
           return sample === ''
         })
       ) return
         const sendData = {
-          userId,
+          samplerId,
           samples
         };
       dispatch(receiveSamples(sendData))
-  }, [samples])
+  }, [dispatch, samples, samplerId])
 
 
   const slideTempo = (e) => {

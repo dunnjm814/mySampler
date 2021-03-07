@@ -16,12 +16,8 @@ function SideBar() {
   const userId = sessionUser.id
   const userSamplers = useSelector((state) => state.sampler.userSamplers);
   useEffect(() => {
-
     dispatch(fetchAllUserSamplers(userId));
-
-    console.log('state after dispatch', userSamplers)
-  }, [])
-
+  }, [dispatch, userId])
 
   return (
     <>
@@ -37,7 +33,7 @@ function SideBar() {
           {userSamplers && (
             <Dropdown options={userSamplers?.samplerList?.title} />
           )}
-            {(console.log(userSamplers))}
+            {(console.log('list of samplers by user, in side bar', userSamplers))}
         </div>
         <NavLink to={`/profile/${userName}`}>
           <div className="side-link">

@@ -12,6 +12,7 @@ import SignupModal from "./components/Modals/SignupModal";
 import Home from './components/Home'
 import Sampler from "./components/Sampler";
 import AudioPlayers from './components/AudioPlayers'
+import NotFound from "./components/NotFound";
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
   useEffect(() => {
     dispatch(authenticate()).then(() => {
       setLoaded(true);
-    })}, []);
+    })}, [dispatch]);
 
   if (!loaded) {
     return null;
@@ -69,7 +70,7 @@ function App() {
             >
               <SideBar />
               <Sampler />
-              <div style={{display: 'none'} }>
+              <div style={{ display: "none" }}>
                 <AudioPlayers />
               </div>
             </div>
@@ -80,6 +81,9 @@ function App() {
           ></ProtectedRoute>
         </Switch>
       </div>
+      <Route path="/404" exact={true}>
+        <NotFound />
+      </Route>
     </BrowserRouter>
   );
 }

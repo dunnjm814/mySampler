@@ -42,11 +42,8 @@ export const getSampler = (samplerId) => async (dispatch) => {
   return response.errors
 }
 export const fetchAllUserSamplers = (userId) => async (dispatch) => {
-  console.log(userId)
   const response = await fetch(`/api/sampler/all/${userId}`)
-  console.log(response)
   const samplers = await response.json()
-  console.log(samplers)
   dispatch(getAllUserSampler(samplers));
   return samplers
 }
@@ -61,10 +58,7 @@ export const newSampler = (title, priv) => async (dispatch) => {
       priv,
     }),
   });
-  console.log('thunkfetch', response)
-  const sampler = await response.json();
-  console.log('jsonthunk', sampler)
-
+  const sampler = await response.json()
   dispatch(setNewSampler(sampler))
   return sampler
 }
@@ -84,7 +78,7 @@ export const deleteSampler = (samplerId) => async (dispatch) => {
 
 const samplerReducer = (state = { sampler: null, userSamplers: {} }, action) => {
   let newState = { ...state }
-  console.log('action', action)
+
   switch (action.type) {
     case NEW_SAMPLER:
       newState.sampler = action.payload;
