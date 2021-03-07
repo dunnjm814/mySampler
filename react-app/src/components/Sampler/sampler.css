@@ -9,10 +9,11 @@
 #sampler-credentials{
   display: flex;
   flex-direction: row;
+  align-items: flex-end;
   padding: 20px;
   color: #1f878f;
 }
-#sampler-credentials >button{
+#samples > button{
     border: 1px solid #ccc;
     height: 50px;
     width: 50px;
@@ -33,7 +34,7 @@
   border-radius: 7px;
   width: 400px;
   background-color: #a1a1a1;
-  position: fixed;
+
 
 }
 #knobs-wrap{
@@ -73,10 +74,38 @@ input[type="file"] {
     font-weight: bold;
     font-size: 30px;
 }
+.sample-load:hover{
+  background-color: rgb(255, 28, 28);
+  animation: flash linear 2s infinite;
+}
 #samples-wrap{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   margin-bottom: 10px;
 
+}
+#sampler-title{
+  font-size: 30px;
+}
+#delete-sampler{
+  background-color: white;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  transition: 0.5s linear;
+}
+
+#delete-sampler:hover{
+  cursor: pointer;
+  transform: translateY(-10px);
+  color: rgb(29, 29, 29);
+  font-size: 17px;
+  font-weight: bold;
+}
+
+@keyframes flash {
+  0% {opacity: 1;}
+  50% {opacity: 0.1}
+  100% {opacity: 1 }
 }

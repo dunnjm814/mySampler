@@ -18,10 +18,10 @@ function Sampler() {
   const sessionUser = useSelector((state) => state.session.user);
   const samplerState = useSelector((state) => {
     console.log("incoming sampler state", state);
-    return state.sampler;
+    return state.sampler.sampler;
   });
 
-  console.log("yay userState", sessionUser)
+  console.log("yay samplerState", samplerState)
 
   const [tempo, setTempo] = useState(120);
 
@@ -69,9 +69,9 @@ function Sampler() {
   return (
     <div id="sampler-show-wrap">
 
-    {<div id="sampler-credentials">
-        <h2>{samplerState.title}</h2><button type='delete' onClick={destroySampler}>Delete?</button>
-      </div>}
+    {samplerState &&(<div id="sampler-credentials">
+        <h2 id='sampler-title'>{samplerState.title}</h2><button type='delete' id='delete-sampler' onClick={destroySampler}>Delete?</button>
+      </div>)}
       <div id="sampler-wrap">
         <div id="knobs-wrap">
           <div id="knob-container">
