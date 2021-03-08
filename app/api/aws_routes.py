@@ -18,25 +18,22 @@ aws_routes = Blueprint('/aws', __name__)
 @aws_routes.route('/sampler/<int:samplerId>', methods=['PUT'])
 @login_required
 def set_sampler(samplerId):
-  sampler = Sampler.query.filter_by(id=samplerId).first()
-  print('hey its my sampler id!', samplerId)
   audioFile = request.files["sampleFile"]
-  print('hey its my audioFile', audioFile)
   print("hey its my request data?", request.form.get('sampleKey'))
   sampleKey = request.form.get('sampleKey')
-  strSampleKey = str(sampleKey)
   print('hey its my sample key', sampleKey)
-  if audioFile and sampler:
+  if audioFile:
     audioFile.filename = f"{date.today()}-{datetime.time(datetime.now())}-{audioFile.filename}"
-    print('hey its my formated audioFile.filename', audioFile.filename)
     audio_url = upload_file_to_s3(audioFile, Config.S3_BUCKET)
-    print('hey its my aws url', audio_url)
-    print('hey its my sampler,to_dict', sampler.to_dict())
-    sampler[f"{sampleKey}"] = audio_url
+    Sampler.query.filter(Sampler.id==samplerId).update({sampleKey: audio_url})
+    sampler = Sampler.query.filter_by(id=samplerId).first()
+    # print('hey its my sampler,to_dict', samplerTest.to_dict())
+
+    # sampler.set_sample_key(sampleKey, audio_url)
     # sampler.sampleOne = audio_url this works for some reason
     # print('hey its my sampler[sampleKey] after', sampler.sampleKey)
-    print('hey its my sampler,to_dict again', sampler.to_dict())
-    db.session.add(sampler)
+    # print('hey its my sampler,to_dict again', sampler.to_dict())
+    # db.session.add(sampler)
     db.session.commit()
     return sampler.to_dict()
   else:

@@ -37,3 +37,6 @@ class Sampler(db.Model, UserMixin):
       'title': self.title,
       'priv': self.priv,
     }
+
+  def set_sample_key(self, sample_num, value):
+    self[sample_num] = value

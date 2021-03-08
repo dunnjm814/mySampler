@@ -1,21 +1,30 @@
-import React from 'react'
+import React, {useState} from 'react'
 import KeyHandler, { KEYPRESS } from "react-key-handler";
 import * as Tone from 'tone'
 
 
 function AudioPlayers() {
+  const [sampleVol, setSampleVol] = useState({
+    sampleOne: -6,
+    sampleTwo: -20
+  })
+  const gainOne = new Tone.Volume().toDestination()
+  const gainTwo = new Tone.Volume().toDestination()
+
   const playSample1 = (e) => {
     e.preventDefault();
+    gainOne.volume.value = sampleVol.sampleOne
     console.log("z pressed!");
-    const synth = new Tone.Synth().toDestination();
+    const synth = new Tone.Synth().chain(gainOne)
     const now = Tone.now();
     synth.triggerAttackRelease("C4", "8n", now);
 
   };
   const playSample2 = (e) => {
     e.preventDefault();
+    gainTwo.volume.value = sampleVol.sampleTwo
     console.log("x pressed!");
-    const synth = new Tone.Synth().toDestination();
+    const synth = new Tone.Synth().chain(gainTwo);
     const now = Tone.now();
     synth.triggerAttackRelease("G4", "8n", now);
   };
