@@ -76,7 +76,7 @@ export const deleteSampler = (samplerId) => async (dispatch) => {
   return {}
 }
 
-const samplerReducer = (state = { sampler: null, userSamplers: {} }, action) => {
+const samplerReducer = (state = { sampler: null, userSamplers: [] }, action) => {
   let newState = { ...state }
 
   switch (action.type) {
@@ -87,9 +87,7 @@ const samplerReducer = (state = { sampler: null, userSamplers: {} }, action) => 
       newState.sampler = action.payload;
       return newState;
     case GET_ALL_USER_SAMPLER:
-      action.samplerList.forEach((sampler) => {
-        newState.userSamplers[sampler.id] = sampler
-      })
+      newState.userSamplers = [...action.samplerList]
       return newState
     case DESTROY_SAMPLER:
       delete newState[action.payload]
