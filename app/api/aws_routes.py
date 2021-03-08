@@ -6,6 +6,8 @@ import json
 from app.config import Config
 from app.helpers import *
 from datetime import datetime
+from datetime import date
+from datetime import time
 from app.models import db, Sampler
 
 
@@ -25,6 +27,8 @@ def set_sampler(samplerId):
   strSampleKey = str(sampleKey)
   print('hey its my sample key', sampleKey)
   if audioFile and sampler:
+    audioFile.filename = f"{date.today()}-{datetime.time(datetime.now())}-{audioFile.filename}"
+    print('hey its my formated audioFile.filename', audioFile.filename)
     audio_url = upload_file_to_s3(audioFile, Config.S3_BUCKET)
     print('hey its my aws url', audio_url)
     print('hey its my sampler,to_dict', sampler.to_dict())
