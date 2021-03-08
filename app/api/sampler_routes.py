@@ -13,7 +13,7 @@ sampler_routes = Blueprint('/sampler', __name__)
 @sampler_routes.route('/<int:samplerId>')
 def get_one_sampler(samplerId):
   sampler = Sampler.query.filter_by(id=samplerId).first()
-  print(sampler)
+  print('hey its my sampler', sampler)
   if sampler:
     print("hey Im in the GETONESAMPLER")
     return sampler.to_dict()

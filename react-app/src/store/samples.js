@@ -21,20 +21,17 @@ export const receiveSamples = (sendData) => async () => {
   //   sample8,
   // } = sendData
   const {
-    userId,
+    samplerId,
     samples
   } = sendData
 
   const sendAudio = Object.entries(samples).filter(([ _key, sample ]) => {
     return sample !== "";
   })[0];
-  console.log('sendAudio', sendAudio)
-  const audioData = await fetch('/aws')
-  const awsAudioUrl = sendAudio[1] //future AWS circuit here
 
   const data = new FormData()
   data.append('sampleKey', sendAudio[0])
-  data.append('awsAudioUrl', awsAudioUrl)
+  data.append('sampleFile', sendAudio[1])
   // data.append('userId', userId)
   // data.append('sample1', sample1)
   // data.append('sample2', sample2)
@@ -45,8 +42,8 @@ export const receiveSamples = (sendData) => async () => {
   // data.append('sample7', sample7)
   // data.append('sample8', sample8)
   console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$', data.get('sampleKey'))
-  console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$', data.get('awsAudioUrl'))
-  const res = await fetch(`/api/aws/sampler/${userId}`, {
+  console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$', data.get('sampleFile'))
+  const res = await fetch(`/api/aws/sampler/${samplerId}`, {
     method: 'PUT',
     body: data
   })
