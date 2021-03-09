@@ -17,6 +17,12 @@ from .config import Config
 
 app = Flask(__name__)
 
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+    return response
+
 # Setup login manager
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
@@ -38,8 +44,13 @@ app.register_blueprint(sampler_routes, url_prefix='/api/sampler')
 db.init_app(app)
 Migrate(app, db)
 
+api_v1_cors_config = {
+  "origins": ["http://localhost:5000"],
+  "methods": ["OPTIONS", "GET", "POST"],
+  "allow_headers": ["Authorization", "Content-Type"]
+}
 # Application Security
-CORS(app)
+CORS(app, resources={'/api/*': api_v1_cors_config})
 
 # Since we are deploying with Docker and Flask,
 # we won't be using a buildpack when we deploy to Heroku.

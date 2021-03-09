@@ -25,15 +25,8 @@ def set_sampler(samplerId):
   if audioFile:
     audioFile.filename = f"{date.today()}-{datetime.time(datetime.now())}-{audioFile.filename}"
     audio_url = upload_file_to_s3(audioFile, Config.S3_BUCKET)
-    Sampler.query.filter(Sampler.id==samplerId).update({sampleKey: audio_url})
+    Sampler.query.filter(Sampler.id == samplerId).update({sampleKey: audio_url})
     sampler = Sampler.query.filter_by(id=samplerId).first()
-    # print('hey its my sampler,to_dict', samplerTest.to_dict())
-
-    # sampler.set_sample_key(sampleKey, audio_url)
-    # sampler.sampleOne = audio_url this works for some reason
-    # print('hey its my sampler[sampleKey] after', sampler.sampleKey)
-    # print('hey its my sampler,to_dict again', sampler.to_dict())
-    # db.session.add(sampler)
     db.session.commit()
     return sampler.to_dict()
   else:

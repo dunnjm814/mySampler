@@ -5,7 +5,6 @@ import logo from '../../img/mySamplerLogo.png'
 import React, {useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { NavLink, Link } from 'react-router-dom'
-import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import {fetchAllUserSamplers} from '../../store/sampler'
 

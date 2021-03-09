@@ -10,7 +10,15 @@ from app.forms import SamplerForm
 sampler_routes = Blueprint('/sampler', __name__)
 
 
+# api_v2_cors_config = {
+#   "origins": ["http://localhost:5000"],
+#   "methods": ["OPTIONS", "GET", "POST"],
+#   "allow_headers": ["Authorization", "Content-Type"]
+# }
+
+
 @sampler_routes.route('/<int:samplerId>')
+# @cross_origin(**api_v2_cors_config)
 def get_one_sampler(samplerId):
   sampler = Sampler.query.filter_by(id=samplerId).first()
   print('hey its my sampler', sampler)
