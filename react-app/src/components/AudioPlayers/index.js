@@ -29,18 +29,18 @@ function AudioPlayers() {
   const [sampleEight, setSampleEight] = useState('')
 
   const [sampleVol, setSampleVol] = useState({
-    volOne: 0,
-    volTwo: -20,
-    volThree: -6,
-    volFour: -6,
-    volFive: -6,
-    volSix: -6,
-    volSeven: -6,
-    volEight: -6,
-  })
+    volOne: -3,
+    volTwo: -3,
+    volThree: -3,
+    volFour: -3,
+    volFive: -3,
+    volSix: -3,
+    volSeven: -3,
+    volEight: -3,
+  });
 
   const incomingSamples = useSelector((state) => state.sampler.sampler)
-  
+
   useEffect(() => {
     setLoaded(true)
   },[samplerId])
@@ -57,7 +57,7 @@ function AudioPlayers() {
       setSampleSeven(incomingSamples.sampleSeven)
       setSampleEight(incomingSamples.sampleEight)
     }
-  }, [incomingSamples])
+  }, [incomingSamples, loaded, sampleOne, sampleTwo, sampleThree, sampleFour, sampleFive, sampleSix, sampleSeven, sampleEight])
 
 
   const gainOne = new Tone.Volume().toDestination()
