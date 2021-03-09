@@ -4,12 +4,15 @@ import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { receiveSamples } from '../../store/samples'
 import { getSampler, deleteSampler } from '../../store/sampler'
+import {useMixerContext} from '../../context/Mixer'
 import "./sampler.css";
 
 function Sampler() {
   const { samplerId } = useParams()
   const dispatch = useDispatch();
   const history = useHistory();
+  const { sampleVol, setSampleVol } = useMixerContext();
+  console.log(sampleVol)
 
   useEffect(() => {
     dispatch(getSampler(samplerId))
@@ -66,10 +69,14 @@ function Sampler() {
 
   return (
     <div id="sampler-show-wrap">
-
-    {samplerState &&(<div id="sampler-credentials">
-        <h2 id='sampler-title'>{samplerState.title}</h2><button type='delete' id='delete-sampler' onClick={destroySampler}>Delete?</button>
-      </div>)}
+      {samplerState && (
+        <div id="sampler-credentials">
+          <h2 id="sampler-title">{samplerState.title}</h2>
+          <button type="delete" id="delete-sampler" onClick={destroySampler}>
+            Delete?
+          </button>
+        </div>
+      )}
       <div id="sampler-wrap">
         <div id="knobs-wrap">
           <div id="knob-container">
@@ -201,6 +208,22 @@ function Sampler() {
                 </label>
               </form>
             </div>
+          </div>
+        </div>
+      </div>
+      <div id="mixer-wrap">
+        <div id="mixer">
+          <div id="vol-slider">
+            <input type='range'
+              value={sampleVol.volOne}
+              min={-60}
+              max={6}
+              onChange={(e) => {
+                setSampleVol({...sampleVol, volOne: e.target.value})
+                console.log(sampleVol.volOne)
+              }}
+              orient={'vertical'}
+              />
           </div>
         </div>
       </div>

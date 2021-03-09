@@ -69,10 +69,10 @@ function App() {
               }}
             >
               <SideBar />
-              <Sampler />
-              <div style={{ display: "none" }}>
-                <AudioPlayers />
-              </div>
+                <Sampler />
+                <div style={{ display: "none" }}>
+                  <AudioPlayers />
+                </div>
             </div>
           </ProtectedRoute>
           <ProtectedRoute

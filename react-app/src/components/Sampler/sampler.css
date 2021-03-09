@@ -103,6 +103,10 @@ input[type="file"] {
   font-size: 17px;
   font-weight: bold;
 }
+#vol-slider > input[type='range']{
+  writing-mode: bt-lr;
+  -webkit-appearance: slider-vertical;
+}
 
 @keyframes flash {
   0% {opacity: 0.1;}

@@ -3,11 +3,12 @@ import KeyHandler, { KEYPRESS } from "react-key-handler";
 import * as Tone from 'tone'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { Player } from 'tone';
+import {useMixerContext} from '../../context/Mixer'
 
 
 function AudioPlayers() {
   const { samplerId } = useParams()
+  const { sampleVol } = useMixerContext()
   // const [sampler, setSample] = useState({
   //   sampleOne:'',
   //   sampleTwo:'',
@@ -27,17 +28,6 @@ function AudioPlayers() {
   const [sampleSix, setSampleSix] = useState('')
   const [sampleSeven, setSampleSeven] = useState('')
   const [sampleEight, setSampleEight] = useState('')
-
-  const [sampleVol, setSampleVol] = useState({
-    volOne: -3,
-    volTwo: -3,
-    volThree: -3,
-    volFour: -3,
-    volFive: -3,
-    volSix: -3,
-    volSeven: -3,
-    volEight: -3,
-  });
 
   const incomingSamples = useSelector((state) => state.sampler.sampler)
 

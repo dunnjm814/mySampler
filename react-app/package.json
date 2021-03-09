@@ -20,6 +20,7 @@
     "react-scripts": "3.4.3",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "rn-vertical-slider": "^2.0.2",
     "tone": "^14.7.77"
   },
   "scripts": {

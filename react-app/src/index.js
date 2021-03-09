@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import { Provider } from "react-redux";
 import { ModalProvider } from "./context/Modal";
+import MixerProvider  from "./context/Mixer";
 import configureStore from "./store";
 import * as sessionActions from "./store/session";
 
@@ -17,9 +18,11 @@ if (process.env.NODE_ENV !== "production") {
 ReactDOM.render(
   <React.StrictMode>
     <ModalProvider>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <MixerProvider>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </MixerProvider>
     </ModalProvider>
   </React.StrictMode>,
   document.getElementById("root")
