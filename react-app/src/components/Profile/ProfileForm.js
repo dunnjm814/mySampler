@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
+import { submitProfile } from "../../store/profile";
 
 
 function ProfileForm({ userProfile, info, setInfo }) {
@@ -17,7 +18,7 @@ function ProfileForm({ userProfile, info, setInfo }) {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(bio, name, location, website)
+    await dispatch(submitProfile(bio, name, location, website, userId))
     toggle()
   }
   useEffect(() => {
