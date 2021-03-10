@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
-// import AboutUserForm from "./AboutUserForm";
+import ProfileForm from './ProfileForm'
 import "./profile.css";
 
 
@@ -31,8 +31,14 @@ function Profile() {
               ) : null}
             </div>
             <div id="profile-infoform-component">
+              {info && (
+                <ProfileForm
+                  userProfile={userProfile}
+                  info={info}
+                  setInfo={setInfo}
+                />
+              )}
               <div id="component-wrapper" className={info ? "" : "hidden"}>
-                {/* form goes here */}
                 {!info && (
                   <div id="profile-info">
                     {userProfile.bio && (

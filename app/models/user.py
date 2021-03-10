@@ -11,6 +11,7 @@ class User(db.Model, UserMixin):
   hashed_password = db.Column(db.String(255), nullable = False)
 
   sampler = db.relationship("Sampler", back_populates="user")
+  profile = db.relationship("Profile", back_populates="user")
 
   @property
   def password(self):

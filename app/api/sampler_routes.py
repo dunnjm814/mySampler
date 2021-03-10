@@ -10,27 +10,16 @@ from app.forms import SamplerForm
 sampler_routes = Blueprint('/sampler', __name__)
 
 
-# api_v2_cors_config = {
-#   "origins": ["http://localhost:5000"],
-#   "methods": ["OPTIONS", "GET", "POST"],
-#   "allow_headers": ["Authorization", "Content-Type"]
-# }
-
-
 @sampler_routes.route('/<int:samplerId>')
-# @cross_origin(**api_v2_cors_config)
 def get_one_sampler(samplerId):
   sampler = Sampler.query.filter_by(id=samplerId).first()
-  print('hey its my sampler', sampler)
   if sampler:
-    print("hey Im in the GETONESAMPLER")
     return sampler.to_dict()
   else:
     return {'errors': 'Sampler not found :('}
 
 @sampler_routes.route('/all/<int:userId>')
 def get_all_samplers(userId):
-  print("hey im in the GETALLUSERSAMPLES")
   samplers = Sampler.query.filter_by(userId=userId).all()
   if samplers:
     data = [sampler.to_dict() for sampler in samplers]
