@@ -6,6 +6,11 @@
   width: 100%;
   height: auto;
 }
+#sampler-mixer-house{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 #sampler-credentials{
   display: flex;
   flex-direction: row;
@@ -95,7 +100,6 @@ input[type="file"] {
   font-size: 15px;
   transition: 0.5s linear;
 }
-
 #delete-sampler:hover{
   cursor: pointer;
   transform: translateY(-10px);
@@ -103,9 +107,21 @@ input[type="file"] {
   font-size: 17px;
   font-weight: bold;
 }
-#vol-slider > input[type='range']{
-  writing-mode: bt-lr;
-  -webkit-appearance: slider-vertical;
+#mixer-wrap{
+  padding: 25px;
+  max-width: 100px;
+}
+#vol-slider-wrap{
+  display: flex;
+  flex-direction: row;
+}
+#vol-slider{
+  max-width: 20px;
+}
+#vol-slider > input[type=range]{
+  transform:rotate(270deg);
+  height: auto;
+  /* max-width: 12.5px; */
 }
 
 @keyframes flash {

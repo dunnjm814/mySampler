@@ -12,7 +12,6 @@ function SideBar() {
   const dispatch = useDispatch()
   const [samplerDropDown, setDropDown] = useState()
   const sessionUser = useSelector((state) => state.session.user);
-  const userName = sessionUser.username;
   const userId = sessionUser.id
   const userSamplers = useSelector((state) => state.sampler.userSamplers);
 
@@ -46,7 +45,7 @@ function SideBar() {
             )}
           </div>
         </div>
-        <NavLink to={`/profile/${userName}`}>
+        <NavLink to={`/profile/${userId}`}>
           <div className="side-link">
             <div className="side-icon">
               <AiFillProfile />

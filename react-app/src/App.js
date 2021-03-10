@@ -12,6 +12,7 @@ import SignupModal from "./components/Modals/SignupModal";
 import Home from './components/Home'
 import Sampler from "./components/Sampler";
 import AudioPlayers from './components/AudioPlayers'
+import Profile from './components/Profile'
 import NotFound from "./components/NotFound";
 
 
@@ -69,16 +70,24 @@ function App() {
               }}
             >
               <SideBar />
-                <Sampler />
-                <div style={{ display: "none" }}>
-                  <AudioPlayers />
-                </div>
+              <Sampler />
+              <div style={{ display: "none" }}>
+                <AudioPlayers />
+              </div>
             </div>
           </ProtectedRoute>
-          <ProtectedRoute
-            path="/profile/:userName"
-            exact={true}
-          ></ProtectedRoute>
+          <ProtectedRoute path="/profile/:userId" exact={true}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <SideBar />
+              <Profile />
+            </div>
+          </ProtectedRoute>
         </Switch>
       </div>
       <Route path="/404" exact={true}>
