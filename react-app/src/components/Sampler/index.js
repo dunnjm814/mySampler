@@ -106,6 +106,7 @@ function Sampler() {
           </button>
         </div>
       )}
+    <div id="sampler-show">
       <div id="sampler-mixer-house">
         <div id="sampler-wrap">
           <div id="knobs-wrap">
@@ -386,6 +387,7 @@ function Sampler() {
                   orient={"vertical"}
                 />
               </div>
+            </div>
             </div>
           </div>
         </div>

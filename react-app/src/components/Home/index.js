@@ -1,10 +1,10 @@
 import React from 'react'
 import NewSamplerModal from '../Modals/NewSamplerModal'
-
+import './home.css'
 
 function Home() {
   return (
-    <>
+
       <div id="body-wrap">
         <div id='new-sampler'>
           <h2>lets make</h2>
@@ -13,7 +13,7 @@ function Home() {
           <NewSamplerModal />
         </div>
       </div>
-    </>
+
   );
 }
 export default Home;

@@ -1,5 +1,14 @@
+
 #body-wrap{
+  margin-left: 100px;
+  height: 100%;
+  width: 100%;
+  position:fixed;
+}
+#new-sampler{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }

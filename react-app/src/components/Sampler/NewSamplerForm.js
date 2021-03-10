@@ -10,12 +10,18 @@ const NewSamplerForm = ({ setShowModal }) => {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState("");
-  const [priv, setPriv] = useState(false);
+  const [radio, setRadio] = useState('false' || 'true');
   const [errors, setErrors] = useState([]);
 
 
   const submitSampler = async (e) => {
     e.preventDefault();
+    let priv
+    if (radio === 'true') {
+      priv = true
+    } else {
+      priv = false
+    }
 
     const sampler = await dispatch(newSampler(title, priv));
     if (sampler.errors) {
@@ -55,22 +61,22 @@ const NewSamplerForm = ({ setShowModal }) => {
             Public
             <input
               type="radio"
-              value={false}
+              value='false'
               id="radio-false"
               name="public"
-              onChange={(e) => setPriv(e.target.value)}
-              checked={priv === false}
+              onChange={(e) => setRadio(e.target.value)}
+              checked={radio === 'false'}
             />
           </label>
           <label htmlFor="private">
             Private
             <input
               type="radio"
-              value={true}
+              value='true'
               id="radio-true"
               name="private"
-              onChange={(e) => setPriv(e.target.value)}
-              checked={priv === true}
+              onChange={(e) => setRadio(e.target.value)}
+              checked={radio === 'true'}
             />
           </label>
         </div>
