@@ -1,0 +1,13 @@
+#editprofilebutton{
+  outline: none;
+  width: auto;
+  height: auto;
+  background-color: white;
+  color: #1f878f;
+  border: none;
+  font-size: 25px;
+  transition: 0.5s;
+}
+#editprofilebutton:hover{
+  color: #ad9889;
+}

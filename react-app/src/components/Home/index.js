@@ -6,7 +6,7 @@ function Home() {
   return (
     <>
       <div id="body-wrap">
-        <div id='new-sampler'>'
+        <div id='new-sampler'>
           <h2>lets make</h2>
           <br />
           <h1>Some Beats!</h1>

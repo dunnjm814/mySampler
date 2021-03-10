@@ -8,20 +8,22 @@ function NewSamplerModal() {
 
 
   return (
-    <>
-      <button
-        id="new-sampler-button"
-        className="new-sampler-modal"
-        onClick={() => setShowModal(true)}
-      >
-      Make a new Sampler!
-      </button>
-      {showModal && (
-      <Modal onClose={() => setShowModal(false)}>
-        <NewSamplerForm setShowModal={setShowModal} />
-      </Modal>
-      )}
-    </>
-  )
+    <div>
+      <div>
+        <button
+          id="new-sampler-button"
+          className="new-sampler-modal"
+          onClick={() => setShowModal(true)}
+        >
+          Make a new Sampler!
+        </button>
+        {showModal && (
+          <Modal onClose={() => setShowModal(false)}>
+            <NewSamplerForm setShowModal={setShowModal} />
+          </Modal>
+        )}
+      </div>
+    </div>
+  );
 }
 export default NewSamplerModal

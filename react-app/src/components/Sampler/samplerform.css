@@ -1,0 +1,23 @@
+#submit-new{
+  outline: none;
+  width: auto;
+  height: auto;
+  background-color: white;
+  color: #1f878f;
+  border: none;
+  font-size: 40px;
+  transition: 0.5s;
+}
+#submit-new:hover{
+  color: #ad9889;
+}
+
+#about-user-form-wrap{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+}
+#about-user-form-wrap > input, label {
+  align-items: space-between;
+}

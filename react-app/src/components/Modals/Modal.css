@@ -34,3 +34,17 @@
 #login-button:hover{
   color: #ad9889;
 }
+
+#new-sampler-button{
+  outline: none;
+  width: auto;
+  height: auto;
+  background-color: white;
+  color: #1f878f;
+  border: none;
+  font-size: 40px;
+  transition: 0.5s;
+}
+#new-sampler-button:hover{
+  color: #ad9889;
+}

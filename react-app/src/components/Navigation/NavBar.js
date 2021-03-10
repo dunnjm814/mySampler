@@ -15,7 +15,7 @@ const NavBar = () => {
       <div >
         <div id="nav-wrap">
         <img id="mysampler-logo" src={logo} alt="home" />
-        <NavLink to="/" exact={true} activeClassName="active" className='home-link'>
+        <NavLink to="/home" exact={true} activeClassName="active" className='home-link'>
           mySampler
         </NavLink>
         </div>

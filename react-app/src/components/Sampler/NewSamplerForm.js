@@ -18,7 +18,6 @@ const NewSamplerForm = ({ setShowModal }) => {
     e.preventDefault();
 
     const sampler = await dispatch(newSampler(title, priv));
-    console.log('after form dispatch', sampler)
     if (sampler.errors) {
       setErrors([...sampler.errors]);
     }
@@ -56,30 +55,29 @@ const NewSamplerForm = ({ setShowModal }) => {
             Public
             <input
               type="radio"
-              onChange={(e) => {
-                setPriv(e.target.value);
-              }}
               value={false}
               id="radio-false"
               name="public"
-              checked
+              onChange={(e) => setPriv(e.target.value)}
+              checked={priv === false}
             />
           </label>
           <label htmlFor="private">
             Private
             <input
               type="radio"
-              onChange={(e) => {
-                setPriv(e.target.value);
-              }}
               value={true}
               id="radio-true"
               name="private"
+              onChange={(e) => setPriv(e.target.value)}
+              checked={priv === true}
             />
           </label>
         </div>
       </div>
-      <button type="submit">Make a new sampler!</button>
+      <button id="submit-new" type="submit">
+        Make a new sampler!
+      </button>
     </form>
   );
 };

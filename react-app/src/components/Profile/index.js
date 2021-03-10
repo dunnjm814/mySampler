@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import ProfileForm from './ProfileForm'
+import {getProfile} from '../../store/profile'
 import "./profile.css";
 
 
@@ -15,6 +16,9 @@ function Profile() {
   function toggle() {
     setInfo(!info);
   }
+  useEffect(() => {
+    dispatch(getProfile(userId))
+  },[dispatch, userId])
 
   return (
     <>
