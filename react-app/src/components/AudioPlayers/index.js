@@ -9,6 +9,7 @@ import {useMixerContext} from '../../context/Mixer'
 function AudioPlayers() {
   const { samplerId } = useParams()
   const { sampleVol } = useMixerContext()
+  console.log('sampleVol from audio players', sampleVol)
   // const [sampler, setSample] = useState({
   //   sampleOne:'',
   //   sampleTwo:'',
@@ -47,7 +48,7 @@ function AudioPlayers() {
       setSampleSeven(incomingSamples.sampleSeven)
       setSampleEight(incomingSamples.sampleEight)
     }
-  }, [incomingSamples, loaded, sampleOne, sampleTwo, sampleThree, sampleFour, sampleFive, sampleSix, sampleSeven, sampleEight])
+  }, [sampleVol, incomingSamples, loaded, sampleOne, sampleTwo, sampleThree, sampleFour, sampleFive, sampleSix, sampleSeven, sampleEight])
 
 
   const gainOne = new Tone.Volume().toDestination()

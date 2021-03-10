@@ -79,6 +79,10 @@ input[type="file"] {
     font-weight: bold;
     font-size: 30px;
 }
+.red{
+  border: 3px solid rgb(209, 41, 41);
+  background-color: rgba(255, 36, 36, 0.5);
+}
 .sample-load:hover{
   background-color: rgb(255, 28, 28);
   animation: flash linear 2s infinite;
@@ -115,10 +119,10 @@ input[type="file"] {
   display: flex;
   flex-direction: row;
 }
-#vol-slider{
+.vol-slider{
   max-width: 20px;
 }
-#vol-slider > input[type=range]{
+.vol-slider > input[type=range]{
   transform:rotate(270deg);
   height: auto;
   /* max-width: 12.5px; */

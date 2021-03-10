@@ -18,15 +18,11 @@ function Sampler() {
     dispatch(getSampler(samplerId))
     }, [dispatch, samplerId])
 
-
   const samplerState = useSelector((state) => {
-    console.log("incoming sampler state", state);
     return state.sampler.sampler;
   });
 
-  console.log("yay samplerState", samplerState)
   const [tempo, setTempo] = useState(120);
-
   const [samples, setSamples] = useState({
     sampleOne:'',
     sampleTwo:'',
@@ -37,9 +33,42 @@ function Sampler() {
     sampleSeven:'',
     sampleEight:'',
   });
+  const [one, setOne] = useState("");
+  const [two, setTwo] = useState("");
+  const [three, setThree] = useState("");
+  const [four, setFour] = useState("");
+  const [five, setFive] = useState("");
+  const [six, setSix] = useState("");
+  const [seven, setSeven] = useState("");
+  const [eight, setEight] = useState("");
+  // useEffect(() => {
+  //   setLoaded(true);
+  // }, [samplerId]);
+  useEffect(() => {
+    if (samplerState) {
+      setOne(samplerState.sampleOne)
+      setTwo(samplerState.sampleTwo)
+      setThree(samplerState.sampleThree)
+      setFour(samplerState.sampleFour)
+      setFive(samplerState.sampleFive)
+      setSix(samplerState.sampleSix)
+      setSeven(samplerState.sampleSeven)
+      setEight(samplerState.sampleEight)
+    }
+  }, [
+    samplerState,
+    one,
+    two,
+    three,
+    four,
+    five,
+    six,
+    seven,
+    eight,
+  ]);
+
 
   useEffect(() => {
-    // const userId = sessionUser.id
     if (
       Object.values(samples).every((sample) => {
           return sample === ''
@@ -116,7 +145,9 @@ function Sampler() {
             <div id="row-one">
               <div id="samples-wrap">
                 <form id="sample-submit">
-                  <label className="sample-load">
+                  <label
+                    className={(one && "sample-load red") || "sample-load"}
+                  >
                     1
                     <input
                       type="file"
@@ -127,7 +158,9 @@ function Sampler() {
                   </label>
                 </form>
                 <form id="sample-submit">
-                  <label className="sample-load">
+                  <label
+                    className={(two && "sample-load red") || "sample-load"}
+                  >
                     2
                     <input
                       type="file"
@@ -138,7 +171,9 @@ function Sampler() {
                   </label>
                 </form>
                 <form id="sample-submit">
-                  <label className="sample-load">
+                  <label
+                    className={(three && "sample-load red") || "sample-load"}
+                  >
                     3
                     <input
                       type="file"
@@ -152,7 +187,9 @@ function Sampler() {
                   </label>
                 </form>
                 <form id="sample-submit">
-                  <label className="sample-load">
+                  <label
+                    className={(four && "sample-load red") || "sample-load"}
+                  >
                     4
                     <input
                       type="file"
@@ -170,7 +207,9 @@ function Sampler() {
             <div id="row-two">
               <div id="samples-wrap">
                 <form id="sample-submit">
-                  <label className="sample-load">
+                  <label
+                    className={(five && "sample-load red") || "sample-load"}
+                  >
                     5
                     <input
                       type="file"
@@ -184,7 +223,9 @@ function Sampler() {
                   </label>
                 </form>
                 <form id="sample-submit">
-                  <label className="sample-load">
+                  <label
+                    className={(six && "sample-load red") || "sample-load"}
+                  >
                     6
                     <input
                       type="file"
@@ -195,7 +236,9 @@ function Sampler() {
                   </label>
                 </form>
                 <form id="sample-submit">
-                  <label className="sample-load">
+                  <label
+                    className={(seven && "sample-load red") || "sample-load"}
+                  >
                     7
                     <input
                       type="file"
@@ -209,7 +252,9 @@ function Sampler() {
                   </label>
                 </form>
                 <form id="sample-submit">
-                  <label className="sample-load">
+                  <label
+                    className={(eight && "sample-load red") || "sample-load"}
+                  >
                     8
                     <input
                       type="file"
@@ -230,104 +275,112 @@ function Sampler() {
         <div id="mixer-wrap">
           <div id="mixer">
             <div id="vol-slider-wrap">
-              <div id="vol-slider">
+              <div id="volOne" className="vol-slider">
                 <input
                   type="range"
                   value={sampleVol.volOne}
                   min={-60}
                   max={6}
                   onChange={(e) => {
+                    e.stopPropagation();
                     setSampleVol({ ...sampleVol, volOne: e.target.value });
                     console.log(sampleVol.volOne);
                   }}
                 />
               </div>
-              <div id="vol-slider">
+              <div id="volTwo" className="vol-slider">
                 <input
                   type="range"
                   value={sampleVol.volTwo}
                   min={-60}
                   max={6}
                   onChange={(e) => {
-                    setSampleVol({ ...sampleVol, volOne: e.target.value });
+                    e.stopPropagation();
+                    setSampleVol({ ...sampleVol, volTwo: e.target.value });
                     console.log(sampleVol.volTwo);
                   }}
                   orient={"vertical"}
                 />
               </div>
-              <div id="vol-slider">
+              <div id="volThree" className="vol-slider">
                 <input
                   type="range"
                   value={sampleVol.volThree}
                   min={-60}
                   max={6}
                   onChange={(e) => {
-                    setSampleVol({ ...sampleVol, volOne: e.target.value });
+                    e.stopPropagation();
+                    setSampleVol({ ...sampleVol, volThree: e.target.value });
                     console.log(sampleVol.volThree);
                   }}
                   orient={"vertical"}
                 />
               </div>
-              <div id="vol-slider">
+              <div id="volFour" className="vol-slider">
                 <input
                   type="range"
                   value={sampleVol.volFour}
                   min={-60}
                   max={6}
                   onChange={(e) => {
-                    setSampleVol({ ...sampleVol, volOne: e.target.value });
+                    e.stopPropagation();
+                    setSampleVol({ ...sampleVol, volFour: e.target.value });
                     console.log(sampleVol.volFour);
                   }}
                   orient={"vertical"}
                 />
               </div>
-              <div id="vol-slider">
+              <div id="volFive" className="vol-slider">
                 <input
                   type="range"
                   value={sampleVol.volFive}
                   min={-60}
                   max={6}
                   onChange={(e) => {
-                    setSampleVol({ ...sampleVol, volOne: e.target.value });
+                    e.stopPropagation();
+                    setSampleVol({ ...sampleVol, volFive: e.target.value });
                     console.log(sampleVol.volFive);
                   }}
                   orient={"vertical"}
                 />
               </div>
-              <div id="vol-slider">
+              <div id="volSix" className="vol-slider">
                 <input
                   type="range"
                   value={sampleVol.volSix}
                   min={-60}
                   max={6}
                   onChange={(e) => {
-                    setSampleVol({ ...sampleVol, volOne: e.target.value });
+                    e.stopPropagation();
+                    setSampleVol({ ...sampleVol, volSix: e.target.value });
                     console.log(sampleVol.volSix);
                   }}
                   orient={"vertical"}
                 />
               </div>
-              <div id="vol-slider">
+              <div id="volSeven" className="vol-slider">
                 <input
                   type="range"
                   value={sampleVol.volSeven}
                   min={-60}
                   max={6}
                   onChange={(e) => {
-                    setSampleVol({ ...sampleVol, volOne: e.target.value });
+                    e.stopPropagation();
+                    setSampleVol({ ...sampleVol, volSeven: e.target.value });
                     console.log(sampleVol.volSeven);
                   }}
                   orient={"vertical"}
                 />
               </div>
-              <div id="vol-slider">
+              <div id="volEight" className="vol-slider">
                 <input
                   type="range"
                   value={sampleVol.volEight}
                   min={-60}
                   max={6}
                   onChange={(e) => {
-                    setSampleVol({ ...sampleVol, volOne: e.target.value });
+                    e.stopPropagation();
+                    setSampleVol({ ...sampleVol, volEight: e.target.value });
                     console.log(sampleVol.volEight);
                   }}
                   orient={"vertical"}
