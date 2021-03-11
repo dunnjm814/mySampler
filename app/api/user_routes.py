@@ -19,8 +19,16 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
+@user_routes.route('/profile/<int:user_id>')
+@login_required
+def user_profile(user_id):
+    # add no profile
+    profile = Profile.query.filter_by(user_id=user_id).first()
+    return profile.to_dict()
+
 @user_routes.route('/profile/<int:user_id>', methods=['PUT'])
 def profile_form_submit(user_id):
+    print('hey its the user_id', user_id)
     form = ProfileForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -35,7 +43,8 @@ def profile_form_submit(user_id):
                 bio=form.data['bio'],
                 name=form.data['name'],
                 location=form.data['location'],
-                website=form.data['website']
+                website=form.data['website'],
+                user_id=user_id
             )
 
         db.session.add(profile)

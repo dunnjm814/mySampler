@@ -11,6 +11,7 @@ function Profile() {
   const { userId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
   const userProfile = useSelector((state) => state.profile);
+  console.log("hey its my userProfile", userProfile)
   const [info, setInfo] = useState(false);
 
   function toggle() {
@@ -18,11 +19,14 @@ function Profile() {
   }
   useEffect(() => {
     dispatch(getProfile(userId))
-  },[dispatch, userId])
+  }, [dispatch, userId])
+  console.log("hey its my userProfile after useEffect", userProfile)
+
 
   return (
     <>
       <div id="profile-wrapper">
+        <div className="dummy"></div>
         <div id="user-info">
           <div id="user-card"></div>
           <div id="about-user">
@@ -75,6 +79,8 @@ function Profile() {
             </div>
           </div>
         </div>
+        <div className="dummy"></div>
+        <div className='dummy'></div>
       </div>
     </>
   );

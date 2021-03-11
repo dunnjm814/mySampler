@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { submitProfile } from "../../store/profile";
+import './profile.css'
 
 
 function ProfileForm({ userProfile, info, setInfo }) {
@@ -21,53 +22,52 @@ function ProfileForm({ userProfile, info, setInfo }) {
     await dispatch(submitProfile(bio, name, location, website, userId))
     toggle()
   }
-  useEffect(() => {
-    setBio(userProfile.bio)
-    setName(userProfile.name)
-    setLocation(userProfile.location)
-    setWebsite(userProfile.website)
-  }, [userProfile])
+    useEffect(() => {
+      setBio(userProfile.bio);
+      setName(userProfile.name);
+      setLocation(userProfile.location);
+      setWebsite(userProfile.website);
+    }, [userProfile]);
 
   return (
     <div id="edit-about-user">
       <form id="about-user-form-wrap" onSubmit={onSubmit}>
-        <label>
-          Tell us about yourself?
-          <input
-            type="text"
-            value={bio}
-            onChange={(e) => setBio(e.target.value)}
-          ></input>
-        </label>
-        <label>
-          What's your name?
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          ></input>
-        </label>
-        <label>
-          Where are you based out of?
-          <input
-            type="text"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-          ></input>
-        </label>
-        <label>
-          Bandcamp link?
-          <input
-            type="text"
-            value={website}
-            onChange={(e) => setWebsite(e.target.value)}
-          ></input>
-        </label>
+        <textarea
+          outline="none"
+          rows="5"
+          placeholder="Tell us about yourself?"
+          type="text"
+          value={bio}
+          onChange={(e) => setBio(e.target.value)}
+        ></textarea>
+        <input
+          placeholder="What's your name?"
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        ></input>
+        <input
+          placeholder="Where are you based out of?"
+          type="text"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+        ></input>
+        <input
+          placeholder="Bandcamp link?"
+          type="text"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+        ></input>
         <div>
-          <button onClick={() => history.push(`/profile/${userId}`)}>
+          <button
+            className="profile-form-buttons"
+            onClick={() => history.push(`/profile/${userId}`)}
+          >
             cancel
           </button>
-          <button type="submit">submit</button>
+          <button className="profile-form-buttons" type="submit">
+            submit
+          </button>
         </div>
       </form>
     </div>

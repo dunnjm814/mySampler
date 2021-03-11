@@ -28,11 +28,16 @@ function App() {
   if (!loaded) {
     return null;
   }
-
+  const styling = {
+    display: "flex",
+    flexDirection: "column",
+    width: "100vh",
+    height: "100%",
+  };
   return (
     <BrowserRouter>
       <NavBar />
-      <div style={{ display: "flex", flexDirection: "column" }}>
+      <div style={styling}>
         <Switch>
           <Route path="/" exact={true}>
             <h2>hello</h2>
@@ -55,6 +60,8 @@ function App() {
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
+                width: "100vh",
+                height: "100%",
               }}
             >
               <SideBar />

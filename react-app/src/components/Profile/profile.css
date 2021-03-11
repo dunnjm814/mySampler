@@ -5,9 +5,55 @@
   background-color: white;
   color: #1f878f;
   border: none;
-  font-size: 25px;
+  font-size: 30px;
   transition: 0.5s;
 }
 #editprofilebutton:hover{
   color: #ad9889;
+}
+#profile-wrapper{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+}
+.dummy{
+  width: 20%
+}
+#user-info{
+  margin-top: 75px;
+  margin-right: 300px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+#edit-about-user{
+  margin-top: 50px;
+}
+#about-user-form-wrap > input, textarea{
+  font-family: inherit;
+  font-size: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+.profile-form-buttons {
+  padding: 5px;
+  outline: none;
+  width: auto;
+  height: auto;
+  border: none;
+  color: #1f878f;
+  background-color: white;
+  font-size: 20px;
+  text-align: center;
+  vertical-align: middle;
+  margin-bottom: 20px;
+  transition: 0.5s;
+}
+.profile-form-buttons:hover{
+  color: #998476;
 }
