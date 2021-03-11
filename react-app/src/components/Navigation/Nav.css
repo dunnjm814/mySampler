@@ -34,3 +34,7 @@ nav {
   display: flex;
   justify-content: space-between;
 }
+#logout-wrap{
+  display: flex;
+  justify-content: space-between;
+}

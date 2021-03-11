@@ -48,3 +48,48 @@
 #new-sampler-button:hover{
   color: #ad9889;
 }
+#info-box-wrap{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#info-box{
+  outline: none;
+  width: auto;
+  height: auto;
+  background-color: #1f878f;
+  color: #F1EEEC;
+  border-radius: 10px;
+  border: none;
+  padding: 20px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 40px;
+  transition: 0.5s;
+}
+#info-box:hover{
+  color: #998476;
+}
+#the-info{
+  padding: 40px
+}
+#close-box{
+  padding: 5px;
+  outline: none;
+  width: auto;
+  height: auto;
+  border: none;
+  color: #1f878f;
+  background-color: white;
+  font-size: 40px;
+  text-align: center;
+  vertical-align: middle;
+  margin-bottom: 20px;
+  transition: 0.5s;
+}
+#close-box:hover{
+  color: #998476;
+}
+.infoLine{
+  
+}

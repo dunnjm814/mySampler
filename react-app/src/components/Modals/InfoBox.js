@@ -17,15 +17,37 @@ function InfoBox() {
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <div id="info-box-wrap">
-            <div id='the-info'>
+            <div id="the-info">
               <h1>Welcome to mySampler!</h1>
-              <span>Click any pad to upload an audio file.</span><br/>
-              <span>Pads with loaded audio will fill red.</span><br/>
-              <span>Pads 1-4 correspond to keys 'a-f' on your keyboard.</span><br/>
-              <span>Pads 5-8 correspond to keys 'z-v' on your keyboard.</span><br/>
-              <span>Mix audio gain with the mixer to the right of sampler.</span><br/>
+              <span className="infoLine">
+                Click any pad to upload an audio file.
+              </span>
+              <br />
+              <span className="infoLine">
+                Pads with loaded audio will fill red.
+              </span>
+              <br />
+              <span className="infoLine">
+                Pads 1-4 correspond to keys 'a-f' on your keyboard.
+              </span>
+              <br />
+              <span className="infoLine">
+                Pads 5-8 correspond to keys 'z-v' on your keyboard.
+              </span>
+              <br />
+              <span className="infoLine">
+                Mix audio gain with the mixer to the right of sampler.
+              </span>
+              <br />
+              <span className="infoLine">
+                Click anywhere on the page to play! Have fun!
+              </span>
             </div>
-            <button type="close" id="close-box">
+            <button
+              type="close"
+              id="close-box"
+              onClick={() => setShowModal(false)}
+            >
               Close
             </button>
           </div>
