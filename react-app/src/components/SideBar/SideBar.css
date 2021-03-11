@@ -11,7 +11,7 @@
   padding-top: 60px;
   white-space: nowrap;
 }
-.sidebar:hover{
+.open{
   width: 275px;
 }
 
@@ -42,10 +42,26 @@
   align-items: center;
 }
 
-.side-icon{
+.side-icon, .side-bar-logo{
   margin-right: 70px;
 }
 
+.sub-menu{
+  width: 275px;
+  display: none;
+  transition: 0.5s
+}
+.sub-menu-open{
+  width: 275px;
+  display: block;
+  background-color: #d8fbfd;
+
+  /* border-bottom: 1px solid #3f5455; */
+}
+/* .sub-menu-link{
+  border-top: 1px solid #3f5455;
+
+} */
 @media screen and (max-height: 450px) {
   .sidebar {
     padding-top: 15px;
