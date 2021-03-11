@@ -6,7 +6,7 @@ nav {
   background-color: #1f878f;
   margin-top: 0;
   box-shadow: 0 2px 7px 2px #125458;
-  position: static;
+  position: sticky;
 }
 
 #mysampler-logo {

@@ -14,6 +14,7 @@ import Sampler from "./components/Sampler";
 import AudioPlayers from './components/AudioPlayers'
 import Profile from './components/Profile'
 import NotFound from "./components/NotFound";
+import Landing from "./components/Landing";
 
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
       <div style={styling}>
         <Switch>
           <Route path="/" exact={true}>
-            <h2>hello</h2>
+            <Landing />
           </Route>
           <Route path="/login" exact={true}>
             <LoginModal />
