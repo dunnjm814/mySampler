@@ -130,11 +130,15 @@ input[type="file"] {
   border:black 1px solid;
   border-radius: 7px
 }
+#fx-send-wrap{
+  display: flex;
+  flex-direction: row;
+}
 #vol-slider-wrap{
   display: flex;
   flex-direction: row;
   /* margin-top: 150px; */
-  height: 175px;
+  height: 115px;
 
 }
 .vol-slider{
