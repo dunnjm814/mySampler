@@ -1,6 +1,7 @@
 .sidebar {
-  height: 81vh;
+  height: 85vh;
   width: 85px;
+  margin-right: 190px;
   position: relative;
   z-index: 1;
   top: 0;
@@ -10,9 +11,12 @@
   overflow-x: hidden;
   padding-top: 60px;
   white-space: nowrap;
+  box-sizing: border-box;
 }
 .open{
   width: 275px;
+  margin-right: 0;
+
 }
 
 .sidebar a {
