@@ -32,7 +32,7 @@ function App() {
   const styling = {
     display: "flex",
     flexDirection: "column",
-    width: "100vh",
+    width: "100%",
     height: "100%",
   };
   return (
@@ -61,7 +61,7 @@ function App() {
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
-                width: "100vh",
+                width: "100%",
                 height: "100%",
               }}
             >
@@ -75,6 +75,8 @@ function App() {
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
+                width: "100%",
+                height: "100%",
               }}
             >
               <SideBar />
@@ -89,7 +91,9 @@ function App() {
               style={{
                 display: "flex",
                 flexDirection: "row",
-                alignItems: "center",
+                justifyContent: "center",
+                width: "100%",
+                height: "100%",
               }}
             >
               <SideBar />

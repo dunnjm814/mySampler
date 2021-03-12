@@ -7,6 +7,7 @@ import SignupModal from '../Modals/SignupModal'
 import './Nav.css'
 import logo from '../../img/mySamplerLogo.png'
 import InfoBox from '../Modals/InfoBox';
+import Search from '../Search'
 
 
 const NavBar = () => {
@@ -38,6 +39,9 @@ const NavBar = () => {
       )}
       {sessionUser && (
         <div id="logout-wrap">
+          <div>
+            <Search />
+          </div>
           <div>
             <InfoBox />
           </div>
