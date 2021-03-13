@@ -10,6 +10,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.aws_routes import aws_routes
 from .api.sampler_routes import sampler_routes
+from .api.friends_routes import friends_routes
 
 from .seeds import seed_commands
 
@@ -41,6 +42,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(aws_routes, url_prefix='/api/aws')
 app.register_blueprint(sampler_routes, url_prefix='/api/sampler')
+app.register_blueprint(friends_routes, url_prefix='/api/friends')
 db.init_app(app)
 Migrate(app, db)
 

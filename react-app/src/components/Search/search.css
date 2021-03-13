@@ -27,7 +27,7 @@
   color: #998476;
 }
 #search-result-container{
-  width: 200px;
+  width: 300px;
   height: 300px;
 
 
@@ -43,4 +43,9 @@
 .profile-link{
   font-size: 20px;
   text-decoration: none;
+  color: #1f878f;
+  margin-bottom: 10px;
+}
+.profile-link:hover{
+  color: #998476;
 }

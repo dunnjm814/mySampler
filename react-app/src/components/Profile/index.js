@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
+import {useParams } from "react-router-dom";
 import ProfileForm from './ProfileForm'
-import {getProfile} from '../../store/profile'
+import { getProfile } from '../../store/profile'
+import {newFollow, removeFollower, getFollowerList} from '../../store/friends'
 import "./profile.css";
 
 
@@ -11,18 +12,47 @@ function Profile() {
   const { userId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
   const userProfile = useSelector((state) => state.profile);
-  console.log("hey its my userProfile", userProfile)
+  const userFriends = useSelector((state) => state.friends.userFollows);
   const [info, setInfo] = useState(false);
+  const [user, setUser] = useState({});
 
   function toggle() {
     setInfo(!info);
   }
   useEffect(() => {
     dispatch(getProfile(userId))
+    if (!userId) {
+      return
+    }
+      (async () => {
+        const response = await fetch(`/api/users/${userId}`);
+        const user = await response.json();
+        await setUser(user);
+        await dispatch(getFollowerList({ user_id: sessionUser.id }));
+      })()
   }, [dispatch, userId])
-  console.log("hey its my userProfile after useEffect", userProfile)
 
+  const followed = userFriends.filter((user) => user.id == userId);
 
+  const addFollow = async (e) => {
+    e.preventDefault();
+    await dispatch(
+      newFollow({
+        follower_id: sessionUser.id,
+        followed_id: userId,
+      })
+    );
+  };
+
+const unFollow = async (e) => {
+  e.preventDefault();
+  await dispatch(
+    removeFollower({
+      follower_id: sessionUser.id,
+      followed_id: userId,
+    })
+  );
+};
   return (
     <>
       <div id="profile-wrapper">
@@ -31,12 +61,27 @@ function Profile() {
           <div id="user-card"></div>
           <div id="about-user">
             <div id="user-header">
-              <h1>Hi! My name is {sessionUser && sessionUser.username}</h1>
+              <h1>Hi! My name is {user && user.username}.</h1>
               {sessionUser.id == userId ? (
+              <>
+              <h1>Hey there, {sessionUser && sessionUser.username}!</h1>
                 <button id="editprofilebutton" onClick={toggle}>
-                  Edit profile
+                    Edit profile
                 </button>
-              ) : null}
+              </>
+              ) : (
+                <>
+                  {followed ? (
+                    <button onClick={unFollow} className="unfollow" role="menuitem">
+                      UnFollow
+                    </button>
+                  ) : (
+                    <button onClick={addFollow} className="follow" role="menuitem">
+                      Follow
+                    </button>
+                  )}
+                </>
+              )}
             </div>
             <div id="profile-infoform-component">
               {info && (
@@ -80,7 +125,7 @@ function Profile() {
           </div>
         </div>
         <div className="dummy"></div>
-        <div className='dummy'></div>
+        <div className="dummy"></div>
       </div>
     </>
   );
