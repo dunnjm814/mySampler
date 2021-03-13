@@ -22,7 +22,6 @@ def create_follow(id):
         follower = User.query.get(data['follower_id'])
         followed_user = User.query.get(id)
         existing_followers = followed_user.followers.all()
-        # followed_user.followed.append(follower)
         if follower in existing_followers:
                 return "User Already Follows"
         follower.followers.append(followed_user)

@@ -17,7 +17,6 @@ export const loadSampler = (sampler) => {
 }
 export const getAllUserSampler = (samplers) => {
   let samplerList = Object.values(samplers)
-  console.log(samplerList)
   return { type: GET_ALL_USER_SAMPLER, samplerList }
 }
 export const destroySampler = (sampler) => {

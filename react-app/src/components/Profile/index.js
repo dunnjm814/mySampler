@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
+import {useParams } from "react-router-dom";
 import ProfileForm from './ProfileForm'
 import { getProfile } from '../../store/profile'
 import {newFollow, removeFollower, getFollowerList} from '../../store/friends'
@@ -13,9 +13,7 @@ function Profile() {
   const sessionUser = useSelector((state) => state.session.user);
   const userProfile = useSelector((state) => state.profile);
   const userFriends = useSelector((state) => state.friends.userFollows);
-  console.log("hey its my userProfile", userFriends)
   const [info, setInfo] = useState(false);
-  const [follows, setFollows] = useState();
   const [user, setUser] = useState({});
 
   function toggle() {
@@ -29,14 +27,12 @@ function Profile() {
       (async () => {
         const response = await fetch(`/api/users/${userId}`);
         const user = await response.json();
-        dispatch(getFollowerList({ user_id: sessionUser.id }));
-        setUser(user);
-    })()
+        await setUser(user);
+        await dispatch(getFollowerList({ user_id: sessionUser.id }));
+      })()
   }, [dispatch, userId])
-  console.log("hey its my userProfile after useEffect", userProfile)
-  if (userFriends.includes(user)) {
-    setFollows(true)
-  }
+
+  const followed = userFriends.filter((user) => user.id == userId);
 
   const addFollow = async (e) => {
     e.preventDefault();
@@ -75,7 +71,7 @@ const unFollow = async (e) => {
               </>
               ) : (
                 <>
-                  {follows ? (
+                  {followed ? (
                     <button onClick={unFollow} className="unfollow" role="menuitem">
                       UnFollow
                     </button>

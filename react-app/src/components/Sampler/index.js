@@ -12,7 +12,7 @@ function Sampler() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { sampleVol, setSampleVol } = useMixerContext();
-  console.log(sampleVol)
+
 
   useEffect(() => {
     dispatch(getSampler(samplerId))
