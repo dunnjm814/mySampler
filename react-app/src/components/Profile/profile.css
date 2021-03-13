@@ -57,3 +57,29 @@
 .profile-form-buttons:hover{
   color: #998476;
 }
+.follow{
+  outline: none;
+  width: auto;
+  height: auto;
+  background-color: white;
+  color: #1f878f;
+  border: none;
+  font-size: 30px;
+  transition: 0.5s;
+}
+.unfollow{
+  outline: none;
+  width: auto;
+  height: auto;
+  background-color: white;
+  color: #1f878f;
+  border: none;
+  font-size: 30px;
+  transition: 0.5s;
+}
+.follow:hover{
+  color: #ad9889;
+}
+.unfollow:hover{
+  color: #ad9889;
+}

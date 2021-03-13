@@ -18,16 +18,18 @@ function Search() {
 
     if (res.ok) {
       const {users} = await res.json()
-      
-      let searchResults = users.map((user) => {
-        return user.username.replace(/[[\]']+/g, "").replaceAll("\\", "");
-      }
-      );
-
+      console.log(users)
+      // let searchResults = users.map((user) => {
+      //   return user.username.replace(/[[\]']+/g, "").replaceAll("\\", "");
+      // }
+      // );
+      let searchResults = search.replace(/[[\]']+/g, "");
+      searchResults = searchResults.replaceAll("\\", "");
       // let searchParse = searchResults.replace(/[[\]']+/g, "");
       // searchParse = searchResults;
       let userSearchMatch = users.filter((user, i) => {
-        const regex = new RegExp(`${searchResults[i]}`, "gi")
+        // const regex = new RegExp(`${searchResults[i]}`, "gi")
+        const regex = new RegExp(`${searchResults}`, "gi")
         if (user.id !== userId) {
         return (
           user.username.match(regex)
@@ -72,6 +74,7 @@ function Search() {
                     key={i}
                     to={`/profile/${user.id}`}
                     className="profile-link"
+                    onClick={()=>{setShowModal(false);}}
                   >
                     {user.username}
                   </NavLink>

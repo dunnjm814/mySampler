@@ -2,12 +2,14 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import samplerReducer from './sampler';
-import profileReducer from './profile'
+import profileReducer from './profile';
+import friendsReducer from './friends'
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   sampler: samplerReducer,
-  profile: profileReducer
+  profile: profileReducer,
+  friends: friendsReducer
 })
 
 let enhancer;
