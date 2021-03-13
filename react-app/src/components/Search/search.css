@@ -1,0 +1,28 @@
+#search{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#search-input{
+  outline: none;
+  font-size: 20px;
+  vertical-align: middle;
+  height: 40px;
+}
+
+#search > button{
+  outline: none;
+  width: auto;
+  height: auto;
+  background-color: #1f878f;
+  color: #F1EEEC;
+  border: none;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 40px;
+  padding-top: 6px;
+  transition: 0.5s;
+}
+#search > button:hover{
+  color: #998476;
+}

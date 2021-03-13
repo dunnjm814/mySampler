@@ -39,9 +39,9 @@ const NavBar = () => {
       )}
       {sessionUser && (
         <div id="logout-wrap">
-          <div>
+          
             <Search />
-          </div>
+
           <div>
             <InfoBox />
           </div>
