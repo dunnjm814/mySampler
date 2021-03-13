@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Modal } from "../../context/Modal";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import {AiOutlineSearch} from 'react-icons/ai'
+import { AiOutlineSearch } from 'react-icons/ai'
 import './search.css'
 
 
@@ -15,15 +15,15 @@ function Search() {
 
   const searchUsers = async (search) => {
     const res = await fetch('/api/users/')
-    console.log('res', res.body)
+
     if (res.ok) {
       const {users} = await res.json()
-      console.log('users', users)
+      
       let searchResults = users.map((user) => {
         return user.username.replace(/[[\]']+/g, "").replaceAll("\\", "");
       }
       );
-      console.log('search', searchResults)
+
       // let searchParse = searchResults.replace(/[[\]']+/g, "");
       // searchParse = searchResults;
       let userSearchMatch = users.filter((user, i) => {
@@ -54,24 +54,30 @@ function Search() {
           setSearch(e.target.value);
         }}
       />
-      <button type='search'
-        onClick={() => { searchUsers(search) }}
+      <button
+        type="search"
+        onClick={() => {
+          searchUsers(search);
+        }}
       >
         <AiOutlineSearch />
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <div id='search-result-container'>
-            {userMatch && (
-              userMatch.map((user, i) => (
-                <NavLink key={i} to={`/profile/${user.id}`} className='profile-link'>
-                  {user.username}
-                </NavLink>
-              ))
-            )}
-            {!userMatch && (
-              <h1>{`No users found :(`}</h1>
-            )}
+          <div id="search-result-container">
+            <div id="search-result">
+              {userMatch &&
+                userMatch.map((user, i) => (
+                  <NavLink
+                    key={i}
+                    to={`/profile/${user.id}`}
+                    className="profile-link"
+                  >
+                    {user.username}
+                  </NavLink>
+                ))}
+              {!userMatch && <h1>{`No users found :(`}</h1>}
+            </div>
           </div>
         </Modal>
       )}

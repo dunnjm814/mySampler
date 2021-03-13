@@ -26,3 +26,21 @@
 #search > button:hover{
   color: #998476;
 }
+#search-result-container{
+  width: 200px;
+  height: 300px;
+
+
+}
+#search-result{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+
+}
+.profile-link{
+  font-size: 20px;
+  text-decoration: none;
+}

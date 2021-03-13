@@ -10,16 +10,7 @@ function AudioPlayers() {
   const { samplerId } = useParams()
   const { sampleVol } = useMixerContext()
   console.log('sampleVol from audio players', sampleVol)
-  // const [sampler, setSample] = useState({
-  //   sampleOne:'',
-  //   sampleTwo:'',
-  //   sampleThree:'',
-  //   sampleFour:'',
-  //   sampleFive:'',
-  //   sampleSix:'',
-  //   sampleSeven:'',
-  //   sampleEight:'',
-  // })
+ 
   const [loaded, setLoaded] = useState(false);
   const [sampleOne, setSampleOne] = useState('')
   const [sampleTwo, setSampleTwo] = useState('')

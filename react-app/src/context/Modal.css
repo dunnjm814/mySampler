@@ -23,7 +23,6 @@
   background-color: white;
   border-radius: 12px;
   animation-name: slideup;
-  /* animation-delay: 0.5s; */
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
   animation-timing-function: ease-out;
@@ -42,11 +41,6 @@
 
 }
 
-/* #modal-content > form > div{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-} */
 #modal-content > form > div > input {
   border-radius: 8px;
   width: 520px;
@@ -56,18 +50,6 @@
   margin-bottom: 10px;
   font-size: 16px;
 }
-
-/* button {
-  background-color: #A18C7D;
-  font-size: 16px;
-  color: white;
-  width: auto;
-  height: 50px;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-
-} */
 
 
 @keyframes slideup {
