@@ -1,8 +1,8 @@
 #sampler-show-wrap{
-  margin-top: 15% ;
+
   width: 100%;
-  height: 100%;
-  position: fixed;
+  height: auto;
+  position: absolute;
 }
 #sampler-show{
   padding: 30px;
@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   justify-content: space-between;
 }
 #sampler-credentials{
@@ -28,7 +28,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  position: fixed;
+  position: absolute;
 }
 #samples > button{
     border: 1px solid #ccc;
@@ -51,7 +51,7 @@
   border-radius: 7px;
   width: 400px;
   background-color: #757474;
-  margin-right: 50px;
+  margin-right: 175px;
 }
 #knobs-wrap{
   display: flex;
@@ -62,7 +62,7 @@
   padding: 10px;
   margin-left: 5px;
   margin-right: 5px;
-  margin-bottom: 60px;
+
 }
 #bpm-slider{
   display: flex;
@@ -71,8 +71,22 @@
   margin-bottom: 50px;
 
 }
+
+#bpm-house{
+  display: inline-block;
+  height: 100px;
+  width: 200px;
+  background-color:#525151 ;
+  text-align: center;
+  vertical-align: center;
+  margin-bottom: 20px;
+}
 #tempo{
-  width: 315px;
+  width: 300px;
+  margin-left: 10px;
+}
+#bpm-text{
+  font-size: 40px;
 }
 input[type="file"] {
     display: none;
@@ -125,31 +139,41 @@ input[type="file"] {
 #mixer{
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  height: 225px;
-  border:black 1px solid;
+  padding: 25px;
+  height: 320px;
+  width: 260px;
+  border:black 5px solid;
   border-radius: 7px
 }
 #fx-send-wrap{
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
+}
+#fx-knobs{
+  width:auto;
+
 }
 #vol-slider-wrap{
   display: flex;
   flex-direction: row;
   /* margin-top: 150px; */
-  height: 115px;
+  justify-content: space-evenly;
+  height: 150px;
 
 }
 .vol-slider{
-  max-width: 20px;
-  max-height: 160px;
+  max-width: 25px;
+  max-height: 175px;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
+  margin-top: 110px;
 
 }
 .vol-slider > input[type=range]{
+
   transform:rotate(270deg);
   height: auto;
   width: auto;
@@ -160,4 +184,95 @@ input[type="file"] {
   0% {opacity: 0.1;}
   50% {opacity: 1}
   100% {opacity: 0.1 }
+}
+
+
+input[type=range] {
+  /* height: 38px; */
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 100%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 1px 1px 1px #000000;
+  background: #C0E6E9;
+  border-radius: 5px;
+  border: 1px solid #000000;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #000000;
+  border: 1px solid #000000;
+  height: 30px;
+  width: 15px;
+  border-radius: 5px;
+  background: #1f878f;;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -11px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #c6fbff;;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 1px 1px 1px #000000;
+  background: #3071A9;
+  border-radius: 5px;
+  border: 1px solid #000000;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000;
+  border: 1px solid #000000;
+  height: 30px;
+  width: 15px;
+  border-radius: 5px;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #3071A9;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px #000000;
+}
+input[type=range]::-ms-fill-upper {
+  background: #3071A9;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px #000000;
+}
+input[type=range]::-ms-thumb {
+  margin-top: 1px;
+  box-shadow: 1px 1px 1px #000000;
+  border: 1px solid #000000;
+  height: 30px;
+  width: 15px;
+  border-radius: 5px;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #3071A9;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #3071A9;
 }

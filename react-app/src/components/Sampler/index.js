@@ -96,8 +96,8 @@ function Sampler() {
     }
   }
   const knobStyle = {
-    width: '20px',
-    height: '20px'
+    width: '25px',
+    height: '25px'
   }
   return (
     <div id="sampler-show-wrap">
@@ -130,10 +130,11 @@ function Sampler() {
                 <Knob min={0} max={1} defaultValue={0} step={0.1} />
               </div>
             </div>
-            <label className="sample-load">
-              <input type="file" />
-            </label>
-            <div id="bpm-wrap"></div>
+            <div id="bpm-wrap">
+              <div id='bpm-house'>
+                <h1 id='bpm-text'>{tempo}</h1>
+              </div>
+            </div>
             <div id="bpm-slider">
               <span>Tempo</span>
               <input
@@ -148,7 +149,7 @@ function Sampler() {
             <div id="samples">
               <div id="row-one">
                 <div id="samples-wrap">
-                  <form id="sample-submit">
+                  <form className="sample-submit">
                     <label
                       className={(one && "sample-load red") || "sample-load"}
                     >
@@ -164,7 +165,7 @@ function Sampler() {
                       ></input>
                     </label>
                   </form>
-                  <form id="sample-submit">
+                  <form className="sample-submit">
                     <label
                       className={(two && "sample-load red") || "sample-load"}
                     >
@@ -180,7 +181,7 @@ function Sampler() {
                       ></input>
                     </label>
                   </form>
-                  <form id="sample-submit">
+                  <form className="sample-submit">
                     <label
                       className={(three && "sample-load red") || "sample-load"}
                     >
@@ -196,7 +197,7 @@ function Sampler() {
                       ></input>
                     </label>
                   </form>
-                  <form id="sample-submit">
+                  <form className="sample-submit">
                     <label
                       className={(four && "sample-load red") || "sample-load"}
                     >
@@ -216,7 +217,7 @@ function Sampler() {
               </div>
               <div id="row-two">
                 <div id="samples-wrap">
-                  <form id="sample-submit">
+                  <form className="sample-submit">
                     <label
                       className={(five && "sample-load red") || "sample-load"}
                     >
@@ -232,7 +233,7 @@ function Sampler() {
                       ></input>
                     </label>
                   </form>
-                  <form id="sample-submit">
+                  <form className="sample-submit">
                     <label
                       className={(six && "sample-load red") || "sample-load"}
                     >
@@ -248,7 +249,7 @@ function Sampler() {
                       ></input>
                     </label>
                   </form>
-                  <form id="sample-submit">
+                  <form className="sample-submit">
                     <label
                       className={(seven && "sample-load red") || "sample-load"}
                     >
@@ -264,7 +265,7 @@ function Sampler() {
                       ></input>
                     </label>
                   </form>
-                  <form id="sample-submit">
+                  <form className="sample-submit">
                     <label
                       className={(eight && "sample-load red") || "sample-load"}
                     >
@@ -288,7 +289,7 @@ function Sampler() {
           <div id="mixer-wrap">
             <div id="mixer">
               <div id="fx-send-wrap">
-                <div id="fx-knobs">
+                <div className="fx-knobs">
                   <div className="verb">
                     <Knob
                       style={knobStyle}
@@ -298,7 +299,7 @@ function Sampler() {
                       step={0.1}
                     />
                   </div>
-                  <div className="delay" style={{ marginTop: "7px" }}>
+                  <div className="delay" style={{ marginTop: "50px" }}>
                     <Knob
                       style={knobStyle}
                       min={0}
@@ -308,7 +309,7 @@ function Sampler() {
                     />
                   </div>
                 </div>
-                <div id="fx-knobs" style={{ marginTop: "15px" }}>
+                <div className="fx-knobs" >
                   <div className="verb">
                     <Knob
                       style={knobStyle}
@@ -318,7 +319,7 @@ function Sampler() {
                       step={0.1}
                     />
                   </div>
-                  <div className="delay" style={{ marginTop: "7px" }}>
+                  <div className="delay" style={{ marginTop: "50px" }}>
                     <Knob
                       style={knobStyle}
                       min={0}
@@ -328,7 +329,7 @@ function Sampler() {
                     />
                   </div>
                 </div>
-                <div id="fx-knobs">
+                <div className="fx-knobs">
                   <div className="verb">
                     <Knob
                       style={knobStyle}
@@ -338,7 +339,7 @@ function Sampler() {
                       step={0.1}
                     />
                   </div>
-                  <div className="delay" style={{ marginTop: "7px" }}>
+                  <div className="delay" style={{ marginTop: "50px" }}>
                     <Knob
                       style={knobStyle}
                       min={0}
@@ -348,7 +349,7 @@ function Sampler() {
                     />
                   </div>
                 </div>
-                <div id="fx-knobs" style={{ marginTop: "15px" }}>
+                <div className="fx-knobs" >
                   <div className="verb">
                     <Knob
                       style={knobStyle}
@@ -358,7 +359,7 @@ function Sampler() {
                       step={0.1}
                     />
                   </div>
-                  <div className="delay" style={{ marginTop: "7px" }}>
+                  <div className="delay" style={{ marginTop: "50px" }}>
                     <Knob
                       style={knobStyle}
                       min={0}
@@ -368,7 +369,7 @@ function Sampler() {
                     />
                   </div>
                 </div>
-                <div id="fx-knobs">
+                <div className="fx-knobs">
                   <div className="verb">
                     <Knob
                       style={knobStyle}
@@ -378,7 +379,7 @@ function Sampler() {
                       step={0.1}
                     />
                   </div>
-                  <div className="delay" style={{ marginTop: "7px" }}>
+                  <div className="delay" style={{ marginTop: "50px" }}>
                     <Knob
                       style={knobStyle}
                       min={0}
@@ -388,7 +389,7 @@ function Sampler() {
                     />
                   </div>
                 </div>
-                <div id="fx-knobs" style={{ marginTop: "15px" }}>
+                <div className="fx-knobs" >
                   <div className="verb">
                     <Knob
                       style={knobStyle}
@@ -398,7 +399,7 @@ function Sampler() {
                       step={0.1}
                     />
                   </div>
-                  <div className="delay" style={{ marginTop: "7px" }}>
+                  <div className="delay" style={{ marginTop: "50px" }}>
                     <Knob
                       style={knobStyle}
                       min={0}
@@ -408,7 +409,7 @@ function Sampler() {
                     />
                   </div>
                 </div>
-                <div id="fx-knobs">
+                <div className="fx-knobs">
                   <div className="verb">
                     <Knob
                       style={knobStyle}
@@ -418,7 +419,7 @@ function Sampler() {
                       step={0.1}
                     />
                   </div>
-                  <div className="delay" style={{ marginTop: "7px" }}>
+                  <div className="delay" style={{ marginTop: "50px" }}>
                     <Knob
                       style={knobStyle}
                       min={0}
@@ -428,7 +429,7 @@ function Sampler() {
                     />
                   </div>
                 </div>
-                <div id="fx-knobs" style={{ marginTop: "15px" }}>
+                <div className="fx-knobs" >
                   <div className="verb">
                     <Knob
                       style={knobStyle}
@@ -438,7 +439,7 @@ function Sampler() {
                       step={0.1}
                     />
                   </div>
-                  <div className="delay" style={{ marginTop: "7px" }}>
+                  <div className="delay" style={{ marginTop: "50px" }}>
                     <Knob
                       style={knobStyle}
                       min={0}

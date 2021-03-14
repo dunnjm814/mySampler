@@ -1,18 +1,26 @@
 /* TODO Add site wide styles */
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Spinnaker&display=swap');
+
 main {
-  display: flex;
   width: 100%;
   height: 100%,
 }
-body{
+html, body{
   font-family: 'Fira Sans', sans-serif;
-  margin: 0;
-}
-html {
+  width: 100%;
   height: 100%;
-  margin-top: 0;
+  margin: 0px;
+  padding: 0px;
+  background: cover;
+  overflow-x: hidden;
+
+}
+#root{
+  height: inherit;
+  margin: 0;
+  width: 100%;
+  /* overflow-y: hidden; */
 }
 /* @font-face {
   font-family: Fira Sans;

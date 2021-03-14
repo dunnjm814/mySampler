@@ -19,10 +19,10 @@
   flex-direction: row;
 }
 .dummy{
-  width: 20%
+  width: 10%
 }
 #user-info{
-  margin-top: 75px;
+  margin-top: 10px;
   margin-right: 300px;
   padding: 30px;
   display: flex;
@@ -58,6 +58,7 @@
   color: #998476;
 }
 .follow{
+  padding: 0;
   outline: none;
   width: auto;
   height: auto;
@@ -68,6 +69,7 @@
   transition: 0.5s;
 }
 .unfollow{
+  padding: 0;
   outline: none;
   width: auto;
   height: auto;
@@ -81,5 +83,28 @@
   color: #ad9889;
 }
 .unfollow:hover{
+  color: #ad9889;
+}
+.profile-sampler-links{
+  /* margin-top: 10px; */
+  padding: 25px;
+  width: 25%
+}
+.user-sampler-link{
+  outline: none;
+  width: auto;
+  height: auto;
+  background-color: white;
+  color: #1f878f;
+  border: none;
+  text-decoration: none;
+  font-size: 30px;
+  transition: 0.5s;
+  margin-bottom: 30px;
+}
+#checkmysampler{
+  font-size: 2em;
+}
+.user-sampler-link:hover{
   color: #ad9889;
 }

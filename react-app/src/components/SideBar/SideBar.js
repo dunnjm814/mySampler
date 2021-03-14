@@ -48,15 +48,12 @@ function SideBar() {
     if (userFriends) {
       setFriendList(
         userFriends.map((user) => (
-        <>
-          {console.log('checking user inside dropdown', user)}
           <div key={`friend-link-wrap-${user.id}`} className="sub-menu-link">
             <NavLink
               key={`friend-link-profile-${user.id}`}
               to={`/profile/${user.id}`}
             >{user.username}</NavLink>
             </div>
-            </>
         ))
       );
     }
@@ -85,7 +82,7 @@ function SideBar() {
     }
   }
   return (
-    <>
+    <div className='side-bar-wrap'>
       <div className={`sidebar ${sideBar}`}>
         <div className="side-link" onClick={openSidebar}>
           <div className="side-icon">
@@ -127,7 +124,7 @@ function SideBar() {
         </div>
         <div className={`${subMenuFriends}`}>{userFriends && friendList}</div>
       </div>
-    </>
+    </div>
   );
 }
 

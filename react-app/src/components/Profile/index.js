@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {useParams } from "react-router-dom";
+import {useParams, NavLink } from "react-router-dom";
 import ProfileForm from './ProfileForm'
 import { getProfile } from '../../store/profile'
-import {newFollow, removeFollower, getFollowerList} from '../../store/friends'
+import { newFollow, removeFollower, getFollowerList } from '../../store/friends'
+import {fetchAllUserSamplers} from '../../store/sampler'
 import "./profile.css";
 
 
@@ -13,6 +14,7 @@ function Profile() {
   const sessionUser = useSelector((state) => state.session.user);
   const userProfile = useSelector((state) => state.profile);
   const userFriends = useSelector((state) => state.friends.userFollows);
+  const userSamplers = useSelector((state) => state.sampler.userSamplers);
   const [info, setInfo] = useState(false);
   const [user, setUser] = useState({});
 
@@ -30,6 +32,7 @@ function Profile() {
         await setUser(user);
         await dispatch(getFollowerList({ user_id: sessionUser.id }));
       })()
+    dispatch(fetchAllUserSamplers(userId))
   }, [dispatch, userId])
 
   const followed = userFriends.filter((user) => user.id == userId);
@@ -62,21 +65,29 @@ const unFollow = async (e) => {
           <div id="about-user">
             <div id="user-header">
               {sessionUser.id == userId ? (
-              <>
-              <h1>Hey there, {sessionUser && sessionUser.username}!</h1>
-                <button id="editprofilebutton" onClick={toggle}>
+                <>
+                  <h1>Hey there, {sessionUser && sessionUser.username}!</h1>
+                  <button id="editprofilebutton" onClick={toggle}>
                     Edit profile
-                </button>
-              </>
+                  </button>
+                </>
               ) : (
                 <>
                   <h1>Hi! My name is {user && user.username}.</h1>
-                  {followed ? (
-                    <button onClick={unFollow} className="unfollow" role="menuitem">
+                  {followed.length ? (
+                    <button
+                      onClick={unFollow}
+                      className="unfollow"
+                      role="menuitem"
+                    >
                       UnFollow
                     </button>
                   ) : (
-                    <button onClick={addFollow} className="follow" role="menuitem">
+                    <button
+                      onClick={addFollow}
+                      className="follow"
+                      role="menuitem"
+                    >
                       Follow
                     </button>
                   )}
@@ -125,7 +136,31 @@ const unFollow = async (e) => {
           </div>
         </div>
         <div className="dummy"></div>
-        <div className="dummy"></div>
+        <div className="profile-sampler-links">
+          <h3 id='checkmysampler'>Check out my samplers!</h3>
+          {sessionUser.id == userId ? (
+            <></>
+          ) : (
+            <>
+              {userSamplers &&
+                  userSamplers.map((sampler) => (
+                  <>
+                  { sampler.priv !== true ? (<div
+                    key={`sampler-link-wrap-${sampler.id}`}
+                  >
+                    <NavLink
+                    className="user-sampler-link"
+                      key={`sampler-link-${sampler.id}`}
+                      to={`/sampler/${sampler.id}`}
+                    >
+                      {sampler.title}
+                    </NavLink>
+                      </div>) : <></>}
+                      </>
+                ))}
+            </>
+          )}
+        </div>
       </div>
     </>
   );

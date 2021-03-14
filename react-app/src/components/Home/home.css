@@ -1,10 +1,10 @@
 
 #body-wrap{
-  margin-left: 100px;
-  margin-top: 250px;
-  height: 100%;
+  margin-top: 200px;
+  height: auto;
   width: 100%;
-  position:fixed;
+  position: absolute;
+  /* margin-left:275px; */
 }
 #new-sampler{
   display: flex;

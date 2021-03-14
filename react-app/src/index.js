@@ -14,16 +14,20 @@ if (process.env.NODE_ENV !== "production") {
   window.store = store;
   window.sessionActions = sessionActions;
 }
-
+function Root() {
+  return (
+      <ModalProvider>
+        <MixerProvider>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </MixerProvider>
+      </ModalProvider>
+  );
+}
 ReactDOM.render(
   <React.StrictMode>
-    <ModalProvider>
-      <MixerProvider>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </MixerProvider>
-    </ModalProvider>
+    <Root />
   </React.StrictMode>,
   document.getElementById("root")
 );
