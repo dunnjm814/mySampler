@@ -25,7 +25,7 @@ function SideBar() {
 
   useEffect(() => {
     dispatch(fetchAllUserSamplers(userId));
-    dispatch(getFollowerList({ user_id: sessionUser.id }));
+    dispatch(getFollowerList({ user_id: userId }));
   }, [dispatch, userId])
 
   useEffect(() => {

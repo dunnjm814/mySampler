@@ -61,7 +61,6 @@ const unFollow = async (e) => {
           <div id="user-card"></div>
           <div id="about-user">
             <div id="user-header">
-              <h1>Hi! My name is {user && user.username}.</h1>
               {sessionUser.id == userId ? (
               <>
               <h1>Hey there, {sessionUser && sessionUser.username}!</h1>
@@ -71,6 +70,7 @@ const unFollow = async (e) => {
               </>
               ) : (
                 <>
+                  <h1>Hi! My name is {user && user.username}.</h1>
                   {followed ? (
                     <button onClick={unFollow} className="unfollow" role="menuitem">
                       UnFollow
