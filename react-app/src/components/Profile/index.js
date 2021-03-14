@@ -137,22 +137,30 @@ const unFollow = async (e) => {
         </div>
         <div className="dummy"></div>
         <div className="profile-sampler-links">
-          {userSamplers &&
-            userSamplers.map((sampler) => (
-
-              <div
-                key={`sampler-link-wrap-${sampler.id}`}
-                className="sub-menu-link"
-              >
-                <NavLink
-                  key={`sampler-link-${sampler.id}`}
-                  to={`/sampler/${sampler.id}`}
-                >
-                  {sampler.title}
-                  {console.log('samplers', sampler)}
-                </NavLink>
-              </div>
-            ))}
+          <h3 id='checkmysampler'>Check out my samplers!</h3>
+          {sessionUser.id == userId ? (
+            <></>
+          ) : (
+            <>
+              {userSamplers &&
+                  userSamplers.map((sampler) => (
+                  <>
+                  { sampler.priv !== true ? (<div
+                    key={`sampler-link-wrap-${sampler.id}`}
+                  >
+                    <NavLink
+                    className="user-sampler-link"
+                      key={`sampler-link-${sampler.id}`}
+                      to={`/sampler/${sampler.id}`}
+                    >
+                      {sampler.title}
+                      {console.log("samplers", sampler.priv)}
+                    </NavLink>
+                      </div>) : <></>}
+                      </>
+                ))}
+            </>
+          )}
         </div>
       </div>
     </>

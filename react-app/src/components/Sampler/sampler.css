@@ -139,12 +139,14 @@ input[type="file"] {
 #mixer{
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  height: 265px;
+  padding: 25px;
+  height: 320px;
+  width: 260px;
   border:black 5px solid;
   border-radius: 7px
 }
 #fx-send-wrap{
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -157,7 +159,8 @@ input[type="file"] {
   display: flex;
   flex-direction: row;
   /* margin-top: 150px; */
-  height: 115px;
+  justify-content: space-evenly;
+  height: 150px;
 
 }
 .vol-slider{
@@ -166,7 +169,7 @@ input[type="file"] {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 125px;
+  margin-top: 110px;
 
 }
 .vol-slider > input[type=range]{
