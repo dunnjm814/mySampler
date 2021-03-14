@@ -137,11 +137,11 @@ const unFollow = async (e) => {
         </div>
         <div className="dummy"></div>
         <div className="profile-sampler-links">
-          <h3 id='checkmysampler'>Check out my samplers!</h3>
           {sessionUser.id == userId ? (
             <></>
           ) : (
             <>
+              <h3 id='checkmysampler'>Check out my samplers!</h3>
               {userSamplers &&
                   userSamplers.map((sampler) => (
                   <>
