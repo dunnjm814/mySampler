@@ -5,21 +5,27 @@ import {BsLayoutTextSidebarReverse} from "react-icons/bs"
 import logo from '../../img/mySamplerLogo.png'
 import React, {useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink} from 'react-router-dom'
 import "react-dropdown/style.css";
-import {fetchAllUserSamplers} from '../../store/sampler'
+import { fetchAllUserSamplers } from '../../store/sampler'
+import {getFollowerList} from '../../store/friends'
 
 function SideBar() {
   const dispatch = useDispatch()
   const [samplerDropDown, setDropDown] = useState()
+  const [friendList, setFriendList] = useState()
   const [sideBar, setSideBar] = useState('')
-  const [subMenu, setSubMenu] = useState('sub-menu')
+  const [subMenuSampler, setSubMenuSampler] = useState('sub-menu-sampler')
+  const [subMenuFriends, setSubMenuFriends] = useState('sub-menu-friends')
   const sessionUser = useSelector((state) => state.session.user);
-  const userId = sessionUser.id
+  const userFriends = useSelector((state) => state.friends.userFollows);
   const userSamplers = useSelector((state) => state.sampler.userSamplers);
+
+  const userId = sessionUser.id
 
   useEffect(() => {
     dispatch(fetchAllUserSamplers(userId));
+    dispatch(getFollowerList({ user_id: sessionUser.id }));
   }, [dispatch, userId])
 
   useEffect(() => {
@@ -38,19 +44,44 @@ function SideBar() {
       );
     }
   }, [userSamplers])
+  useEffect(() => {
+    if (userFriends) {
+      setFriendList(
+        userFriends.map((user) => (
+        <>
+          {console.log('checking user inside dropdown', user)}
+          <div key={`friend-link-wrap-${user.id}`} className="sub-menu-link">
+            <NavLink
+              key={`friend-link-profile-${user.id}`}
+              to={`/profile/${user.id}`}
+            >{user.username}</NavLink>
+            </div>
+            </>
+        ))
+      );
+    }
+  },[userFriends])
   const openSidebar = () => {
     if (!sideBar) {
       setSideBar('open')
     } else {
       setSideBar('')
-      setSubMenu('sub-menu')
+      setSubMenuSampler('sub-menu-sampler')
+      setSubMenuFriends('sub-menu-friends')
     }
   }
-  const openSubMenu = () => {
-    if (subMenu === 'sub-menu') {
-      setSubMenu('sub-menu-open')
+  const openSubMenuSampler = () => {
+    if (subMenuSampler === 'sub-menu-sampler') {
+      setSubMenuSampler('sub-menu-sampler-open')
     } else {
-      setSubMenu('sub-menu')
+      setSubMenuSampler('sub-menu-sampler')
+    }
+  }
+  const openSubMenuFriends = () => {
+    if (subMenuFriends === 'sub-menu-friends') {
+      setSubMenuFriends('sub-menu-friends-open')
+    } else {
+      setSubMenuFriends('sub-menu-friends')
     }
   }
   return (
@@ -63,7 +94,7 @@ function SideBar() {
             </a>
           </div>
         </div>
-        <div className="side-link open-sub" onClick={openSubMenu}>
+        <div className="side-link open-sub" onClick={openSubMenuSampler}>
           <div className="side-icon">
             <a>
               <img
@@ -76,23 +107,25 @@ function SideBar() {
             </a>
           </div>
         </div>
-        <div className={`${subMenu}`}>{userSamplers && samplerDropDown}</div>
+        <div className={`${subMenuSampler}`}>{userSamplers && samplerDropDown}</div>
         <NavLink to={`/profile/${userId}`}>
           <div className="side-link">
             <div className="side-icon">
               <AiFillProfile />
             </div>
-            <span>Profile</span>{" "}
+            <span>Profile</span>
           </div>
         </NavLink>
-        <Link>
-          <div className="side-link">
+
+        <div className="side-link open-sub" onClick={openSubMenuFriends}>
+            <a>
             <div className="side-icon">
-              <FaUserFriends />
-            </div>
-            <span>Friends</span>{" "}
-          </div>
-        </Link>
+                <FaUserFriends />
+                <span id='friend-span'>Friends</span>
+              </div>
+            </a>
+        </div>
+        <div className={`${subMenuFriends}`}>{userFriends && friendList}</div>
       </div>
     </>
   );
