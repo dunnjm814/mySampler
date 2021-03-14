@@ -60,7 +60,7 @@ function App() {
               style={{
                 display: "flex",
                 flexDirection: "row",
-                alignItems: "center",
+                // alignItems: "center",
                 width: "100%",
                 height: "100%",
               }}
@@ -74,7 +74,7 @@ function App() {
               style={{
                 display: "flex",
                 flexDirection: "row",
-                alignItems: "center",
+                // alignItems: "center",
                 width: "100%",
                 height: "100%",
               }}

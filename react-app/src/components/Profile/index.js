@@ -139,7 +139,7 @@ const unFollow = async (e) => {
         <div className="profile-sampler-links">
           {userSamplers &&
             userSamplers.map((sampler) => (
-
+              
               <div
                 key={`sampler-link-wrap-${sampler.id}`}
                 className="sub-menu-link"
@@ -149,6 +149,7 @@ const unFollow = async (e) => {
                   to={`/sampler/${sampler.id}`}
                 >
                   {sampler.title}
+                  {console.log('samplers', sampler)}
                 </NavLink>
               </div>
             ))}

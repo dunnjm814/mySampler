@@ -85,7 +85,7 @@ function SideBar() {
     }
   }
   return (
-    <>
+    <div className='side-bar-wrap'>
       <div className={`sidebar ${sideBar}`}>
         <div className="side-link" onClick={openSidebar}>
           <div className="side-icon">
@@ -127,7 +127,7 @@ function SideBar() {
         </div>
         <div className={`${subMenuFriends}`}>{userFriends && friendList}</div>
       </div>
-    </>
+    </div>
   );
 }
 
