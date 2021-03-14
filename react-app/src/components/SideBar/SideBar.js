@@ -48,15 +48,12 @@ function SideBar() {
     if (userFriends) {
       setFriendList(
         userFriends.map((user) => (
-        <>
-          {console.log('checking user inside dropdown', user)}
           <div key={`friend-link-wrap-${user.id}`} className="sub-menu-link">
             <NavLink
               key={`friend-link-profile-${user.id}`}
               to={`/profile/${user.id}`}
             >{user.username}</NavLink>
             </div>
-            </>
         ))
       );
     }

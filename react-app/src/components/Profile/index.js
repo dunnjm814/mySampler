@@ -74,7 +74,7 @@ const unFollow = async (e) => {
               ) : (
                 <>
                   <h1>Hi! My name is {user && user.username}.</h1>
-                  {followed ? (
+                  {followed.length ? (
                     <button
                       onClick={unFollow}
                       className="unfollow"
@@ -139,7 +139,7 @@ const unFollow = async (e) => {
         <div className="profile-sampler-links">
           {userSamplers &&
             userSamplers.map((sampler) => (
-              
+
               <div
                 key={`sampler-link-wrap-${sampler.id}`}
                 className="sub-menu-link"

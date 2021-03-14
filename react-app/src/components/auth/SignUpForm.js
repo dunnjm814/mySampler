@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { signUp } from "../../store/session";
 import './signup.css'
 
 
 const SignUpForm = ({ setShowModal }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,6 +27,7 @@ const SignUpForm = ({ setShowModal }) => {
       setErrors(["Please confirm password"]);
     }
     setShowModal(false);
+    history.push("/home");
   };
 
   const updateUsername = (e) => {
@@ -44,9 +46,6 @@ const SignUpForm = ({ setShowModal }) => {
     setRepeatPassword(e.target.value);
   };
 
-  if (sessionUser) {
-    return <Redirect to="/" />;
-  }
 
   return (
     <form onSubmit={onSignUp}>

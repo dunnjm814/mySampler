@@ -149,7 +149,7 @@ function Sampler() {
             <div id="samples">
               <div id="row-one">
                 <div id="samples-wrap">
-                  <form id="sample-submit">
+                  <form className="sample-submit">
                     <label
                       className={(one && "sample-load red") || "sample-load"}
                     >
@@ -165,7 +165,7 @@ function Sampler() {
                       ></input>
                     </label>
                   </form>
-                  <form id="sample-submit">
+                  <form className="sample-submit">
                     <label
                       className={(two && "sample-load red") || "sample-load"}
                     >
@@ -181,7 +181,7 @@ function Sampler() {
                       ></input>
                     </label>
                   </form>
-                  <form id="sample-submit">
+                  <form className="sample-submit">
                     <label
                       className={(three && "sample-load red") || "sample-load"}
                     >
@@ -197,7 +197,7 @@ function Sampler() {
                       ></input>
                     </label>
                   </form>
-                  <form id="sample-submit">
+                  <form className="sample-submit">
                     <label
                       className={(four && "sample-load red") || "sample-load"}
                     >
@@ -217,7 +217,7 @@ function Sampler() {
               </div>
               <div id="row-two">
                 <div id="samples-wrap">
-                  <form id="sample-submit">
+                  <form className="sample-submit">
                     <label
                       className={(five && "sample-load red") || "sample-load"}
                     >
@@ -233,7 +233,7 @@ function Sampler() {
                       ></input>
                     </label>
                   </form>
-                  <form id="sample-submit">
+                  <form className="sample-submit">
                     <label
                       className={(six && "sample-load red") || "sample-load"}
                     >
@@ -249,7 +249,7 @@ function Sampler() {
                       ></input>
                     </label>
                   </form>
-                  <form id="sample-submit">
+                  <form className="sample-submit">
                     <label
                       className={(seven && "sample-load red") || "sample-load"}
                     >
@@ -265,7 +265,7 @@ function Sampler() {
                       ></input>
                     </label>
                   </form>
-                  <form id="sample-submit">
+                  <form className="sample-submit">
                     <label
                       className={(eight && "sample-load red") || "sample-load"}
                     >
