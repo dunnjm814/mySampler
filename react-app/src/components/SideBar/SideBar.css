@@ -49,23 +49,30 @@
 .side-icon, .side-bar-logo{
   margin-right: 50px;
 }
-
-.sub-menu{
+#friend-span{
+  margin-left: 50px;
+}
+.sub-menu-sampler{
   width: 275px;
   display: none;
   transition: 0.5s
 }
-.sub-menu-open{
+.sub-menu-sampler-open{
   width: 275px;
   display: block;
   background-color: #d8fbfd;
-
-  /* border-bottom: 1px solid #3f5455; */
 }
-/* .sub-menu-link{
-  border-top: 1px solid #3f5455;
+.sub-menu-friends{
+  width: 275px;
+  display: none;
+  transition: 0.5s
+}
+.sub-menu-friends-open{
+  width: 275px;
+  display: block;
+  background-color: #d8fbfd;
+}
 
-} */
 @media screen and (max-height: 450px) {
   .sidebar {
     padding-top: 15px;
