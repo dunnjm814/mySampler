@@ -35,10 +35,10 @@ def create_follow(id):
 @login_required
 def remove_follower(id):
         followed_user = User.query.get(id)
-        follower = User.query.get(request.get_json()['following_id'])
+        follower = User.query.get(request.get_json()['follower_id'])
         follower.followers.remove(followed_user)
 
         db.session.commit()
 
-        following = [follow.to_dict() for follow in followed_user.followers]
+        following = [follow.to_dict() for follow in follower.followers]
         return jsonify(following)
