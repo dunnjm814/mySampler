@@ -154,7 +154,6 @@ const unFollow = async (e) => {
                       to={`/sampler/${sampler.id}`}
                     >
                       {sampler.title}
-                      {console.log("samplers", sampler.priv)}
                     </NavLink>
                       </div>) : <></>}
                       </>

@@ -100,11 +100,11 @@ function App() {
               <Profile />
             </div>
           </ProtectedRoute>
+          <Route>
+            <NotFound />
+          </Route>
         </Switch>
       </div>
-      <Route path="/404" exact={true}>
-        <NotFound />
-      </Route>
     </BrowserRouter>
   );
 }

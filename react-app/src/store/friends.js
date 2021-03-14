@@ -12,7 +12,6 @@ const deleteFollow = (user) => {
 };
 
 const isFollowed = (user) => {
-  console.log("isFollowed", user);
   return { type: IS_FOLLOWED, user };
 };
 
@@ -32,7 +31,6 @@ const followingList = (following) => {
 export const removeFollower = ({ follower_id, followed_id }) => async (
   dispatch
 ) => {
-  console.log("followerid from the thunk", followed_id);
   const res = await fetch(`/api/friends/${followed_id}/delete`, {
     method: "DELETE",
     headers: {
@@ -41,7 +39,6 @@ export const removeFollower = ({ follower_id, followed_id }) => async (
     body: JSON.stringify({ follower_id }),
   });
   const data = await res.json();
-  console.log(data);
   dispatch(deleteFollow(data));
   return data;
 };
@@ -67,7 +64,6 @@ export const findFollower = ({ user_id }) => async (dispatch) => {
 };
 
 export const getFollowerList = ({ user_id }) => async (dispatch) => {
-  console.log("from the thunk", user_id);
   const res = await fetch(`/api/friends/${user_id}/get`);
   const data = await res.json();
   dispatch(followingList(data[0]));
