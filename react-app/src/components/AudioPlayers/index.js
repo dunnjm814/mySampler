@@ -8,7 +8,7 @@ import {useMixerContext} from '../../context/Mixer'
 
 function AudioPlayers() {
   const { samplerId } = useParams()
-  const { sampleVol, mainOut } = useMixerContext()
+  const { sampleVol, mainOut, delaySends } = useMixerContext()
   console.log('sampleVol from audio players', sampleVol)
   console.log('mainOut from audio players', mainOut)
 
@@ -31,17 +31,21 @@ function AudioPlayers() {
   const [volumeSeven, setVolumeSeven] = useState(sampleVol.volSeven);
   const [volumeEight, setVolumeEight] = useState(sampleVol.volEight);
 
+  const [delayDryWetOne, setDelayDryWetOne] = useState(delaySends.delayWetOne)
+
   const [mainVolumeOut, setMainVolumeOut] = useState(mainOut.mainVol)
   const [mainLowpass, setMainLowpass] = useState(mainOut.filter)
   const [mainVibe, setMainVibe] = useState(mainOut.vibeMain)
-  const [mainCrushed, setMainCrushed] = useState(mainOut.crushed)
+  // const [mainCrushed, setMainCrushed] = useState(mainOut.crushed)
 
   const incomingSamples = useSelector((state) => state.sampler.sampler)
 
+  // when samplerId changes reload
   useEffect(() => {
     setLoaded(true)
   },[samplerId])
 
+  // incoming sample load triggers
   useEffect(() => {
     if (incomingSamples && loaded) {
       console.log(incomingSamples)
@@ -56,6 +60,7 @@ function AudioPlayers() {
     }
   }, [incomingSamples, loaded, sampleOne, sampleTwo, sampleThree, sampleFour, sampleFive, sampleSix, sampleSeven, sampleEight])
 
+  // volume slider triggers
   useEffect(() => {
     if (sampleVol && loaded) {
       setVolumeOne(sampleVol.volOne);
@@ -69,12 +74,20 @@ function AudioPlayers() {
     }
   }, [sampleVol, loaded])
 
+  //delay effect change triggers
+  useEffect(() => {
+    if (delaySends && loaded) {
+      setDelayDryWetOne(delaySends.delayWetOne)
+    }
+  }, [delaySends, loaded])
+
+  // main out effect triggers
   useEffect(() => {
     if (mainOut && loaded) {
       setMainVolumeOut(mainOut.mainVol);
       setMainLowpass(mainOut.filter);
       setMainVibe(mainOut.vibeMain);
-      setMainCrushed(mainOut.crushed);
+      // setMainCrushed(mainOut.crushed);
     }
   }, [mainOut, loaded])
 
@@ -83,8 +96,6 @@ function AudioPlayers() {
   masterVol.volume.value = mainVolumeOut;
   const lowpass = new Tone.Filter(mainLowpass, "lowpass");
   const vibrato = new Tone.Vibrato(mainVibe, 0.3);
-  const bitCrush = new Tone.BitCrusher(mainCrushed);
-  const compressor = new Tone.Compressor(-6);
 
   // mixer volume control
   const gainOne = new Tone.Volume().toDestination();
@@ -96,22 +107,22 @@ function AudioPlayers() {
   const gainSeven = new Tone.Volume().toDestination()
   const gainEight = new Tone.Volume().toDestination()
 
-  // mixer reverb and delay (only effect dry/wet from mixer)
-  const delayOne = new Tone.FeedbackDelay(2, .1)
-  const verbOne = new Tone.Reverb(1.5, 0.01, .1)
 
-  Tone.Destination.chain(masterVol, lowpass, vibrato, bitCrush, compressor)
+  const delayOne = new Tone.FeedbackDelay(.1, .5)
+
+
+  Tone.Destination.chain(masterVol, lowpass, vibrato)
 
   const playSample1 = (e) => {
     e.preventDefault();
     console.log("a pressed!");
     gainOne.volume.value = volumeOne;
-    delayOne.wet.value = .5
+    delayOne.wet.value = delayDryWetOne;
     const sampler1 = new Tone.Player(sampleOne, () => {
       console.log(sampler1.state)
       sampler1.start()
     } // chain delay, reverb into gain control, out to main Out
-    ).chain(delayOne, verbOne, gainOne)
+    ).chain(delayOne, gainOne)
   };
   const playSample2 = (e) => {
     e.preventDefault();

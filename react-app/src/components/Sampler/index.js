@@ -11,7 +11,7 @@ function Sampler() {
   const { samplerId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { sampleVol, setSampleVol, mainOut, setMainOut } = useMixerContext();
+  const { sampleVol, setSampleVol, mainOut, setMainOut, delaySends, setDelaySends } = useMixerContext();
 
   useEffect(() => {
     dispatch(getSampler(samplerId));
@@ -87,14 +87,7 @@ function Sampler() {
     width: "25px",
     height: "25px",
   };
-  console.log(mainOut.mainVol)
-  const handleMainVol = (val) => {
-    if ((val < -60) || (val > 6)) {
-      return
-    } else {
-        setMainOut({ ...mainOut, mainVol: val });
-    }
-  }
+
   return (
     <div id="sampler-show-wrap">
       {samplerState && (
@@ -116,7 +109,7 @@ function Sampler() {
                   max={6}
                   step={1}
                   value={mainOut.mainVol}
-                  onChange={(e)=> handleMainVol(e.target.value)}
+                  onChange={(e) => setMainOut({ ...mainOut, mainVol: e })}
                 />
               </div>
               <div id="knob-container">
@@ -293,21 +286,18 @@ function Sampler() {
               <div id="fx-send-wrap">
                 <div className="fx-knobs">
                   <div className="verb">
-                    <Knob
-                      style={knobStyle}
-                      min={0}
-                      max={1}
-                      defaultValue={0}
-                      step={0.1}
-                    />
+                    <Knob style={knobStyle} min={0} max={1} step={0.1} />
                   </div>
                   <div className="delay" style={{ marginTop: "50px" }}>
                     <Knob
                       style={knobStyle}
                       min={0}
                       max={1}
-                      defaultValue={0}
+                      value={delaySends.delayWetOne}
                       step={0.1}
+                      onEnd={(e) =>
+                        setDelaySends({ ...delaySends, delayWetOne: e })
+                      }
                     />
                   </div>
                 </div>
@@ -461,7 +451,10 @@ function Sampler() {
                     max={6}
                     onChange={(e) => {
                       e.stopPropagation();
-                      setSampleVol({ ...sampleVol, volOne: e.target.value });
+                      setSampleVol({
+                        ...sampleVol,
+                        volOne: Number(e.target.value),
+                      });
                       console.log(sampleVol.volOne);
                     }}
                   />

@@ -20,11 +20,15 @@ const MixerProvider = ({ children }) => {
     mainVol: -3,
     filter: 24000,
     vibeMain: 0,
-    crushed: 16
+    // crushed: 16
+  })
+
+  const [delaySends, setDelaySends] = useState({
+    delayWetOne: 0,
   })
 
   return(
-    <MixerContext.Provider value={{ sampleVol, setSampleVol, mainOut, setMainOut}}>
+    <MixerContext.Provider value={{ sampleVol, setSampleVol, mainOut, setMainOut, delaySends, setDelaySends}}>
       {children}
     </MixerContext.Provider>
   )
