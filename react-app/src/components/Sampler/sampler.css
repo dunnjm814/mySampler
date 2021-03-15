@@ -139,7 +139,7 @@ input[type="file"] {
 #mixer{
   display: flex;
   flex-direction: column;
-  padding: 25px;
+  padding: 15px;
   height: 320px;
   width: 260px;
   border:black 5px solid;
