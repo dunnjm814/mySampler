@@ -1,22 +1,21 @@
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Knob } from "react-rotary-knob";
 import { useParams, useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux'
-import { receiveSamples } from '../../store/samples'
-import { getSampler, deleteSampler } from '../../store/sampler'
-import {useMixerContext} from '../../context/Mixer'
+import { useDispatch, useSelector } from "react-redux";
+import { receiveSamples } from "../../store/samples";
+import { getSampler, deleteSampler } from "../../store/sampler";
+import { useMixerContext } from "../../context/Mixer";
 import "./sampler.css";
 
 function Sampler() {
-  const { samplerId } = useParams()
+  const { samplerId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { sampleVol, setSampleVol } = useMixerContext();
-
+  const { sampleVol, setSampleVol, mainOut, setMainOut } = useMixerContext();
 
   useEffect(() => {
-    dispatch(getSampler(samplerId))
-    }, [dispatch, samplerId])
+    dispatch(getSampler(samplerId));
+  }, [dispatch, samplerId]);
 
   const samplerState = useSelector((state) => {
     return state.sampler.sampler;
@@ -24,14 +23,14 @@ function Sampler() {
 
   const [tempo, setTempo] = useState(120);
   const [samples, setSamples] = useState({
-    sampleOne:'',
-    sampleTwo:'',
-    sampleThree:'',
-    sampleFour:'',
-    sampleFive:'',
-    sampleSix:'',
-    sampleSeven:'',
-    sampleEight:'',
+    sampleOne: "",
+    sampleTwo: "",
+    sampleThree: "",
+    sampleFour: "",
+    sampleFive: "",
+    sampleSix: "",
+    sampleSeven: "",
+    sampleEight: "",
   });
   const [one, setOne] = useState("");
   const [two, setTwo] = useState("");
@@ -46,41 +45,30 @@ function Sampler() {
   // }, [samplerId]);
   useEffect(() => {
     if (samplerState) {
-      setOne(samplerState.sampleOne)
-      setTwo(samplerState.sampleTwo)
-      setThree(samplerState.sampleThree)
-      setFour(samplerState.sampleFour)
-      setFive(samplerState.sampleFive)
-      setSix(samplerState.sampleSix)
-      setSeven(samplerState.sampleSeven)
-      setEight(samplerState.sampleEight)
+      setOne(samplerState.sampleOne);
+      setTwo(samplerState.sampleTwo);
+      setThree(samplerState.sampleThree);
+      setFour(samplerState.sampleFour);
+      setFive(samplerState.sampleFive);
+      setSix(samplerState.sampleSix);
+      setSeven(samplerState.sampleSeven);
+      setEight(samplerState.sampleEight);
     }
-  }, [
-    samplerState,
-    one,
-    two,
-    three,
-    four,
-    five,
-    six,
-    seven,
-    eight,
-  ]);
-
+  }, [samplerState, one, two, three, four, five, six, seven, eight]);
 
   useEffect(() => {
     if (
       Object.values(samples).every((sample) => {
-          return sample === ''
-        })
-      ) return
-        const sendData = {
-          samplerId,
-          samples
-        };
-      dispatch(receiveSamples(sendData))
-  }, [dispatch, samples, samplerId])
-
+        return sample === "";
+      })
+    )
+      return;
+    const sendData = {
+      samplerId,
+      samples,
+    };
+    dispatch(receiveSamples(sendData));
+  }, [dispatch, samples, samplerId]);
 
   const slideTempo = (e) => {
     setTempo(e.target.value);
@@ -88,16 +76,24 @@ function Sampler() {
 
   const destroySampler = async (e) => {
     e.preventDefault();
-    const destroy = dispatch(deleteSampler(samplerId))
+    const destroy = dispatch(deleteSampler(samplerId));
     if (destroy.errors) {
       // future error handling
     } else {
       history.push("/home");
     }
-  }
+  };
   const knobStyle = {
-    width: '25px',
-    height: '25px'
+    width: "25px",
+    height: "25px",
+  };
+  console.log(mainOut.mainVol)
+  const handleMainVol = (val) => {
+    if ((val < -60) || (val > 6)) {
+      return
+    } else {
+        setMainOut({ ...mainOut, mainVol: val });
+    }
   }
   return (
     <div id="sampler-show-wrap">
@@ -115,7 +111,13 @@ function Sampler() {
             <div id="knobs-wrap">
               <div id="knob-container">
                 <span></span>
-                <Knob min={0} max={1} defaultValue={0} step={0.1} />
+                <Knob
+                  min={-60}
+                  max={6}
+                  step={1}
+                  value={mainOut.mainVol}
+                  onChange={(e)=> handleMainVol(e.target.value)}
+                />
               </div>
               <div id="knob-container">
                 <span></span>
@@ -131,8 +133,8 @@ function Sampler() {
               </div>
             </div>
             <div id="bpm-wrap">
-              <div id='bpm-house'>
-                <h1 id='bpm-text'>{tempo}</h1>
+              <div id="bpm-house">
+                <h1 id="bpm-text">{tempo}</h1>
               </div>
             </div>
             <div id="bpm-slider">
@@ -309,7 +311,7 @@ function Sampler() {
                     />
                   </div>
                 </div>
-                <div className="fx-knobs" >
+                <div className="fx-knobs">
                   <div className="verb">
                     <Knob
                       style={knobStyle}
@@ -349,7 +351,7 @@ function Sampler() {
                     />
                   </div>
                 </div>
-                <div className="fx-knobs" >
+                <div className="fx-knobs">
                   <div className="verb">
                     <Knob
                       style={knobStyle}
@@ -389,7 +391,7 @@ function Sampler() {
                     />
                   </div>
                 </div>
-                <div className="fx-knobs" >
+                <div className="fx-knobs">
                   <div className="verb">
                     <Knob
                       style={knobStyle}
@@ -429,7 +431,7 @@ function Sampler() {
                     />
                   </div>
                 </div>
-                <div className="fx-knobs" >
+                <div className="fx-knobs">
                   <div className="verb">
                     <Knob
                       style={knobStyle}

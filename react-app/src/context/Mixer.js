@@ -16,8 +16,15 @@ const MixerProvider = ({ children }) => {
     volEight: -3,
   });
 
+  const [mainOut, setMainOut] = useState({
+    mainVol: -3,
+    filter: 24000,
+    vibeMain: 0,
+    crushed: 16
+  })
+
   return(
-    <MixerContext.Provider value={{ sampleVol, setSampleVol}}>
+    <MixerContext.Provider value={{ sampleVol, setSampleVol, mainOut, setMainOut}}>
       {children}
     </MixerContext.Provider>
   )

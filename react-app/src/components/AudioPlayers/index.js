@@ -8,9 +8,10 @@ import {useMixerContext} from '../../context/Mixer'
 
 function AudioPlayers() {
   const { samplerId } = useParams()
-  const { sampleVol } = useMixerContext()
+  const { sampleVol, mainOut } = useMixerContext()
   console.log('sampleVol from audio players', sampleVol)
- 
+  console.log('mainOut from audio players', mainOut)
+
   const [loaded, setLoaded] = useState(false);
   const [sampleOne, setSampleOne] = useState('')
   const [sampleTwo, setSampleTwo] = useState('')
@@ -29,6 +30,11 @@ function AudioPlayers() {
   const [volumeSix, setVolumeSix] = useState(sampleVol.volSix);
   const [volumeSeven, setVolumeSeven] = useState(sampleVol.volSeven);
   const [volumeEight, setVolumeEight] = useState(sampleVol.volEight);
+
+  const [mainVolumeOut, setMainVolumeOut] = useState(mainOut.mainVol)
+  const [mainLowpass, setMainLowpass] = useState(mainOut.filter)
+  const [mainVibe, setMainVibe] = useState(mainOut.vibeMain)
+  const [mainCrushed, setMainCrushed] = useState(mainOut.crushed)
 
   const incomingSamples = useSelector((state) => state.sampler.sampler)
 
@@ -61,9 +67,27 @@ function AudioPlayers() {
       setVolumeSeven(sampleVol.volSeven);
       setVolumeEight(sampleVol.volEight);
     }
-  }, [sampleVol])
+  }, [sampleVol, loaded])
 
-  const gainOne = new Tone.Volume().toDestination()
+  useEffect(() => {
+    if (mainOut && loaded) {
+      setMainVolumeOut(mainOut.mainVol);
+      setMainLowpass(mainOut.filter);
+      setMainVibe(mainOut.vibeMain);
+      setMainCrushed(mainOut.crushed);
+    }
+  }, [mainOut, loaded])
+
+  // main output
+  const masterVol = new Tone.Volume()
+  masterVol.volume.value = mainVolumeOut;
+  const lowpass = new Tone.Filter(mainLowpass, "lowpass");
+  const vibrato = new Tone.Vibrato(mainVibe, 0.3);
+  const bitCrush = new Tone.BitCrusher(mainCrushed);
+  const compressor = new Tone.Compressor(-6);
+
+  // mixer volume control
+  const gainOne = new Tone.Volume().toDestination();
   const gainTwo = new Tone.Volume().toDestination()
   const gainThree = new Tone.Volume().toDestination()
   const gainFour = new Tone.Volume().toDestination()
@@ -72,15 +96,22 @@ function AudioPlayers() {
   const gainSeven = new Tone.Volume().toDestination()
   const gainEight = new Tone.Volume().toDestination()
 
+  // mixer reverb and delay (only effect dry/wet from mixer)
+  const delayOne = new Tone.FeedbackDelay(2, .1)
+  const verbOne = new Tone.Reverb(1.5, 0.01, .1)
+
+  Tone.Destination.chain(masterVol, lowpass, vibrato, bitCrush, compressor)
+
   const playSample1 = (e) => {
     e.preventDefault();
     console.log("a pressed!");
     gainOne.volume.value = volumeOne;
+    delayOne.wet.value = .5
     const sampler1 = new Tone.Player(sampleOne, () => {
-      sampler1.start()
       console.log(sampler1.state)
-    }
-    ).connect(gainOne)
+      sampler1.start()
+    } // chain delay, reverb into gain control, out to main Out
+    ).chain(delayOne, verbOne, gainOne)
   };
   const playSample2 = (e) => {
     e.preventDefault();
