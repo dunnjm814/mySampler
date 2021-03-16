@@ -5,6 +5,9 @@ const MixerContext = createContext();
 export const useMixerContext = () => useContext(MixerContext)
 
 const MixerProvider = ({ children }) => {
+
+  const [tempo, setTempo] = useState(120);
+
   const [sampleVol, setSampleVol] = useState({
     volOne: -3,
     volTwo: -3,
@@ -27,10 +30,21 @@ const MixerProvider = ({ children }) => {
     delayWetOne: 0,
   })
 
-  return(
-    <MixerContext.Provider value={{ sampleVol, setSampleVol, mainOut, setMainOut, delaySends, setDelaySends}}>
+  return (
+    <MixerContext.Provider
+      value={{
+        sampleVol,
+        setSampleVol,
+        mainOut,
+        setMainOut,
+        delaySends,
+        setDelaySends,
+        tempo,
+        setTempo,
+      }}
+    >
       {children}
     </MixerContext.Provider>
-  )
+  );
 }
 export default MixerProvider

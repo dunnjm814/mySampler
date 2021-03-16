@@ -8,7 +8,7 @@ import {useMixerContext} from '../../context/Mixer'
 
 function AudioPlayers() {
   const { samplerId } = useParams()
-  const { sampleVol, mainOut, delaySends } = useMixerContext()
+  const { sampleVol, mainOut, delaySends, tempo } = useMixerContext()
   console.log('sampleVol from audio players', sampleVol)
   console.log('mainOut from audio players', mainOut)
 
@@ -112,6 +112,36 @@ function AudioPlayers() {
 
 
   Tone.Destination.chain(masterVol, lowpass, vibrato)
+
+  // testing out Tone.Transport
+  const testSynth = new Tone.Synth();
+  const testSynthGain = new Tone.Volume(-35).toDestination();
+  testSynth.chain(testSynthGain);
+  Tone.Transport.bpm.value = tempo
+
+  let notes = ['C4', 'E4', 'G4', 'C5', 'E5', 'C5', 'G4', 'E4']
+
+  let index = 0
+  Tone.Transport.scheduleRepeat(time => {
+    playSequence(time)
+  }, '8n')
+
+  function playSequence(time){
+    let note = notes[index % notes.length]
+    testSynth.triggerAttackRelease(note, '8n', time)
+    index++
+  }
+
+  const [playing, setPlaying] = useState(false)
+  const togglePlay = () => {
+    if (playing === false) {
+      setPlaying(true)
+      Tone.Transport.start()
+    } else {
+      setPlaying(false);
+      Tone.Transport.stop();
+    }
+  }
 
   const playSample1 = (e) => {
     e.preventDefault();
@@ -229,6 +259,11 @@ function AudioPlayers() {
         keyEventName={KEYPRESS}
         keyValue="f"
         onKeyHandle={playSample4}
+      />
+      <KeyHandler
+        keyEventName={KEYPRESS}
+        keyValue="p"
+        onKeyHandle={togglePlay}
       />
     </>
   );

@@ -11,7 +11,16 @@ function Sampler() {
   const { samplerId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { sampleVol, setSampleVol, mainOut, setMainOut, delaySends, setDelaySends } = useMixerContext();
+  const {
+    sampleVol,
+    setSampleVol,
+    mainOut,
+    setMainOut,
+    delaySends,
+    setDelaySends,
+    tempo,
+    setTempo,
+  } = useMixerContext();
 
   useEffect(() => {
     dispatch(getSampler(samplerId));
@@ -21,7 +30,7 @@ function Sampler() {
     return state.sampler.sampler;
   });
 
-  const [tempo, setTempo] = useState(120);
+
   const [samples, setSamples] = useState({
     sampleOne: "",
     sampleTwo: "",
