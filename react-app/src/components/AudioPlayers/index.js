@@ -8,7 +8,7 @@ import {useMixerContext} from '../../context/Mixer'
 
 function AudioPlayers() {
   const { samplerId } = useParams()
-  const { sampleVol, mainOut, delaySends, tempo } = useMixerContext()
+  const { sampleVol, mainOut, delaySends} = useMixerContext()
   console.log('sampleVol from audio players', sampleVol)
   console.log('mainOut from audio players', mainOut)
 
@@ -63,14 +63,16 @@ function AudioPlayers() {
   // volume slider triggers
   useEffect(() => {
     if (sampleVol && loaded) {
-      setVolumeOne(sampleVol.volOne);
-      setVolumeTwo(sampleVol.volTwo);
-      setVolumeThree(sampleVol.volThree);
-      setVolumeFour(sampleVol.volFour);
-      setVolumeFive(sampleVol.volFive);
-      setVolumeSix(sampleVol.volSix);
-      setVolumeSeven(sampleVol.volSeven);
-      setVolumeEight(sampleVol.volEight);
+      return () => {
+        setVolumeOne(sampleVol.volOne);
+        setVolumeTwo(sampleVol.volTwo);
+        setVolumeThree(sampleVol.volThree);
+        setVolumeFour(sampleVol.volFour);
+        setVolumeFive(sampleVol.volFive);
+        setVolumeSix(sampleVol.volSix);
+        setVolumeSeven(sampleVol.volSeven);
+        setVolumeEight(sampleVol.volEight);
+      }
     }
   }, [sampleVol, loaded])
 
@@ -107,41 +109,9 @@ function AudioPlayers() {
   const gainSeven = new Tone.Volume().toDestination()
   const gainEight = new Tone.Volume().toDestination()
 
-
   const delayOne = new Tone.FeedbackDelay(.1, .5)
 
-
   Tone.Destination.chain(masterVol, lowpass, vibrato)
-
-  // testing out Tone.Transport
-  const testSynth = new Tone.Synth();
-  const testSynthGain = new Tone.Volume(-35).toDestination();
-  testSynth.chain(testSynthGain);
-  Tone.Transport.bpm.value = tempo
-
-  let notes = ['C4', 'E4', 'G4', 'C5', 'E5', 'C5', 'G4', 'E4']
-
-  let index = 0
-  Tone.Transport.scheduleRepeat(time => {
-    playSequence(time)
-  }, '8n')
-
-  function playSequence(time){
-    let note = notes[index % notes.length]
-    testSynth.triggerAttackRelease(note, '8n', time)
-    index++
-  }
-
-  const [playing, setPlaying] = useState(false)
-  const togglePlay = () => {
-    if (playing === false) {
-      setPlaying(true)
-      Tone.Transport.start()
-    } else {
-      setPlaying(false);
-      Tone.Transport.stop();
-    }
-  }
 
   const playSample1 = (e) => {
     e.preventDefault();
@@ -260,11 +230,11 @@ function AudioPlayers() {
         keyValue="f"
         onKeyHandle={playSample4}
       />
-      <KeyHandler
+      {/* <KeyHandler
         keyEventName={KEYPRESS}
         keyValue="p"
         onKeyHandle={togglePlay}
-      />
+      /> */}
     </>
   );
 }

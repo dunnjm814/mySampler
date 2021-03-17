@@ -1,0 +1,18 @@
+.play-state{
+  transition: 0.5s
+}
+.play-state:hover{
+  cursor: pointer;
+}
+.play-state > a{
+  display: flex;
+  align-content: center;
+  text-decoration: none;
+  font-size: 50px;
+  color: #818181;
+
+  transition: 0.5s;
+}
+.play-state > a:hover{
+  color: #ad9889;
+}
