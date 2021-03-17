@@ -68,25 +68,27 @@ function Sequencer() {
     setPlayState(Tone.Transport.state);
   }, []);
   // Updates pattern via copy and invert value
-  function setPattern({ x, y, value }) {
+  function setPattern({ y, x, value }) {
     const patternCopy = [...pattern];
     patternCopy[y][x] = +!value;
     updatePattern(patternCopy);
   }
   return (
     <div>
-      {pattern.map((row, y) => (
-        <div key={y} style={{ display: "flex", justifyContent: "center" }}>
-          {row.map((value, x) => (
-            <Square
-              key={x}
-              active={activeColumn === x}
-              selected={value}
-              onClick={() => setPattern({ x, y, value })}
-            />
-          ))}
-        </div>
-      ))}
+      <div className='grid'>
+        {pattern.map((row, y) => (
+          <div key={y} style={{ display: "flex", justifyContent: "center" }}>
+            {row.map((value, x) => (
+              <Square
+                key={x}
+                active={activeColumn === x}
+                selected={value}
+                onClick={() => setPattern({ y, x, value })}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
       <div className="play-state" onClick={() => toggle()}>
         {playState === "started" ? (
           <a>
@@ -103,15 +105,10 @@ function Sequencer() {
 }
 
 const Square = ({ active, value, onClick }) => (
-  <div
+  <div className={(active && 'cell active')  || 'cell'}
     style={{
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      width: 25,
-      height: 25,
-      backgroundColor: value ? "#ad9889" : "",
-      border: active ? "2px solid #ad9889" : "1px solid #eee",
+      backgroundColor: {value} ? "#ad9889" : "",
+      // border: active ? "2px solid #ad9889" : "1px solid #eee",
     }}
     onClick={onClick}
   >

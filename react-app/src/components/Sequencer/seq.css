@@ -16,3 +16,19 @@
 .play-state > a:hover{
   color: #ad9889;
 }
+.grid{
+  border: 1px solid #a8a8a8
+}
+.cell{
+  display: "flex";
+  align-items: "center";
+  justify-content: "center";
+  width: 25px;
+  height: 25px;
+  border: 2px solid #a8a8a8;
+
+}
+
+.active{
+  border: 2px solid #ff0000
+}
