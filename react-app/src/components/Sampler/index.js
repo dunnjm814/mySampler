@@ -295,10 +295,10 @@ function Sampler() {
               </div>
             </div>
           </div>
+          <div id='sequencer-wrap'>
+            <Sequencer />
+          </div>
           <div id="mixer-wrap">
-            <div id='sequencer-wrap'>
-              <Sequencer />
-            </div>
             <div id="mixer">
               <div id="fx-send-wrap">
                 <div className="fx-knobs">

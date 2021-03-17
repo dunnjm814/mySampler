@@ -26,8 +26,8 @@
 #sampler-mixer-house{
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
+  align-items: flex-start;
+  justify-content: space-between;
   position: absolute;
 }
 #samples > button{
@@ -51,7 +51,7 @@
   border-radius: 7px;
   width: 400px;
   background-color: #757474;
-  margin-right: 175px;
+  margin: 10px;
 }
 #knobs-wrap{
   display: flex;
@@ -135,6 +135,12 @@ input[type="file"] {
   color: rgb(29, 29, 29);
   font-size: 17px;
   font-weight: bold;
+}
+#mixer-wrap{
+  margin: 10px;
+}
+#sequencer-wrap{
+  margin: 10px;
 }
 #mixer{
   display: flex;
