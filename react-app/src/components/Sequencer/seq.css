@@ -10,6 +10,7 @@
   text-decoration: none;
   font-size: 50px;
   color: #818181;
+  margin-top: 15px;
 
   transition: 0.5s;
 }
@@ -29,6 +30,10 @@
 
 }
 
-.active{
+.seq-active{
   border: 2px solid #ff0000
+}
+
+.filled{
+  fill: #a8a8a8
 }

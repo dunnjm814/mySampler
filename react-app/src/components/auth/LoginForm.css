@@ -27,7 +27,7 @@
   transition: 0.5s;
 }
 #demo:hover{
-  color: #39a6ad;
+ color: #ad9889;
 }
 #log-in{
   outline: none;
@@ -45,5 +45,5 @@
   transition: 0.5s;
 }
 #log-in:hover{
-  color: #39a6ad;
+  color: #ad9889;
 }

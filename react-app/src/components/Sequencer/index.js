@@ -26,7 +26,7 @@ const initialPattern = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
-const synth = new Tone.MonoSynth().toDestination();
+const synth = new Tone.PolySynth().toDestination();
 
 function Sequencer() {
 
@@ -34,6 +34,7 @@ function Sequencer() {
   const [pattern, updatePattern] = useState(initialPattern);
   const [playState, setPlayState] = useState(Tone.Transport.state);
   const [activeColumn, setColumn] = useState(0);
+  // const [selected, setSelected] = useState([])
 
   Tone.Transport.bpm.value = tempo
 
@@ -41,9 +42,9 @@ function Sequencer() {
     () => {
       const loop = new Tone.Sequence(
         (time, col) => {
+        
           // Update active column for animation
           setColumn(col);
-
           // Loop current pattern
           pattern.map((row, noteIndex) => {
             // If active
@@ -71,25 +72,49 @@ function Sequencer() {
   function setPattern({ y, x, value }) {
     const patternCopy = [...pattern];
     patternCopy[y][x] = +!value;
+
     updatePattern(patternCopy);
+    // setSelected(selected.push([y,x]))
+    // setSelected((selected, y, x) => {
+    //   selected.push( [y, x]);
+    // })
+
+    // console.log('in set pattern', selected)
   }
   return (
     <div>
-      <div className='grid'>
+      <div className="grid">
         {pattern.map((row, y) => (
           <div key={y} style={{ display: "flex", justifyContent: "center" }}>
             {row.map((value, x) => (
               <Square
                 key={x}
                 active={activeColumn === x}
-                selected={value}
-                onClick={() => setPattern({ y, x, value })}
+                selected={(pattern[y][x] === 1) ?
+                  '#a8a8a8'
+                  :
+                  'white'
+                }
+                onClick={(e) => {
+                  setPattern({ y, x, value });
+                  e.target.classList.add("filled");
+                  console.log("hey its my square", pattern[y][x]);
+                  // if (pattern[y][x] === 1) {
+                  //   fillColor =
+                  // }
+                }}
+                // selected={}
               />
             ))}
           </div>
         ))}
       </div>
-      <div className="play-state" onClick={() => toggle()}>
+      <div
+        className="play-state"
+        onClick={() => {
+          toggle();
+        }}
+      >
         {playState === "started" ? (
           <a>
             <CgPlayStopR />
@@ -104,16 +129,20 @@ function Sequencer() {
   );
 }
 
-const Square = ({ active, value, onClick }) => (
-  <div className={(active && 'cell active')  || 'cell'}
-    style={{
-      backgroundColor: {value} ? "#ad9889" : "",
-      // border: active ? "2px solid #ad9889" : "1px solid #eee",
-    }}
-    onClick={onClick}
-  >
-    {value}
-  </div>
-);
+const Square = ({ active, value, onClick, selected}) => {
+  console.log('we checkin dis value', selected)
+
+  return (
+    <div
+      className={(active && "cell seq-active") || "cell"}
+      style={{
+        backgroundColor: selected
+      }}
+      onClick={onClick}
+    >
+      {value}
+    </div>
+  );
+};
 
 export default Sequencer;
