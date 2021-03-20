@@ -9,7 +9,6 @@ import {useMixerContext} from '../../context/Mixer'
 function AudioPlayers() {
   const { samplerId } = useParams()
   const { sampleVol, mainOut, delaySends} = useMixerContext()
-  console.log('sampleVol from audio players', sampleVol)
 
   const [loaded, setLoaded] = useState(false);
   const [sampleOne, setSampleOne] = useState('')
@@ -39,6 +38,11 @@ function AudioPlayers() {
 
   const incomingSamples = useSelector((state) => state.sampler.sampler)
 
+  let sampler1
+  let gainOne
+  gainOne = new Tone.Volume().toDestination();
+  gainOne.volume.value = volumeOne;
+
   // when samplerId changes reload
   useEffect(() => {
     setLoaded(true)
@@ -63,7 +67,20 @@ function AudioPlayers() {
   useEffect(() => {
     if (sampleVol && loaded) {
       return () => {
+        sampler1.disconnect(gainOne);
+        gainOne.dispose();
+        gainOne = new Tone.Volume().toDestination();
         setVolumeOne(sampleVol.volOne);
+        gainOne.volume.value = volumeOne;
+        sampler1.connect(gainOne);
+
+      }
+    }
+  }, [sampleVol.volOne, loaded]);
+  useEffect(() => {
+    if (sampleVol && loaded) {
+      return () => {
+        // setVolumeOne(sampleVol.volOne);
         setVolumeTwo(sampleVol.volTwo);
         setVolumeThree(sampleVol.volThree);
         setVolumeFour(sampleVol.volFour);
@@ -95,22 +112,21 @@ function AudioPlayers() {
   // main output
   const masterVol = new Tone.Volume()
   masterVol.volume.value = mainVolumeOut;
-  const lowpass = new Tone.Filter(mainLowpass, "lowpass");
-  const vibrato = new Tone.Vibrato(mainVibe, 0.3);
+  // const lowpass = new Tone.Filter(mainLowpass, "lowpass");
+  // const vibrato = new Tone.Vibrato(mainVibe, 0.3);
 
-  const delayOne = new Tone.FeedbackDelay(.1, .5)
-  Tone.Destination.chain(masterVol, lowpass, vibrato)
+  // const delayOne = new Tone.FeedbackDelay(.1, .5)
+  Tone.Destination.chain(masterVol)
 
+  sampler1 = new Tone.Player(sampleOne, () => {
+    console.log('sampleOne', sampler1.state);
+    // sampler1.start()
+  } // chain delay, reverb into gain control, out to main Out
+  ).chain(gainOne)
   const playSample1 = (e) => {
     e.preventDefault();
-    const gainOne = new Tone.Volume().toDestination();
-    gainOne.volume.value = volumeOne;
-    delayOne.wet.value = delayDryWetOne;
-    const sampler1 = new Tone.Player(sampleOne, () => {
-      console.log(sampler1.state);
-      sampler1.start()
-    } // chain delay, reverb into gain control, out to main Out
-    ).chain(gainOne)
+    sampler1.start()
+    // delayOne.wet.value = delayDryWetOne;
   };
   const playSample2 = (e) => {
     e.preventDefault();

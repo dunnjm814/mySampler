@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import * as Tone from 'tone'
+
 import { Knob } from "react-rotary-knob";
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { receiveSamples } from "../../store/samples";
 import { getSampler, deleteSampler } from "../../store/sampler";
 import { useMixerContext } from "../../context/Mixer";
-import { AudioContext} from "standardized-audio-context";
 import "./sampler.css";
 import Sequencer from "../Sequencer";
 
@@ -52,9 +51,8 @@ function Sampler() {
   const [six, setSix] = useState("");
   const [seven, setSeven] = useState("");
   const [eight, setEight] = useState("");
-  // useEffect(() => {
-  //   setLoaded(true);
-  // }, [samplerId]);
+
+  
   useEffect(() => {
     if (samplerState) {
       setOne(samplerState.sampleOne);
