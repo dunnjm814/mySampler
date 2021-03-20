@@ -10,7 +10,6 @@ function AudioPlayers() {
   const { samplerId } = useParams()
   const { sampleVol, mainOut, delaySends} = useMixerContext()
   console.log('sampleVol from audio players', sampleVol)
-  console.log('mainOut from audio players', mainOut)
 
   const [loaded, setLoaded] = useState(false);
   const [sampleOne, setSampleOne] = useState('')
@@ -99,34 +98,23 @@ function AudioPlayers() {
   const lowpass = new Tone.Filter(mainLowpass, "lowpass");
   const vibrato = new Tone.Vibrato(mainVibe, 0.3);
 
-  // mixer volume control
-  const gainOne = new Tone.Volume().toDestination();
-  const gainTwo = new Tone.Volume().toDestination()
-  const gainThree = new Tone.Volume().toDestination()
-  const gainFour = new Tone.Volume().toDestination()
-  const gainFive = new Tone.Volume().toDestination()
-  const gainSix = new Tone.Volume().toDestination()
-  const gainSeven = new Tone.Volume().toDestination()
-  const gainEight = new Tone.Volume().toDestination()
-
   const delayOne = new Tone.FeedbackDelay(.1, .5)
-
   Tone.Destination.chain(masterVol, lowpass, vibrato)
 
   const playSample1 = (e) => {
     e.preventDefault();
-    console.log("a pressed!");
+    const gainOne = new Tone.Volume().toDestination();
     gainOne.volume.value = volumeOne;
     delayOne.wet.value = delayDryWetOne;
     const sampler1 = new Tone.Player(sampleOne, () => {
-      console.log(sampler1.state)
+      console.log(sampler1.state);
       sampler1.start()
     } // chain delay, reverb into gain control, out to main Out
-    ).chain(delayOne, gainOne)
+    ).chain(gainOne)
   };
   const playSample2 = (e) => {
     e.preventDefault();
-    console.log("s pressed!");
+    const gainTwo = new Tone.Volume().toDestination();
     gainTwo.volume.value = volumeTwo;
     const sampler2 = new Tone.Player(sampleTwo, () => {
       sampler2.start();
@@ -135,7 +123,7 @@ function AudioPlayers() {
   };
   const playSample3 = (e) => {
     e.preventDefault();
-    console.log("d pressed!");
+    const gainThree = new Tone.Volume().toDestination();
     gainThree.volume.value = volumeThree;
     const sampler3 = new Tone.Player(sampleThree, () => {
       sampler3.start();
@@ -144,7 +132,7 @@ function AudioPlayers() {
   };
   const playSample4 = (e) => {
     e.preventDefault();
-    console.log("f pressed!");
+    const gainFour = new Tone.Volume().toDestination();
     gainFour.volume.value = volumeFour;
     const sampler4 = new Tone.Player(sampleFour, () => {
       sampler4.start();
@@ -153,7 +141,7 @@ function AudioPlayers() {
   };
   const playSample5 = (e) => {
     e.preventDefault();
-    console.log("z pressed!");
+    const gainFive = new Tone.Volume().toDestination();
     gainFive.volume.value = volumeFive;
     const sampler5 = new Tone.Player(sampleFive, () => {
       sampler5.start();
@@ -162,7 +150,7 @@ function AudioPlayers() {
   };
   const playSample6 = (e) => {
     e.preventDefault();
-    console.log("x pressed!");
+    const gainSix = new Tone.Volume().toDestination();
     gainSix.volume.value = volumeSix;
     const sampler6 = new Tone.Player(sampleSix, () => {
       sampler6.start();
@@ -171,7 +159,7 @@ function AudioPlayers() {
   };
   const playSample7 = (e) => {
     e.preventDefault();
-    console.log("c pressed!");
+    const gainSeven = new Tone.Volume().toDestination();
     gainSeven.volume.value = volumeSeven;
     const sampler7 = new Tone.Player(sampleSeven, () => {
       sampler7.start();
@@ -180,7 +168,7 @@ function AudioPlayers() {
   };
   const playSample8 = (e) => {
     e.preventDefault();
-    console.log("v pressed!");
+    const gainEight = new Tone.Volume().toDestination();
     gainEight.volume.value = volumeEight;
     const sampler8 = new Tone.Player(sampleEight, () => {
       sampler8.start();
