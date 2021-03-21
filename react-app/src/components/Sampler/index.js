@@ -52,7 +52,7 @@ function Sampler() {
   const [seven, setSeven] = useState("");
   const [eight, setEight] = useState("");
 
-  
+
   useEffect(() => {
     if (samplerState) {
       setOne(samplerState.sampleOne);
@@ -482,7 +482,7 @@ function Sampler() {
                     max={6}
                     onChange={(e) => {
                       e.stopPropagation();
-                      setSampleVol({ ...sampleVol, volTwo: e.target.value });
+                      setSampleVol({ ...sampleVol, volTwo: Number( e.target.value )});
                       console.log(sampleVol.volTwo);
                     }}
                     orient={"vertical"}
@@ -496,7 +496,10 @@ function Sampler() {
                     max={6}
                     onChange={(e) => {
                       e.stopPropagation();
-                      setSampleVol({ ...sampleVol, volThree: e.target.value });
+                      setSampleVol({
+                        ...sampleVol,
+                        volThree: Number(e.target.value),
+                      });
                       console.log(sampleVol.volThree);
                     }}
                     orient={"vertical"}
@@ -510,7 +513,10 @@ function Sampler() {
                     max={6}
                     onChange={(e) => {
                       e.stopPropagation();
-                      setSampleVol({ ...sampleVol, volFour: e.target.value });
+                      setSampleVol({
+                        ...sampleVol,
+                        volFour: Number(e.target.value),
+                      });
                       console.log(sampleVol.volFour);
                     }}
                     orient={"vertical"}
@@ -524,7 +530,10 @@ function Sampler() {
                     max={6}
                     onChange={(e) => {
                       e.stopPropagation();
-                      setSampleVol({ ...sampleVol, volFive: e.target.value });
+                      setSampleVol({
+                        ...sampleVol,
+                        volFive: Number(e.target.value),
+                      });
                       console.log(sampleVol.volFive);
                     }}
                     orient={"vertical"}
@@ -538,7 +547,10 @@ function Sampler() {
                     max={6}
                     onChange={(e) => {
                       e.stopPropagation();
-                      setSampleVol({ ...sampleVol, volSix: e.target.value });
+                      setSampleVol({
+                        ...sampleVol,
+                        volSix: Number(e.target.value),
+                      });
                       console.log(sampleVol.volSix);
                     }}
                     orient={"vertical"}
@@ -552,7 +564,10 @@ function Sampler() {
                     max={6}
                     onChange={(e) => {
                       e.stopPropagation();
-                      setSampleVol({ ...sampleVol, volSeven: e.target.value });
+                      setSampleVol({
+                        ...sampleVol,
+                        volSeven: Number(e.target.value),
+                      });
                       console.log(sampleVol.volSeven);
                     }}
                     orient={"vertical"}
@@ -566,7 +581,10 @@ function Sampler() {
                     max={6}
                     onChange={(e) => {
                       e.stopPropagation();
-                      setSampleVol({ ...sampleVol, volEight: e.target.value });
+                      setSampleVol({
+                        ...sampleVol,
+                        volEight: Number(e.target.value),
+                      });
                       console.log(sampleVol.volEight);
                     }}
                     orient={"vertical"}
