@@ -54,7 +54,7 @@ function AudioPlayers() {
   let gainSix = new Tone.Volume().toDestination();
   let gainSeven = new Tone.Volume().toDestination();
   let gainEight = new Tone.Volume().toDestination();
-  
+
   gainOne.volume.value = volumeOne;
   gainTwo.volume.value = volumeTwo;
   gainThree.volume.value = volumeThree;
@@ -242,7 +242,7 @@ function AudioPlayers() {
   sampler7 = new Tone.Player(sampleSeven).connect(gainSeven);
   sampler8 = new Tone.Player(sampleEight).connect(gainEight);
 
-  const playSample1 = (e) => {
+  function playSample1(e){
     e.preventDefault();
     Tone.loaded().then(() => {
       sampler1.stop();

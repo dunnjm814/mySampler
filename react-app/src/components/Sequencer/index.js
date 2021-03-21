@@ -4,6 +4,7 @@ import './seq.css'
 import { CgPlayButtonR } from "react-icons/cg";
 import { CgPlayStopR } from "react-icons/cg";
 import { useMixerContext } from "../../context/Mixer";
+// import { playSample1 } from '../AudioPlayers'
 
 const notes = [
   "C#4",
@@ -51,6 +52,9 @@ function Sequencer() {
               //trigger sample here
               synth.triggerAttackRelease(notes[noteIndex], "8n", time);
             }
+            // if (row[col] && noteIndex === 0) {
+            //   playSample1()
+            // }
           });
         },
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
