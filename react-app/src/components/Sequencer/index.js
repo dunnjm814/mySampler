@@ -34,7 +34,6 @@ function Sequencer() {
   const [pattern, updatePattern] = useState(initialPattern);
   const [playState, setPlayState] = useState(Tone.Transport.state);
   const [activeColumn, setColumn] = useState(0);
-  // const [selected, setSelected] = useState([])
 
   Tone.Transport.bpm.value = tempo
 
@@ -42,7 +41,6 @@ function Sequencer() {
     () => {
       const loop = new Tone.Sequence(
         (time, col) => {
-        
           // Update active column for animation
           setColumn(col);
           // Loop current pattern
@@ -72,14 +70,7 @@ function Sequencer() {
   function setPattern({ y, x, value }) {
     const patternCopy = [...pattern];
     patternCopy[y][x] = +!value;
-
     updatePattern(patternCopy);
-    // setSelected(selected.push([y,x]))
-    // setSelected((selected, y, x) => {
-    //   selected.push( [y, x]);
-    // })
-
-    // console.log('in set pattern', selected)
   }
   return (
     <div>
@@ -95,15 +86,9 @@ function Sequencer() {
                   :
                   'white'
                 }
-                onClick={(e) => {
+                onClick={() => {
                   setPattern({ y, x, value });
-                  e.target.classList.add("filled");
-                  console.log("hey its my square", pattern[y][x]);
-                  // if (pattern[y][x] === 1) {
-                  //   fillColor =
-                  // }
                 }}
-                // selected={}
               />
             ))}
           </div>
@@ -130,8 +115,6 @@ function Sequencer() {
 }
 
 const Square = ({ active, value, onClick, selected}) => {
-  console.log('we checkin dis value', selected)
-
   return (
     <div
       className={(active && "cell seq-active") || "cell"}
