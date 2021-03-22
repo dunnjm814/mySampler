@@ -7,7 +7,8 @@ import { receiveSamples } from "../../store/samples";
 import { getSampler, deleteSampler } from "../../store/sampler";
 import { useMixerContext } from "../../context/Mixer";
 import "./sampler.css";
-import Sequencer from "../Sequencer";
+// import Sequencer from "../Sequencer";
+import AudioPlayers from "../../components/AudioPlayers";
 
 function Sampler() {
   const { samplerId } = useParams();
@@ -120,7 +121,7 @@ function Sampler() {
                   step={1}
                   value={mainOut.mainVol}
                   onChange={(e) => {
-                    setMainOut({ ...mainOut, mainVol: e })
+                    setMainOut({ ...mainOut, mainVol: e });
                   }}
                 />
               </div>
@@ -293,8 +294,11 @@ function Sampler() {
               </div>
             </div>
           </div>
-          <div id='sequencer-wrap'>
-            <Sequencer />
+          <div id="sequencer-wrap">
+
+
+              <AudioPlayers />
+
           </div>
           <div id="mixer-wrap">
             <div id="mixer">
@@ -482,7 +486,10 @@ function Sampler() {
                     max={6}
                     onChange={(e) => {
                       e.stopPropagation();
-                      setSampleVol({ ...sampleVol, volTwo: Number( e.target.value )});
+                      setSampleVol({
+                        ...sampleVol,
+                        volTwo: Number(e.target.value),
+                      });
                       console.log(sampleVol.volTwo);
                     }}
                     orient={"vertical"}

@@ -4,6 +4,7 @@ import * as Tone from "tone";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useMixerContext } from "../../context/Mixer";
+import Sequencer from "../Sequencer";
 
 function AudioPlayers() {
   const { samplerId } = useParams();
@@ -192,20 +193,6 @@ function AudioPlayers() {
       };
     }
   }, [sampleVol.volEight, loaded]);
-  // useEffect(() => {
-  //   if (sampleVol && loaded) {
-  //     return () => {
-  //       // setVolumeOne(sampleVol.volOne);
-  //       // setVolumeTwo(sampleVol.volTwo);
-  //       // setVolumeThree(sampleVol.volThree);
-  //       // setVolumeFour(sampleVol.volFour);
-  //       // setVolumeFive(sampleVol.volFive)5
-  //       // setVolumeSix(sampleVol.volSix);
-  //       // setVolumeSeven(sampleVol.volSeven);
-  //       // setVolumeEight(sampleVol.volEight);
-  //     };
-  //   }
-  // }, [sampleVol, loaded]);
 
   //delay effect change triggers
   useEffect(() => {
@@ -242,57 +229,52 @@ function AudioPlayers() {
   sampler7 = new Tone.Player(sampleSeven).connect(gainSeven);
   sampler8 = new Tone.Player(sampleEight).connect(gainEight);
 
-  function playSample1(e){
-    e.preventDefault();
+  const playSample1 = () => {
+    console.log(sampler1.state)
     Tone.loaded().then(() => {
+      console.log(sampler1.state)
       sampler1.stop();
       sampler1.start();
+      console.log(sampler1.state)
     });
   };
-  const playSample2 = (e) => {
-    e.preventDefault();
+  const playSample2 = () => {
     Tone.loaded().then(() => {
       sampler2.stop();
       sampler2.start();
     });
   };
-  const playSample3 = (e) => {
-    e.preventDefault();
+  const playSample3 = () => {
     Tone.loaded().then(() => {
       sampler3.stop();
       sampler3.start();
     });
   };
-  const playSample4 = (e) => {
-    e.preventDefault();
+  const playSample4 = () => {
     Tone.loaded().then(() => {
       sampler4.stop();
       sampler4.start();
     });
   };
-  const playSample5 = (e) => {
-    e.preventDefault();
+  const playSample5 = () => {
     Tone.loaded().then(() => {
       sampler5.stop();
       sampler5.start();
     });
   };
-  const playSample6 = (e) => {
-    e.preventDefault();
+  const playSample6 = () => {
     Tone.loaded().then(() => {
       sampler6.stop();
       sampler6.start();
     });
   };
-  const playSample7 = (e) => {
-    e.preventDefault();
+  const playSample7 = () => {
     Tone.loaded().then(() => {
       sampler7.stop();
       sampler7.start();
     });
   };
-  const playSample8 = (e) => {
-    e.preventDefault();
+  const playSample8 = () => {
     Tone.loaded().then(() => {
       sampler7.stop();
       sampler7.start();
@@ -301,51 +283,63 @@ function AudioPlayers() {
 
   return (
     <>
-      <KeyHandler
-        keyEventName={KEYPRESS}
-        keyValue="z"
-        onKeyHandle={playSample5}
-      />
-      <KeyHandler
-        keyEventName={KEYPRESS}
-        keyValue="x"
-        onKeyHandle={playSample6}
-      />
-      <KeyHandler
-        keyEventName={KEYPRESS}
-        keyValue="c"
-        onKeyHandle={playSample7}
-      />
-      <KeyHandler
-        keyEventName={KEYPRESS}
-        keyValue="v"
-        onKeyHandle={playSample8}
-      />
-      <KeyHandler
-        keyEventName={KEYPRESS}
-        keyValue="a"
-        onKeyHandle={playSample1}
-      />
-      <KeyHandler
-        keyEventName={KEYPRESS}
-        keyValue="s"
-        onKeyHandle={playSample2}
-      />
-      <KeyHandler
-        keyEventName={KEYPRESS}
-        keyValue="d"
-        onKeyHandle={playSample3}
-      />
-      <KeyHandler
-        keyEventName={KEYPRESS}
-        keyValue="f"
-        onKeyHandle={playSample4}
-      />
-      {/* <KeyHandler
+      <div style={{ display: "none" }}>
+        <KeyHandler
+          keyEventName={KEYPRESS}
+          keyValue="z"
+          onKeyHandle={playSample5}
+        />
+        <KeyHandler
+          keyEventName={KEYPRESS}
+          keyValue="x"
+          onKeyHandle={playSample6}
+        />
+        <KeyHandler
+          keyEventName={KEYPRESS}
+          keyValue="c"
+          onKeyHandle={playSample7}
+        />
+        <KeyHandler
+          keyEventName={KEYPRESS}
+          keyValue="v"
+          onKeyHandle={playSample8}
+        />
+        <KeyHandler
+          keyEventName={KEYPRESS}
+          keyValue="a"
+          onKeyHandle={playSample1}
+        />
+        <KeyHandler
+          keyEventName={KEYPRESS}
+          keyValue="s"
+          onKeyHandle={playSample2}
+        />
+        <KeyHandler
+          keyEventName={KEYPRESS}
+          keyValue="d"
+          onKeyHandle={playSample3}
+        />
+        <KeyHandler
+          keyEventName={KEYPRESS}
+          keyValue="f"
+          onKeyHandle={playSample4}
+        />
+        {/* <KeyHandler
         keyEventName={KEYPRESS}
         keyValue="p"
         onKeyHandle={togglePlay}
       /> */}
+      </div>
+      <Sequencer
+        playSample1={playSample1}
+        playSample2={playSample2}
+        playSample3={playSample3}
+        playSample4={playSample4}
+        playSample5={playSample5}
+        playSample6={playSample6}
+        playSample7={playSample7}
+        playSample8={playSample8}
+      />
     </>
   );
 }

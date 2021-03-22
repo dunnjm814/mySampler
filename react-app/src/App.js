@@ -11,7 +11,7 @@ import LoginModal from "./components/Modals/LoginModal";
 import SignupModal from "./components/Modals/SignupModal";
 import Home from './components/Home'
 import Sampler from "./components/Sampler";
-import AudioPlayers from './components/AudioPlayers'
+// import AudioPlayers from './components/AudioPlayers'
 import Profile from './components/Profile'
 import NotFound from "./components/NotFound";
 import Landing from "./components/Landing";
@@ -81,9 +81,9 @@ function App() {
             >
               <SideBar />
               <Sampler />
-              <div style={{ display: "none" }}>
+              {/* <div style={{ display: "none" }}>
                 <AudioPlayers />
-              </div>
+              </div> */}
             </div>
           </ProtectedRoute>
           <ProtectedRoute path="/profile/:userId" exact={true}>
