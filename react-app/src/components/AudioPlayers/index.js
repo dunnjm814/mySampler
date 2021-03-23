@@ -232,10 +232,8 @@ function AudioPlayers() {
   const playSample1 = () => {
     console.log(sampler1.state)
     Tone.loaded().then(() => {
-      console.log(sampler1.state)
       sampler1.stop();
       sampler1.start();
-      console.log(sampler1.state)
     });
   };
   const playSample2 = () => {
