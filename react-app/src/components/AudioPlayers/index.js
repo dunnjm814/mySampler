@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect} from "react";
 import KeyHandler, { KEYPRESS } from "react-key-handler";
 import * as Tone from "tone";
 import { useSelector } from "react-redux";
@@ -11,14 +11,14 @@ function AudioPlayers() {
   const { sampleVol, mainOut, delaySends } = useMixerContext();
 
   const [loaded, setLoaded] = useState(false);
-  const [sampleOne, setSampleOne] = useState("");
-  const [sampleTwo, setSampleTwo] = useState("");
-  const [sampleThree, setSampleThree] = useState("");
-  const [sampleFour, setSampleFour] = useState("");
-  const [sampleFive, setSampleFive] = useState("");
-  const [sampleSix, setSampleSix] = useState("");
-  const [sampleSeven, setSampleSeven] = useState("");
-  const [sampleEight, setSampleEight] = useState("");
+  // const [sampleOne, setSampleOne] = useState("");
+  // const [sampleTwo, setSampleTwo] = useState("");
+  // const [sampleThree, setSampleThree] = useState("");
+  // const [sampleFour, setSampleFour] = useState("");
+  // const [sampleFive, setSampleFive] = useState("");
+  // const [sampleSix, setSampleSix] = useState("");
+  // const [sampleSeven, setSampleSeven] = useState("");
+  // const [sampleEight, setSampleEight] = useState("");
 
   const [volumeOne, setVolumeOne] = useState(sampleVol.volOne);
   const [volumeTwo, setVolumeTwo] = useState(sampleVol.volTwo);
@@ -37,6 +37,15 @@ function AudioPlayers() {
   // const [mainCrushed, setMainCrushed] = useState(mainOut.crushed)
 
   const incomingSamples = useSelector((state) => state.sampler.sampler);
+
+  let  sampleRefOne = useRef()
+  let sampleRefTwo = useRef();
+  let sampleRefThree = useRef();
+  let sampleRefFour = useRef();
+  let sampleRefFive = useRef();
+  let sampleRefSix = useRef();
+  let sampleRefSeven = useRef();
+  let sampleRefEight = useRef();
 
   let sampler1;
   let sampler2;
@@ -65,35 +74,38 @@ function AudioPlayers() {
   gainSeven.volume.value = volumeSeven;
   gainEight.volume.value = volumeEight;
 
+
   // when samplerId changes reload
   useEffect(() => {
     setLoaded(true);
-  }, [samplerId]);
+  }, [samplerId, incomingSamples]);
+
+
 
   // incoming sample load triggers
   useEffect(() => {
     if (incomingSamples && loaded) {
       console.log(incomingSamples);
-      setSampleOne(incomingSamples.sampleOne);
-      setSampleTwo(incomingSamples.sampleTwo);
-      setSampleThree(incomingSamples.sampleThree);
-      setSampleFour(incomingSamples.sampleFour);
-      setSampleFive(incomingSamples.sampleFive);
-      setSampleSix(incomingSamples.sampleSix);
-      setSampleSeven(incomingSamples.sampleSeven);
-      setSampleEight(incomingSamples.sampleEight);
+      // setSampleOne(incomingSamples.sampleOne);
+      // setSampleTwo(incomingSamples.sampleTwo);
+      // setSampleThree(incomingSamples.sampleThree);
+      // setSampleFour(incomingSamples.sampleFour);
+      // setSampleFive(incomingSamples.sampleFive);
+      // setSampleSix(incomingSamples.sampleSix);
+      // setSampleSeven(incomingSamples.sampleSeven);
+      // setSampleEight(incomingSamples.sampleEight);
+      sampleRefOne.current = incomingSamples.sampleOne
+      console.log(sampleRefOne);
+      sampleRefTwo.current = incomingSamples.sampleTwo
+      sampleRefThree.current = incomingSamples.sampleThree
+      sampleRefFour.current = incomingSamples.sampleFour
+      sampleRefFive.current = incomingSamples.sampleFive
+      sampleRefSix.current = incomingSamples.sampleSix
+      sampleRefSeven.current = incomingSamples.sampleSeven
+      sampleRefEight.current = incomingSamples.sampleEight
     }
   }, [
-    incomingSamples,
-    loaded,
-    sampleOne,
-    sampleTwo,
-    sampleThree,
-    sampleFour,
-    sampleFive,
-    sampleSix,
-    sampleSeven,
-    sampleEight,
+    incomingSamples, loaded
   ]);
 
   // volume slider triggers
@@ -220,14 +232,14 @@ function AudioPlayers() {
   // const delayOne = new Tone.FeedbackDelay(.1, .5)
   Tone.Destination.chain(masterVol);
 
-  sampler1 = new Tone.Player(sampleOne).connect(gainOne);
-  sampler2 = new Tone.Player(sampleTwo).connect(gainTwo);
-  sampler3 = new Tone.Player(sampleThree).connect(gainThree);
-  sampler4 = new Tone.Player(sampleFour).connect(gainFour);
-  sampler5 = new Tone.Player(sampleFive).connect(gainFive);
-  sampler6 = new Tone.Player(sampleSix).connect(gainSix);
-  sampler7 = new Tone.Player(sampleSeven).connect(gainSeven);
-  sampler8 = new Tone.Player(sampleEight).connect(gainEight);
+  sampler1 = new Tone.Player(sampleRefOne).connect(gainOne);
+  sampler2 = new Tone.Player(sampleRefTwo).connect(gainTwo);
+  sampler3 = new Tone.Player(sampleRefThree).connect(gainThree);
+  sampler4 = new Tone.Player(sampleRefFour).connect(gainFour);
+  sampler5 = new Tone.Player(sampleRefFive).connect(gainFive);
+  sampler6 = new Tone.Player(sampleRefSix).connect(gainSix);
+  sampler7 = new Tone.Player(sampleRefSeven).connect(gainSeven);
+  sampler8 = new Tone.Player(sampleRefEight).connect(gainEight);
 
   const playSample1 = () => {
     console.log(sampler1.state)
