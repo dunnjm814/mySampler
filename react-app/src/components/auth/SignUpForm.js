@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signUp } from "../../store/session";
 import './signup.css'
@@ -13,8 +13,6 @@ const SignUpForm = ({ setShowModal }) => {
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [errors, setErrors] = useState([]);
-
-  const sessionUser = useSelector((state) => state.session.user);
 
   const onSignUp = async (e) => {
     e.preventDefault();

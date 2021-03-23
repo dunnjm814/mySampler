@@ -4,6 +4,7 @@ import './seq.css'
 import { CgPlayButtonR } from "react-icons/cg";
 import { CgPlayStopR } from "react-icons/cg";
 import { useMixerContext } from "../../context/Mixer";
+// import { playSample1 } from '../AudioPlayers'
 
 const notes = [
   "C#4",
@@ -28,14 +29,22 @@ const initialPattern = [
 ];
 const synth = new Tone.PolySynth().toDestination();
 
-function Sequencer() {
-
+function Sequencer({
+  playSample1,
+  playSample2,
+  playSample3,
+  playSample4,
+  playSample5,
+  playSample6,
+  playSample7,
+  playSample8,
+}) {
   const { tempo } = useMixerContext();
   const [pattern, updatePattern] = useState(initialPattern);
   const [playState, setPlayState] = useState(Tone.Transport.state);
   const [activeColumn, setColumn] = useState(0);
 
-  Tone.Transport.bpm.value = tempo
+  Tone.Transport.bpm.value = tempo;
 
   useEffect(
     () => {
@@ -50,6 +59,30 @@ function Sequencer() {
               // Play based on which row
               //trigger sample here
               synth.triggerAttackRelease(notes[noteIndex], "8n", time);
+            }
+            if (row[col] && noteIndex === 0) {
+              playSample1();
+            }
+            if (row[col] && noteIndex === 1) {
+              playSample2();
+            }
+            if (row[col] && noteIndex === 2) {
+              playSample3();
+            }
+            if (row[col] && noteIndex === 3) {
+              playSample4();
+            }
+            if (row[col] && noteIndex === 4) {
+              playSample5();
+            }
+            if (row[col] && noteIndex === 5) {
+              playSample6();
+            }
+            if (row[col] && noteIndex === 6) {
+              playSample7();
+            }
+            if (row[col] && noteIndex === 7) {
+              playSample8();
             }
           });
         },
@@ -81,11 +114,7 @@ function Sequencer() {
               <Square
                 key={x}
                 active={activeColumn === x}
-                selected={(pattern[y][x] === 1) ?
-                  '#a8a8a8'
-                  :
-                  'white'
-                }
+                selected={pattern[y][x] === 1 ? "#a8a8a8" : "white"}
                 onClick={() => {
                   setPattern({ y, x, value });
                 }}

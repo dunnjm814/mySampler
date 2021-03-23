@@ -27,6 +27,7 @@ function Search() {
           user.username.match(regex)
           )
         }
+        return
       })
       if (search.length === 0) {
         userSearchMatch = []
