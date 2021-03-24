@@ -4,18 +4,18 @@ import './seq.css'
 import { CgPlayButtonR } from "react-icons/cg";
 import { CgPlayStopR } from "react-icons/cg";
 import { useMixerContext } from "../../context/Mixer";
-// import { playSample1 } from '../AudioPlayers'
+import {keyOptions} from '../../services/scales'
 
-const notes = [
-  "C#4",
-  "D#4",
-  "F#4",
-  "G#4",
-  "A#4",
-  "C#5",
-  "D#5",
-  "F#5",
-].reverse();
+// const notes = [
+//   "C#4",
+//   "D#4",
+//   "F#4",
+//   "G#4",
+//   "A#4",
+//   "C#5",
+//   "D#5",
+//   "F#5",
+// ].reverse();
 
 const initialPattern = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -43,6 +43,7 @@ function Sequencer({
   const [pattern, updatePattern] = useState(initialPattern);
   const [playState, setPlayState] = useState(Tone.Transport.state);
   const [activeColumn, setColumn] = useState(0);
+  const [notes, setNotes] = useState([]);
 
   Tone.Transport.bpm.value = tempo;
 
@@ -91,7 +92,7 @@ function Sequencer({
       ).start(0);
       return () => loop.dispose();
     },
-    [pattern] // Retrigger when pattern changes
+    [pattern, notes] // Retrigger when pattern changes
   );
 
   // Toggle playing / stopped
@@ -123,21 +124,43 @@ function Sequencer({
           </div>
         ))}
       </div>
-      <div
-        className="play-state"
-        onClick={() => {
-          toggle();
-        }}
-      >
-        {playState === "started" ? (
-          <a>
-            <CgPlayStopR />
-          </a>
-        ) : (
-          <a>
-            <CgPlayButtonR />
-          </a>
-        )}
+      <div className="play-key">
+        <div
+          className="play-state"
+          onClick={() => {
+            toggle();
+          }}
+        >
+          {playState === "started" ? (
+            <a>
+              <CgPlayStopR />
+            </a>
+          ) : (
+            <a>
+              <CgPlayButtonR />
+            </a>
+          )}
+        </div>
+        <div>
+          <label htmlFor="chooseKey" className='key-select-label'>
+            Pick a Key:
+            <select
+              className='key-select'
+              name="chooseKey"
+              id="chooseKey"
+              value={notes}
+              onChange={(e) => setNotes(JSON.parse(e.target.value))}
+            >
+              {keyOptions.map((keyOpt, i) => (
+                <>
+                  <option key={`key-${i}`} className="key-option" value={JSON.stringify(keyOpt.value)}>
+                    {keyOpt.label}
+                  </option>
+                </>
+              ))}
+            </select>
+          </label>
+        </div>
       </div>
     </div>
   );

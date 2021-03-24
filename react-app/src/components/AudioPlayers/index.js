@@ -38,7 +38,7 @@ function AudioPlayers() {
 
   const incomingSamples = useSelector((state) => state.sampler.sampler);
 
-  let  sampleRefOne = useRef()
+  let sampleRefOne = useRef()
   let sampleRefTwo = useRef();
   let sampleRefThree = useRef();
   let sampleRefFour = useRef();
@@ -85,17 +85,7 @@ function AudioPlayers() {
   // incoming sample load triggers
   useEffect(() => {
     if (incomingSamples && loaded) {
-      console.log(incomingSamples);
-      // setSampleOne(incomingSamples.sampleOne);
-      // setSampleTwo(incomingSamples.sampleTwo);
-      // setSampleThree(incomingSamples.sampleThree);
-      // setSampleFour(incomingSamples.sampleFour);
-      // setSampleFive(incomingSamples.sampleFive);
-      // setSampleSix(incomingSamples.sampleSix);
-      // setSampleSeven(incomingSamples.sampleSeven);
-      // setSampleEight(incomingSamples.sampleEight);
       sampleRefOne.current = incomingSamples.sampleOne
-      console.log(sampleRefOne);
       sampleRefTwo.current = incomingSamples.sampleTwo
       sampleRefThree.current = incomingSamples.sampleThree
       sampleRefFour.current = incomingSamples.sampleFour
@@ -232,14 +222,14 @@ function AudioPlayers() {
   // const delayOne = new Tone.FeedbackDelay(.1, .5)
   Tone.Destination.chain(masterVol);
 
-  sampler1 = new Tone.Player(sampleRefOne).connect(gainOne);
-  sampler2 = new Tone.Player(sampleRefTwo).connect(gainTwo);
-  sampler3 = new Tone.Player(sampleRefThree).connect(gainThree);
-  sampler4 = new Tone.Player(sampleRefFour).connect(gainFour);
-  sampler5 = new Tone.Player(sampleRefFive).connect(gainFive);
-  sampler6 = new Tone.Player(sampleRefSix).connect(gainSix);
-  sampler7 = new Tone.Player(sampleRefSeven).connect(gainSeven);
-  sampler8 = new Tone.Player(sampleRefEight).connect(gainEight);
+  sampler1 = new Tone.Player(sampleRefOne.current).connect(gainOne);
+  sampler2 = new Tone.Player(sampleRefTwo.current).connect(gainTwo);
+  sampler3 = new Tone.Player(sampleRefThree.current).connect(gainThree);
+  sampler4 = new Tone.Player(sampleRefFour.current).connect(gainFour);
+  sampler5 = new Tone.Player(sampleRefFive.current).connect(gainFive);
+  sampler6 = new Tone.Player(sampleRefSix.current).connect(gainSix);
+  sampler7 = new Tone.Player(sampleRefSeven.current).connect(gainSeven);
+  sampler8 = new Tone.Player(sampleRefEight.current).connect(gainEight);
 
   const playSample1 = () => {
     console.log(sampler1.state)
@@ -334,11 +324,6 @@ function AudioPlayers() {
           keyValue="f"
           onKeyHandle={playSample4}
         />
-        {/* <KeyHandler
-        keyEventName={KEYPRESS}
-        keyValue="p"
-        onKeyHandle={togglePlay}
-      /> */}
       </div>
       <Sequencer
         playSample1={playSample1}
