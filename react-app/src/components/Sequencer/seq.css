@@ -46,7 +46,7 @@
 .key-select-label{
 font-size: 30px;
 align-content: center;
-/* margin-right: 10px; */
+transition: 0.5s;
 color: #818181;
 }
 .key-select{
@@ -59,6 +59,6 @@ width: 120px;
   outline: none;
 
 }
-.key-select:hover{
+.key-select-label:hover{
 color: #ad9889;
 }
