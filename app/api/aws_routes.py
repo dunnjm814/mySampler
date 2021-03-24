@@ -19,9 +19,7 @@ aws_routes = Blueprint('/aws', __name__)
 @login_required
 def set_sampler(samplerId):
   audioFile = request.files["sampleFile"]
-  print("hey its my request data?", request.form.get('sampleKey'))
   sampleKey = request.form.get('sampleKey')
-  print('hey its my sample key', sampleKey)
   if audioFile:
     audioFile.filename = f"{date.today()}-{datetime.time(datetime.now())}-{audioFile.filename}"
     audio_url = upload_file_to_s3(audioFile, Config.S3_BUCKET)
