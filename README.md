@@ -1,8 +1,6 @@
 # mySampler
 
-<p align="center">
   ![mySamplerLogo](https://user-images.githubusercontent.com/71041585/112358608-bcc16380-8c8d-11eb-9a28-f0be745bda18.png)
-</p>
 
 ## Live Link
 * [Link link](https://mysampler.herokuapp.com/)
