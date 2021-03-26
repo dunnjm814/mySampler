@@ -21,7 +21,7 @@ function Search() {
       let searchResults = search.replace(/[[\]']+/g, "");
       searchResults = searchResults.replaceAll("\\", "");
       let userSearchMatch = users.filter((user, i) => {
-        const regex = new RegExp(`${searchResults}`, "gi")
+        const regex = new RegExp(`^${searchResults}`, "gi")
         if (user.id !== userId) {
         return (
           user.username.match(regex)
@@ -72,7 +72,7 @@ function Search() {
                     {user.username}
                   </NavLink>
                 ))}
-              {!userMatch && <h1>{`No users found :(`}</h1>}
+              {!userMatch.length && <h1>{`No users found :(`}</h1>}
             </div>
           </div>
         </Modal>

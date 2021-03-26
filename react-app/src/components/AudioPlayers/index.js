@@ -78,6 +78,7 @@ function AudioPlayers() {
   // when samplerId changes reload
   useEffect(() => {
     setLoaded(true);
+    
   }, [samplerId, incomingSamples]);
 
 
@@ -95,7 +96,7 @@ function AudioPlayers() {
       sampleRefEight.current = incomingSamples.sampleEight
     }
   }, [
-    incomingSamples, loaded
+    incomingSamples, loaded, samplerId
   ]);
 
   // volume slider triggers
@@ -106,7 +107,7 @@ function AudioPlayers() {
         gainOne.dispose();
         gainOne = new Tone.Volume().toDestination();
         setVolumeOne(sampleVol.volOne);
-        gainOne.volume.value = volumeOne;
+        gainOne.volume.value = volumeOne
         sampler1.connect(gainOne);
       };
     }
@@ -221,7 +222,6 @@ function AudioPlayers() {
 
   // const delayOne = new Tone.FeedbackDelay(.1, .5)
   Tone.Destination.chain(masterVol);
-
   sampler1 = new Tone.Player(sampleRefOne.current).connect(gainOne);
   sampler2 = new Tone.Player(sampleRefTwo.current).connect(gainTwo);
   sampler3 = new Tone.Player(sampleRefThree.current).connect(gainThree);
@@ -230,54 +230,69 @@ function AudioPlayers() {
   sampler6 = new Tone.Player(sampleRefSix.current).connect(gainSix);
   sampler7 = new Tone.Player(sampleRefSeven.current).connect(gainSeven);
   sampler8 = new Tone.Player(sampleRefEight.current).connect(gainEight);
-
   const playSample1 = () => {
     console.log(sampler1.state)
     Tone.loaded().then(() => {
-      sampler1.stop();
-      sampler1.start();
+      if (sampleRefOne.current) {
+        sampler1.stop();
+        sampler1.start();
+      }
     });
   };
   const playSample2 = () => {
     Tone.loaded().then(() => {
-      sampler2.stop();
-      sampler2.start();
+      if (sampleRefTwo.current) {
+        sampler2.stop();
+        sampler2.start();
+      }
     });
   };
   const playSample3 = () => {
     Tone.loaded().then(() => {
-      sampler3.stop();
-      sampler3.start();
+      if (sampleRefThree.current) {
+        sampler3.stop();
+        sampler3.start();
+      }
     });
   };
   const playSample4 = () => {
     Tone.loaded().then(() => {
-      sampler4.stop();
-      sampler4.start();
+      if (sampleRefFour.current) {
+        sampler4.stop();
+        sampler4.start();
+      }
     });
   };
   const playSample5 = () => {
     Tone.loaded().then(() => {
-      sampler5.stop();
-      sampler5.start();
+      if (sampleRefFive.current) {
+        sampler5.stop();
+        sampler5.start();
+      }
     });
   };
   const playSample6 = () => {
     Tone.loaded().then(() => {
-      sampler6.stop();
-      sampler6.start();
+      if (sampleRefSix.current) {
+        sampler6.stop();
+        sampler6.start();
+      }
     });
   };
   const playSample7 = () => {
     Tone.loaded().then(() => {
-      sampler7.stop();
-      sampler7.start();
+      if (sampleRefSeven.current) {
+        sampler7.stop();
+        sampler7.start();
+      }
     });
   };
   const playSample8 = () => {
     Tone.loaded().then(() => {
-      sampler7.stop();
-      sampler7.start();
+      if (sampleRefEight.current) {
+        sampler8.stop();
+        sampler8.start();
+      }
     });
   };
 
