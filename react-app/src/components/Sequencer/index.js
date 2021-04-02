@@ -43,7 +43,9 @@ function Sequencer({
   const [pattern, updatePattern] = useState(initialPattern);
   const [playState, setPlayState] = useState(Tone.Transport.state);
   const [activeColumn, setColumn] = useState(0);
+  const [scaleOption, setScaleOption] = useState()
   const [notes, setNotes] = useState([]);
+  const [scale, setScale] = useState('')
 
   Tone.Transport.bpm.value = tempo;
 
@@ -106,6 +108,15 @@ function Sequencer({
     patternCopy[y][x] = +!value;
     updatePattern(patternCopy);
   }
+  useEffect(() => {
+    if (scaleOption) {
+      console.log(scaleOption)
+      setNotes(scaleOption.value);
+      console.log(scaleOption.value)
+      setScale(scaleOption.label);
+      console.log(scaleOption.label)
+    }
+  },[scaleOption])
   return (
     <div>
       <div className="grid">
@@ -148,12 +159,14 @@ function Sequencer({
               className='key-select'
               name="chooseKey"
               id="chooseKey"
-              value={notes}
-              onChange={(e) => setNotes(JSON.parse(e.target.value))}
+              value={scale}
+              onChange={(e) => {
+                setScaleOption(JSON.parse(e.target.value))
+              }}
             >
               {keyOptions.map((keyOpt, i) => (
                 <>
-                  <option key={`key-${i}`} className="key-option" value={JSON.stringify(keyOpt.value)}>
+                  <option key={`key-${i}`} className="key-option" value={JSON.stringify(keyOpt)}>
                     {keyOpt.label}
                   </option>
                 </>
