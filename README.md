@@ -22,7 +22,7 @@
 
 ## What is mySampler?
 
-mySampler is an interactive site bringing a minimalist audio workflow to a browser environment.
+mySampler is an interactive web application, bringing a minimalist audio workflow to a browser environment.
 
 ## To use mySampler on your local machine you need:
 
