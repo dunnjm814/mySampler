@@ -109,10 +109,12 @@ function Sampler() {
       {samplerState && (
         <div id="sampler-credentials">
           <h2 id="sampler-title">{samplerState.title}</h2>
-          {
+          {(sessionUser.id === samplerState.userId) ?
             <button type="delete" id="delete-sampler" onClick={destroySampler}>
               Delete?
             </button>
+            :
+            null
           }
         </div>
       )}
