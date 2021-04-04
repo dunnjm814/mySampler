@@ -6,17 +6,6 @@ import { CgPlayStopR } from "react-icons/cg";
 import { useMixerContext } from "../../context/Mixer";
 import {keyOptions} from '../../services/scales'
 
-// const notes = [
-//   "C#4",
-//   "D#4",
-//   "F#4",
-//   "G#4",
-//   "A#4",
-//   "C#5",
-//   "D#5",
-//   "F#5",
-// ].reverse();
-
 const initialPattern = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],

@@ -32,7 +32,7 @@ function Sampler() {
   const samplerState = useSelector((state) => {
     return state.sampler.sampler;
   });
-
+  const sessionUser = useSelector((state) => state.session.user);
 
   const [samples, setSamples] = useState({
     sampleOne: "",
@@ -44,6 +44,11 @@ function Sampler() {
     sampleSeven: "",
     sampleEight: "",
   });
+  const fileTypes = ['audio/wav', 'audio/mp3', 'audio/flac', 'audio/aiff']
+  function validFileType(file) {
+    return fileTypes.includes(file.type);
+  }
+
   const [one, setOne] = useState("");
   const [two, setTwo] = useState("");
   const [three, setThree] = useState("");
@@ -104,9 +109,13 @@ function Sampler() {
       {samplerState && (
         <div id="sampler-credentials">
           <h2 id="sampler-title">{samplerState.title}</h2>
-          <button type="delete" id="delete-sampler" onClick={destroySampler}>
-            Delete?
-          </button>
+          {(sessionUser.id === samplerState.userId) ?
+            <button type="delete" id="delete-sampler" onClick={destroySampler}>
+              Delete?
+            </button>
+            :
+            null
+          }
         </div>
       )}
       <div id="sampler-show">
@@ -164,12 +173,17 @@ function Sampler() {
                       1
                       <input
                         type="file"
-                        onChange={(e) =>
-                          setSamples({
-                            ...samples,
-                            sampleOne: e.target.files[0],
-                          })
-                        }
+                        accept="audio/*"
+                        onChange={(e) => {
+                          if (validFileType(e.target.files[0])) {
+                            setSamples({
+                              ...samples,
+                              sampleOne: e.target.files[0],
+                            });
+                          } else {
+                            window.alert("Invalid file type :(");
+                          }
+                        }}
                       ></input>
                     </label>
                   </form>
@@ -180,12 +194,17 @@ function Sampler() {
                       2
                       <input
                         type="file"
-                        onChange={(e) =>
-                          setSamples({
-                            ...samples,
-                            sampleTwo: e.target.files[0],
-                          })
-                        }
+                        accept="audio/*"
+                        onChange={(e) => {
+                          if (validFileType(e.target.files[0])) {
+                            setSamples({
+                              ...samples,
+                              sampleTwo: e.target.files[0],
+                            });
+                          } else {
+                            window.alert("Invalid file type :(");
+                          }
+                        }}
                       ></input>
                     </label>
                   </form>
@@ -196,12 +215,17 @@ function Sampler() {
                       3
                       <input
                         type="file"
-                        onChange={(e) =>
-                          setSamples({
-                            ...samples,
-                            sampleThree: e.target.files[0],
-                          })
-                        }
+                        accept="audio/*"
+                        onChange={(e) => {
+                          if (validFileType(e.target.files[0])) {
+                            setSamples({
+                              ...samples,
+                              sampleThree: e.target.files[0],
+                            });
+                          } else {
+                            window.alert("Invalid file type :(");
+                          }
+                        }}
                       ></input>
                     </label>
                   </form>
@@ -212,12 +236,17 @@ function Sampler() {
                       4
                       <input
                         type="file"
-                        onChange={(e) =>
-                          setSamples({
-                            ...samples,
-                            sampleFour: e.target.files[0],
-                          })
-                        }
+                        accept="audio/*"
+                        onChange={(e) => {
+                          if (validFileType(e.target.files[0])) {
+                            setSamples({
+                              ...samples,
+                              sampleFour: e.target.files[0],
+                            });
+                          } else {
+                            window.alert("Invalid file type :(");
+                          }
+                        }}
                       ></input>
                     </label>
                   </form>
@@ -232,12 +261,17 @@ function Sampler() {
                       5
                       <input
                         type="file"
-                        onChange={(e) =>
-                          setSamples({
-                            ...samples,
-                            sampleFive: e.target.files[0],
-                          })
-                        }
+                        accept="audio/*"
+                        onChange={(e) => {
+                          if (validFileType(e.target.files[0])) {
+                            setSamples({
+                              ...samples,
+                              sampleFive: e.target.files[0],
+                            });
+                          } else {
+                            window.alert("Invalid file type :(");
+                          }
+                        }}
                       ></input>
                     </label>
                   </form>
@@ -248,12 +282,17 @@ function Sampler() {
                       6
                       <input
                         type="file"
-                        onChange={(e) =>
-                          setSamples({
-                            ...samples,
-                            sampleSix: e.target.files[0],
-                          })
-                        }
+                        accept="audio/*"
+                        onChange={(e) => {
+                          if (validFileType(e.target.files[0])) {
+                            setSamples({
+                              ...samples,
+                              sampleSix: e.target.files[0],
+                            });
+                          } else {
+                            window.alert("Invalid file type :(");
+                          }
+                        }}
                       ></input>
                     </label>
                   </form>
@@ -264,12 +303,17 @@ function Sampler() {
                       7
                       <input
                         type="file"
-                        onChange={(e) =>
-                          setSamples({
-                            ...samples,
-                            sampleSeven: e.target.files[0],
-                          })
-                        }
+                        accept="audio/*"
+                        onChange={(e) => {
+                          if (validFileType(e.target.files[0])) {
+                            setSamples({
+                              ...samples,
+                              sampleSeven: e.target.files[0],
+                            });
+                          } else {
+                            window.alert("Invalid file type :(");
+                          }
+                        }}
                       ></input>
                     </label>
                   </form>
@@ -280,13 +324,18 @@ function Sampler() {
                       8
                       <input
                         type="file"
+                        accept="audio/*"
                         name="sample8"
-                        onChange={(e) =>
-                          setSamples({
-                            ...samples,
-                            sampleEight: e.target.files[0],
-                          })
-                        }
+                        onChange={(e) => {
+                          if (validFileType(e.target.files[0])) {
+                            setSamples({
+                              ...samples,
+                              sampleEight: e.target.files[0],
+                            });
+                          } else {
+                            window.alert("Invalid file type :(");
+                          }
+                        }}
                       ></input>
                     </label>
                   </form>
@@ -295,10 +344,7 @@ function Sampler() {
             </div>
           </div>
           <div id="sequencer-wrap">
-
-
-              <AudioPlayers />
-
+            <AudioPlayers />
           </div>
           <div id="mixer-wrap">
             <div id="mixer">
