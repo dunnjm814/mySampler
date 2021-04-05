@@ -78,7 +78,7 @@ function AudioPlayers() {
   // when samplerId changes reload
   useEffect(() => {
     setLoaded(true);
-    
+
   }, [samplerId, incomingSamples]);
 
 
@@ -217,11 +217,11 @@ function AudioPlayers() {
   // main output
   const masterVol = new Tone.Volume();
   masterVol.volume.value = mainVolumeOut;
-  // const lowpass = new Tone.Filter(mainLowpass, "lowpass");
+  const lowpass = new Tone.Filter(mainLowpass, "lowpass");
   // const vibrato = new Tone.Vibrato(mainVibe, 0.3);
 
   // const delayOne = new Tone.FeedbackDelay(.1, .5)
-  Tone.Destination.chain(masterVol);
+  Tone.Destination.chain(lowpass, masterVol);
   sampler1 = new Tone.Player(sampleRefOne.current).connect(gainOne);
   sampler2 = new Tone.Player(sampleRefTwo.current).connect(gainTwo);
   sampler3 = new Tone.Player(sampleRefThree.current).connect(gainThree);
@@ -231,7 +231,6 @@ function AudioPlayers() {
   sampler7 = new Tone.Player(sampleRefSeven.current).connect(gainSeven);
   sampler8 = new Tone.Player(sampleRefEight.current).connect(gainEight);
   const playSample1 = () => {
-    console.log(sampler1.state)
     Tone.loaded().then(() => {
       if (sampleRefOne.current) {
         sampler1.stop();
