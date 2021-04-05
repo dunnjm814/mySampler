@@ -11,14 +11,6 @@ function AudioPlayers() {
   const { sampleVol, mainOut, delaySends } = useMixerContext();
 
   const [loaded, setLoaded] = useState(false);
-  // const [sampleOne, setSampleOne] = useState("");
-  // const [sampleTwo, setSampleTwo] = useState("");
-  // const [sampleThree, setSampleThree] = useState("");
-  // const [sampleFour, setSampleFour] = useState("");
-  // const [sampleFive, setSampleFive] = useState("");
-  // const [sampleSix, setSampleSix] = useState("");
-  // const [sampleSeven, setSampleSeven] = useState("");
-  // const [sampleEight, setSampleEight] = useState("");
 
   const [volumeOne, setVolumeOne] = useState(sampleVol.volOne);
   const [volumeTwo, setVolumeTwo] = useState(sampleVol.volTwo);
@@ -34,7 +26,7 @@ function AudioPlayers() {
   const [mainVolumeOut, setMainVolumeOut] = useState(mainOut.mainVol);
   const [mainLowpass, setMainLowpass] = useState(mainOut.filter);
   const [mainVibe, setMainVibe] = useState(mainOut.vibeMain);
-  // const [mainCrushed, setMainCrushed] = useState(mainOut.crushed)
+  const [mainCrushed, setMainCrushed] = useState(mainOut.crushed)
 
   const incomingSamples = useSelector((state) => state.sampler.sampler);
 
@@ -205,23 +197,25 @@ function AudioPlayers() {
   }, [delaySends, loaded]);
 
   // main out effect triggers
+  let masterVol = new Tone.Volume();
+  masterVol.volume.value = mainVolumeOut;
+  let filter = new Tone.Filter(mainLowpass, "lowpass");
+  let vibe = new Tone.Vibrato(mainVibe, 0.3);
+  let crush = new Tone.BitCrusher(mainCrushed);
+  Tone.Destination.chain(crush, vibe, filter, masterVol);
   useEffect(() => {
     if (mainOut && loaded) {
       setMainVolumeOut(mainOut.mainVol);
       setMainLowpass(mainOut.filter);
       setMainVibe(mainOut.vibeMain);
-      // setMainCrushed(mainOut.crushed);
+      setMainCrushed(mainOut.crushed);
+      Tone.Destination.chain(crush, vibe, filter, masterVol);
     }
   }, [mainOut, loaded]);
 
   // main output
-  const masterVol = new Tone.Volume();
-  masterVol.volume.value = mainVolumeOut;
-  const lowpass = new Tone.Filter(mainLowpass, "lowpass");
-  // const vibrato = new Tone.Vibrato(mainVibe, 0.3);
 
   // const delayOne = new Tone.FeedbackDelay(.1, .5)
-  Tone.Destination.chain(lowpass, masterVol);
   sampler1 = new Tone.Player(sampleRefOne.current).connect(gainOne);
   sampler2 = new Tone.Player(sampleRefTwo.current).connect(gainTwo);
   sampler3 = new Tone.Player(sampleRefThree.current).connect(gainThree);

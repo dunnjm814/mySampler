@@ -22,8 +22,8 @@ const MixerProvider = ({ children }) => {
   const [mainOut, setMainOut] = useState({
     mainVol: -3,
     filter: 24000,
-    vibeMain: 0,
-    // crushed: 16
+    vibeMain: 1,
+    crushed: 16
   })
 
   const [delaySends, setDelaySends] = useState({
