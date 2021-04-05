@@ -99,11 +99,8 @@ function Sequencer({
   }
   useEffect(() => {
     if (scaleOption) {
-      console.log(scaleOption)
       setNotes(scaleOption.value);
-      console.log(scaleOption.value)
       setScale(scaleOption.label);
-      console.log(scaleOption.label)
     }
   },[scaleOption])
   return (
