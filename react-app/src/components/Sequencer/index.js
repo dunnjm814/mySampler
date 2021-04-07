@@ -117,17 +117,20 @@ function Sequencer({
     <div>
       <div className="grid">
         {pattern.map((row, y) => (
-          <div key={y} style={{ display: "flex", justifyContent: "center" }}>
-            {row.map((value, x) => (
-              <Square
-                key={x}
-                active={activeColumn === x}
-                selected={pattern[y][x] === 1 ? "#a8a8a8" : "white"}
-                onClick={() => {
-                  setPattern({ y, x, value });
-                }}
-              />
-            ))}
+          <div key={`row-wrap-${y}`} class="row">
+            <h3 key={`row-${y}`}>{y + 1}</h3>
+            <div key={y} style={{ display: "flex", justifyContent: "center" }}>
+              {row.map((value, x) => (
+                <Square
+                  key={x}
+                  active={activeColumn === x}
+                  selected={pattern[y][x] === 1 ? "#a8a8a8" : "white"}
+                  onClick={() => {
+                    setPattern({ y, x, value });
+                  }}
+                />
+              ))}
+            </div>
           </div>
         ))}
       </div>

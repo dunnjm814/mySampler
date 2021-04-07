@@ -26,6 +26,15 @@
 .grid{
   border: 1px solid #a8a8a8
 }
+.row{
+  display: flex;
+  flex-direction: row;
+}
+.row > h3{
+  margin:0;
+  margin-right: 10px;
+  margin-left: 10px;
+}
 .cell{
   display: "flex";
   align-items: "center";
