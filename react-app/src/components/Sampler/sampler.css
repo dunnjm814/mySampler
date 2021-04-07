@@ -161,6 +161,9 @@ input[type="file"] {
   border:black 5px solid;
   border-radius: 7px
 }
+#mixer > h1{
+  text-align: center
+}
 #fx-send-wrap{
   margin-top: 20px;
   display: flex;
@@ -183,9 +186,10 @@ input[type="file"] {
   max-width: 25px;
   max-height: 175px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 110px;
+  margin-top: 50px;
 
 }
 .vol-slider > input[type=range]{
@@ -194,6 +198,16 @@ input[type="file"] {
   height: auto;
   width: auto;
   /* max-width: 12.5px; */
+}
+#vol-ids{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+#vol-ids > h4{
+margin:0;
+
 }
 
 @keyframes flash {

@@ -42,7 +42,9 @@ export const signUp = (username, email, password) => async (
     }),
   });
   const user = await response.json();
-  dispatch(setUser(user));
+  if (!user.errors) {
+    dispatch(setUser(user));
+  }
   return user;
 };
 
