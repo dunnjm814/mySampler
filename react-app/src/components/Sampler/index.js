@@ -109,13 +109,11 @@ function Sampler() {
       {samplerState && (
         <div id="sampler-credentials">
           <h2 id="sampler-title">{samplerState.title}</h2>
-          {(sessionUser.id === samplerState.userId) ?
+          {sessionUser.id === samplerState.userId ? (
             <button type="delete" id="delete-sampler" onClick={destroySampler}>
               Delete?
             </button>
-            :
-            null
-          }
+          ) : null}
         </div>
       )}
       <div id="sampler-show">
@@ -123,28 +121,52 @@ function Sampler() {
           <div id="sampler-wrap">
             <div id="knobs-wrap">
               <div id="knob-container">
-                <span></span>
+                <span>Main</span>
                 <Knob
                   min={-60}
                   max={6}
                   step={1}
                   value={mainOut.mainVol}
                   onChange={(e) => {
-                    setMainOut({ ...mainOut, mainVol: e });
+                    setMainOut({ ...mainOut, mainVol: Number(e) });
                   }}
                 />
               </div>
               <div id="knob-container">
-                <span></span>
-                <Knob min={0} max={1} defaultValue={0} step={0.1} />
+                <span>Filter</span>
+                <Knob
+                  min={0}
+                  max={24000}
+                  value={mainOut.filter}
+                  step={2400}
+                  onChange={(e) => {
+                    setMainOut({ ...mainOut, filter: Number(e) });
+                  }}
+                />
               </div>
               <div id="knob-container">
-                <span></span>
-                <Knob min={0} max={1} defaultValue={0} step={0.1} />
+                <span>Vibe</span>
+                <Knob
+                  min={1}
+                  max={16}
+                  value={mainOut.vibeMain}
+                  step={2}
+                  onChange={(e) => {
+                    setMainOut({ ...mainOut, mainVibe: Number(e) });
+                  }}
+                />
               </div>
               <div id="knob-container">
-                <span></span>
-                <Knob min={0} max={1} defaultValue={0} step={0.1} />
+                <span>Crush</span>
+                <Knob
+                  min={1}
+                  max={16}
+                  value={mainOut.crushed}
+                  step={2}
+                  onChange={(e) => {
+                    setMainOut({ ...mainOut, crushed: Number(e) });
+                  }}
+                />
               </div>
             </div>
             <div id="bpm-wrap">
