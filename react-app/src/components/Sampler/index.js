@@ -119,7 +119,7 @@ function Sampler() {
       <div id="sampler-show">
         <div id="sampler-mixer-house">
           <div id="sampler-wrap">
-            <div id="knobs-wrap">
+            {/* <div id="knobs-wrap">
               <div id="knob-container">
                 <span>Main</span>
                 <Knob
@@ -168,7 +168,7 @@ function Sampler() {
                   }}
                 />
               </div>
-            </div>
+            </div> */}
             <div id="bpm-wrap">
               <div id="bpm-house">
                 <h1 id="bpm-text">{tempo}</h1>

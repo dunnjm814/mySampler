@@ -115,24 +115,33 @@ function Sequencer({
   },[scaleOption])
   return (
     <div>
-      <div className="grid">
-        {pattern.map((row, y) => (
-          <div key={`row-wrap-${y}`} class="row">
+      <div id="seq-id-wrap">
+        <div id="seq-row-ids">
+          {pattern.map((row, y) => (
             <h3 key={`row-${y}`}>{y + 1}</h3>
-            <div key={y} style={{ display: "flex", justifyContent: "center" }}>
-              {row.map((value, x) => (
-                <Square
-                  key={x}
-                  active={activeColumn === x}
-                  selected={pattern[y][x] === 1 ? "#a8a8a8" : "white"}
-                  onClick={() => {
-                    setPattern({ y, x, value });
-                  }}
-                />
-              ))}
+          ))}
+        </div>
+        <div className="grid">
+          {pattern.map((row, y) => (
+            <div key={`row-wrap-${y}`} class="row">
+              <div
+                key={y}
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                {row.map((value, x) => (
+                  <Square
+                    key={x}
+                    active={activeColumn === x}
+                    selected={pattern[y][x] === 1 ? "#a8a8a8" : "white"}
+                    onClick={() => {
+                      setPattern({ y, x, value });
+                    }}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
       <div className="play-key">
         <div

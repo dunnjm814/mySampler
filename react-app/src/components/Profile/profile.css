@@ -10,6 +10,7 @@
 }
 #editprofilebutton:hover{
   color: #ad9889;
+  cursor: pointer;
 }
 #profile-wrapper{
   width: 100%;
@@ -56,6 +57,7 @@
 }
 .profile-form-buttons:hover{
   color: #998476;
+  cursor: pointer;
 }
 .follow{
   padding: 0;
@@ -81,9 +83,11 @@
 }
 .follow:hover{
   color: #ad9889;
+  cursor: pointer;
 }
 .unfollow:hover{
   color: #ad9889;
+  cursor: pointer;
 }
 .profile-sampler-links{
   /* margin-top: 10px; */
@@ -107,4 +111,5 @@
 }
 .user-sampler-link:hover{
   color: #ad9889;
+  cursor: pointer;
 }

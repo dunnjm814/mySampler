@@ -25,6 +25,7 @@
 }
 #search > button:hover{
   color: #998476;
+  cursor: pointer;
 }
 #search-result-container{
   width: 300px;
@@ -48,4 +49,5 @@
 }
 .profile-link:hover{
   color: #998476;
+  cursor: pointer;
 }

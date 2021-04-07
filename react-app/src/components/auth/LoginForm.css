@@ -28,6 +28,7 @@
 }
 #demo:hover{
  color: #ad9889;
+ cursor: pointer;
 }
 #log-in{
   outline: none;
@@ -46,4 +47,5 @@
 }
 #log-in:hover{
   color: #ad9889;
+  cursor: pointer;
 }

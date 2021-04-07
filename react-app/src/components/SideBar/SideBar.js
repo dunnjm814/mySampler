@@ -28,11 +28,43 @@ function SideBar() {
     dispatch(getFollowerList({ user_id: userId }));
   }, [dispatch, userId])
 
+  const openSidebar = () => {
+    if (!sideBar) {
+      setSideBar("open");
+    } else {
+      setSideBar("");
+      setSubMenuSampler("sub-menu-sampler");
+      setSubMenuFriends("sub-menu-friends");
+    }
+  };
+  const openSubMenuSampler = () => {
+    if (sideBar) {
+      if (subMenuSampler === "sub-menu-sampler") {
+        setSubMenuSampler("sub-menu-sampler-open");
+      } else {
+        setSubMenuSampler("sub-menu-sampler");
+      }
+    }
+  };
+  const openSubMenuFriends = () => {
+    if (sideBar) {
+      if (subMenuFriends === "sub-menu-friends") {
+        setSubMenuFriends("sub-menu-friends-open");
+      } else {
+        setSubMenuFriends("sub-menu-friends");
+      }
+    }
+  };
+
   useEffect(() => {
     if (userSamplers) {
       setDropDown(
         userSamplers.map((sampler) => (
-          <div key={`sampler-link-wrap-${sampler.id}`} className="sub-menu-link">
+          <div
+            key={`sampler-link-wrap-${sampler.id}`}
+            className="sub-menu-link"
+            onClick={openSidebar}
+          >
             <NavLink
               key={`sampler-link-${sampler.id}`}
               to={`/sampler/${sampler.id}`}
@@ -58,33 +90,7 @@ function SideBar() {
       );
     }
   },[userFriends])
-  const openSidebar = () => {
-    if (!sideBar) {
-      setSideBar('open')
-    } else {
-      setSideBar('')
-      setSubMenuSampler('sub-menu-sampler')
-      setSubMenuFriends('sub-menu-friends')
-    }
-  }
-  const openSubMenuSampler = () => {
-    if (sideBar) {
-      if (subMenuSampler === 'sub-menu-sampler') {
-        setSubMenuSampler('sub-menu-sampler-open')
-      } else {
-        setSubMenuSampler('sub-menu-sampler')
-      }
-    }
-  }
-  const openSubMenuFriends = () => {
-    if (sideBar) {
-      if (subMenuFriends === 'sub-menu-friends') {
-        setSubMenuFriends('sub-menu-friends-open')
-      } else {
-        setSubMenuFriends('sub-menu-friends')
-      }
-    }
-  }
+
   return (
     <div className="side-bar-wrap">
       <div className={`sidebar ${sideBar}`}>
@@ -97,7 +103,7 @@ function SideBar() {
         </div>
         <div className="side-link open-sub" onClick={openSubMenuSampler}>
           <div className="side-icon">
-            <a href="#!">
+            <a href="#!" >
               <img
                 className="side-bar-logo"
                 src={logo}
@@ -111,7 +117,7 @@ function SideBar() {
         <div className={`${subMenuSampler}`}>
           {userSamplers && samplerDropDown}
         </div>
-        <NavLink to={`/profile/${userId}`}>
+        <NavLink to={`/profile/${userId}`} onClick={openSidebar}>
           <div className="side-link">
             <div className="side-icon">
               <AiFillProfile />

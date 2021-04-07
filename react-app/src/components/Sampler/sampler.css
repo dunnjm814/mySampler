@@ -111,6 +111,7 @@ input[type="file"] {
 .sample-load:hover{
   background-color: rgb(255, 28, 28);
   animation: flash linear 2s infinite;
+  cursor: pointer;
 }
 #samples-wrap{
   display: flex;
