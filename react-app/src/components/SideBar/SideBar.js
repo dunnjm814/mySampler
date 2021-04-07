@@ -68,32 +68,36 @@ function SideBar() {
     }
   }
   const openSubMenuSampler = () => {
-    if (subMenuSampler === 'sub-menu-sampler') {
-      setSubMenuSampler('sub-menu-sampler-open')
-    } else {
-      setSubMenuSampler('sub-menu-sampler')
+    if (sideBar) {
+      if (subMenuSampler === 'sub-menu-sampler') {
+        setSubMenuSampler('sub-menu-sampler-open')
+      } else {
+        setSubMenuSampler('sub-menu-sampler')
+      }
     }
   }
   const openSubMenuFriends = () => {
-    if (subMenuFriends === 'sub-menu-friends') {
-      setSubMenuFriends('sub-menu-friends-open')
-    } else {
-      setSubMenuFriends('sub-menu-friends')
+    if (sideBar) {
+      if (subMenuFriends === 'sub-menu-friends') {
+        setSubMenuFriends('sub-menu-friends-open')
+      } else {
+        setSubMenuFriends('sub-menu-friends')
+      }
     }
   }
   return (
-    <div className='side-bar-wrap'>
+    <div className="side-bar-wrap">
       <div className={`sidebar ${sideBar}`}>
         <div className="side-link" onClick={openSidebar}>
           <div className="side-icon">
-            <a>
+            <a href="#!">
               <BsLayoutTextSidebarReverse />
             </a>
           </div>
         </div>
         <div className="side-link open-sub" onClick={openSubMenuSampler}>
           <div className="side-icon">
-            <a>
+            <a href="#!">
               <img
                 className="side-bar-logo"
                 src={logo}
@@ -104,7 +108,9 @@ function SideBar() {
             </a>
           </div>
         </div>
-        <div className={`${subMenuSampler}`}>{userSamplers && samplerDropDown}</div>
+        <div className={`${subMenuSampler}`}>
+          {userSamplers && samplerDropDown}
+        </div>
         <NavLink to={`/profile/${userId}`}>
           <div className="side-link">
             <div className="side-icon">
@@ -115,12 +121,12 @@ function SideBar() {
         </NavLink>
 
         <div className="side-link open-sub" onClick={openSubMenuFriends}>
-            <a>
+          <a href="#!">
             <div className="side-icon">
-                <FaUserFriends />
-                <span id='friend-span'>Friends</span>
-              </div>
-            </a>
+              <FaUserFriends />
+              <span id="friend-span">Friends</span>
+            </div>
+          </a>
         </div>
         <div className={`${subMenuFriends}`}>{userFriends && friendList}</div>
       </div>

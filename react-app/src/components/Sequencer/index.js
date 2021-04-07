@@ -83,7 +83,17 @@ function Sequencer({
       ).start(0);
       return () => loop.dispose();
     },
-    [pattern, notes] // Retrigger when pattern changes
+    [pattern,
+      notes,
+        playSample1,
+        playSample2,
+        playSample3,
+        playSample4,
+        playSample5,
+        playSample6,
+        playSample7,
+      playSample8
+    ] // Retrigger when pattern changes
   );
 
   // Toggle playing / stopped
@@ -129,30 +139,34 @@ function Sequencer({
           }}
         >
           {playState === "started" ? (
-            <a>
+            <a href="#!">
               <CgPlayStopR />
             </a>
           ) : (
-            <a>
+            <a href="#!">
               <CgPlayButtonR />
             </a>
           )}
         </div>
         <div>
-          <label htmlFor="chooseKey" className='key-select-label'>
+          <label htmlFor="chooseKey" className="key-select-label">
             Pick a Key:
             <select
-              className='key-select'
+              className="key-select"
               name="chooseKey"
               id="chooseKey"
               value={scale}
               onChange={(e) => {
-                setScaleOption(JSON.parse(e.target.value))
+                setScaleOption(JSON.parse(e.target.value));
               }}
             >
               {keyOptions.map((keyOpt, i) => (
                 <>
-                  <option key={`key-${i}`} className="key-option" value={JSON.stringify(keyOpt)}>
+                  <option
+                    key={`key-${i}`}
+                    className="key-option"
+                    value={JSON.stringify(keyOpt)}
+                  >
                     {keyOpt.label}
                   </option>
                 </>
