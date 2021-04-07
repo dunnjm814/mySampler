@@ -40,6 +40,18 @@ function InfoBox() {
               </span>
               <br />
               <span className="infoLine">
+                Make a sequence by selecting portions of the grid and press play.
+              </span>
+              <br />
+              <span className="infoLine">
+                Pick a key for the background synth to play that matches your sample keys!
+              </span>
+              <br />
+              <span className="infoLine">
+                the samples in the demosampler are tuned to Dminor :)
+              </span>
+              <br />
+              <span className="infoLine">
                 Click anywhere on the page to play! Have fun!
               </span>
             </div>
