@@ -63,11 +63,18 @@ function SideBar() {
           <div
             key={`sampler-link-wrap-${sampler.id}`}
             className="sub-menu-link"
-            onClick={openSidebar}
           >
+            {/* <a
+              key={`sampler-link-${sampler.id}`}
+              href={`/sampler/${sampler.id}`}
+              onClick={openSidebar}
+            >
+              {sampler.title}
+            </a> */}
             <NavLink
               key={`sampler-link-${sampler.id}`}
               to={`/sampler/${sampler.id}`}
+              onClick={openSidebar}
             >
               {sampler.title}
             </NavLink>

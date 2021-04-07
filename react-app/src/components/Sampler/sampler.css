@@ -69,32 +69,39 @@
   flex-direction: row;
   justify-content: space-evenly;
   margin-bottom: 50px;
+  margin-top: 30px;
 
 }
 
 #bpm-house{
   display: inline-block;
-  height: 100px;
-  width: 200px;
+  height: 125px;
+  width: 250px;
   background-color:#525151 ;
   text-align: center;
   vertical-align: center;
   margin-bottom: 20px;
+  margin-top: 40px;
+  border-radius: 7px;
+}
+#tempo-text{
+  text-align: center;
 }
 #tempo{
   width: 300px;
   margin-left: 10px;
 }
 #bpm-text{
-  font-size: 40px;
+  font-size: 50px;
 }
 input[type="file"] {
     display: none;
 }
 .sample-load{
     border: 1px solid #ccc;
-    height: 50px;
-    width: 50px;
+    background-color: rgb(168, 167, 167);
+    height: 45px;
+    width: 45px;
     display: inline-block;
     padding: 6px 12px;
     cursor: pointer;
@@ -103,10 +110,12 @@ input[type="file"] {
     vertical-align: center;
     font-weight: bold;
     font-size: 30px;
+    box-shadow: 3px 3px #ccc;
 }
 .red{
   border: 3px solid rgb(209, 41, 41);
   background-color: rgba(255, 36, 36, 0.5);
+  box-shadow: 3px 3px rgb(212, 29, 29);
 }
 .sample-load:hover{
   background-color: rgb(255, 28, 28);

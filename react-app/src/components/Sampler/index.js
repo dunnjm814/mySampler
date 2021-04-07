@@ -172,10 +172,11 @@ function Sampler() {
             <div id="bpm-wrap">
               <div id="bpm-house">
                 <h1 id="bpm-text">{tempo}</h1>
+                <h4>Bpm</h4>
               </div>
             </div>
             <div id="bpm-slider">
-              <span>Tempo</span>
+              <span id='tempo-text'>Tempo</span>
               <input
                 type="range"
                 id="tempo"
