@@ -65,7 +65,6 @@ A lot. Is a project ever really done?
 1. Figuring how to reduce the overall number fetch requests within the audio context.
 2. Separate UI change rerenders from the above fetch so changing tempo or volume doesn't create a new network request.
 3. Playing with other effects! I'd like to have a main volume, filter, vibrato, and bitcrush, in addition to assigning delay and reverb to the mixer knobs (this is expensive, and was put on the backburner for presentations because the audio quality degraded QUICKLY and the reverb algorithm occasionally crashed the browser)
-4. Search feature doesn't isolate the start of string input.
-5. Occasionally on another user profile, the sidebar dropdown for the current logged in user renders the sampler info about the user whose profile you visit.
-6. Chat! A chat function that allows users to communicate about the samples they have.
-7. Save 'midi' presets. When you make a pattern you like with the sequencer wouldn't it be nice to save that pattern as a preset for access in a drop down?
+4. Occasionally on another user profile, the sidebar dropdown for the current logged in user renders the sampler info about the user whose profile you visit.
+5. Chat! A chat function that allows users to communicate about the samples they have.
+6. Save 'midi' presets. When you make a pattern you like with the sequencer wouldn't it be nice to save that pattern as a preset for access in a drop down?
