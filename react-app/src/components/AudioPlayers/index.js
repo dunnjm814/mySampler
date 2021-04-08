@@ -8,7 +8,7 @@ import Sequencer from "../Sequencer";
 
 function AudioPlayers() {
   const { samplerId } = useParams();
-  const { sampleVol, mainOut, delaySends } = useMixerContext();
+  const { sampleVol } = useMixerContext();
 
   const [loaded, setLoaded] = useState(false);
 
@@ -20,13 +20,6 @@ function AudioPlayers() {
   const [volumeSix, setVolumeSix] = useState(sampleVol.volSix);
   const [volumeSeven, setVolumeSeven] = useState(sampleVol.volSeven);
   const [volumeEight, setVolumeEight] = useState(sampleVol.volEight);
-
-  const [delayDryWetOne, setDelayDryWetOne] = useState(delaySends.delayWetOne);
-
-  const [mainVolumeOut, setMainVolumeOut] = useState(mainOut.mainVol);
-  const [mainLowpass, setMainLowpass] = useState(mainOut.filter);
-  const [mainVibe, setMainVibe] = useState(mainOut.vibeMain);
-  const [mainCrushed, setMainCrushed] = useState(mainOut.crushed)
 
   const incomingSamples = useSelector((state) => state.sampler.sampler);
 
@@ -190,32 +183,7 @@ function AudioPlayers() {
   }, [sampleVol.volEight, loaded]);
 
   //delay effect change triggers
-  useEffect(() => {
-    if (delaySends && loaded) {
-      setDelayDryWetOne(delaySends.delayWetOne);
-    }
-  }, [delaySends, loaded]);
 
-  // main out effect triggers
-  let masterVol = new Tone.Volume();
-  masterVol.volume.value = mainVolumeOut;
-  let filter = new Tone.Filter(mainLowpass, "lowpass");
-  let vibe = new Tone.Vibrato(mainVibe, 0.3);
-  let crush = new Tone.BitCrusher(mainCrushed);
-  Tone.Destination.chain(crush, vibe, filter, masterVol);
-  useEffect(() => {
-    if (mainOut && loaded) {
-      setMainVolumeOut(mainOut.mainVol);
-      setMainLowpass(mainOut.filter);
-      setMainVibe(mainOut.vibeMain);
-      setMainCrushed(mainOut.crushed);
-      Tone.Destination.chain(crush, vibe, filter, masterVol);
-    }
-  }, [mainOut, loaded]);
-
-  // main output
-
-  // const delayOne = new Tone.FeedbackDelay(.1, .5)
   sampler1 = new Tone.Player(sampleRefOne.current).connect(gainOne);
   sampler2 = new Tone.Player(sampleRefTwo.current).connect(gainTwo);
   sampler3 = new Tone.Player(sampleRefThree.current).connect(gainThree);

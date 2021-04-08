@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-
-import { Knob } from "react-rotary-knob";
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { receiveSamples } from "../../store/samples";
 import { getSampler, deleteSampler } from "../../store/sampler";
 import { useMixerContext } from "../../context/Mixer";
 import "./sampler.css";
-// import Sequencer from "../Sequencer";
 import AudioPlayers from "../../components/AudioPlayers";
 
 function Sampler() {
@@ -17,10 +14,6 @@ function Sampler() {
   const {
     sampleVol,
     setSampleVol,
-    mainOut,
-    setMainOut,
-    delaySends,
-    setDelaySends,
     tempo,
     setTempo,
   } = useMixerContext();
@@ -318,165 +311,6 @@ function Sampler() {
           </div>
           <div id="mixer-wrap">
             <div id="mixer">
-              {/* <div id="fx-send-wrap">
-                <div className="fx-knobs">
-                  <div className="verb">
-                    <Knob style={knobStyle} min={0} max={1} step={0.1} />
-                  </div>
-                  <div className="delay" style={{ marginTop: "50px" }}>
-                    <Knob
-                      style={knobStyle}
-                      min={0}
-                      max={1}
-                      value={delaySends.delayWetOne}
-                      step={0.1}
-                      onEnd={(e) =>
-                        setDelaySends({ ...delaySends, delayWetOne: e })
-                      }
-                    />
-                  </div>
-                </div>
-                <div className="fx-knobs">
-                  <div className="verb">
-                    <Knob
-                      style={knobStyle}
-                      min={0}
-                      max={1}
-                      defaultValue={0}
-                      step={0.1}
-                    />
-                  </div>
-                  <div className="delay" style={{ marginTop: "50px" }}>
-                    <Knob
-                      style={knobStyle}
-                      min={0}
-                      max={1}
-                      defaultValue={0}
-                      step={0.1}
-                    />
-                  </div>
-                </div>
-                <div className="fx-knobs">
-                  <div className="verb">
-                    <Knob
-                      style={knobStyle}
-                      min={0}
-                      max={1}
-                      defaultValue={0}
-                      step={0.1}
-                    />
-                  </div>
-                  <div className="delay" style={{ marginTop: "50px" }}>
-                    <Knob
-                      style={knobStyle}
-                      min={0}
-                      max={1}
-                      defaultValue={0}
-                      step={0.1}
-                    />
-                  </div>
-                </div>
-                <div className="fx-knobs">
-                  <div className="verb">
-                    <Knob
-                      style={knobStyle}
-                      min={0}
-                      max={1}
-                      defaultValue={0}
-                      step={0.1}
-                    />
-                  </div>
-                  <div className="delay" style={{ marginTop: "50px" }}>
-                    <Knob
-                      style={knobStyle}
-                      min={0}
-                      max={1}
-                      defaultValue={0}
-                      step={0.1}
-                    />
-                  </div>
-                </div>
-                <div className="fx-knobs">
-                  <div className="verb">
-                    <Knob
-                      style={knobStyle}
-                      min={0}
-                      max={1}
-                      defaultValue={0}
-                      step={0.1}
-                    />
-                  </div>
-                  <div className="delay" style={{ marginTop: "50px" }}>
-                    <Knob
-                      style={knobStyle}
-                      min={0}
-                      max={1}
-                      defaultValue={0}
-                      step={0.1}
-                    />
-                  </div>
-                </div>
-                <div className="fx-knobs">
-                  <div className="verb">
-                    <Knob
-                      style={knobStyle}
-                      min={0}
-                      max={1}
-                      defaultValue={0}
-                      step={0.1}
-                    />
-                  </div>
-                  <div className="delay" style={{ marginTop: "50px" }}>
-                    <Knob
-                      style={knobStyle}
-                      min={0}
-                      max={1}
-                      defaultValue={0}
-                      step={0.1}
-                    />
-                  </div>
-                </div>
-                <div className="fx-knobs">
-                  <div className="verb">
-                    <Knob
-                      style={knobStyle}
-                      min={0}
-                      max={1}
-                      defaultValue={0}
-                      step={0.1}
-                    />
-                  </div>
-                  <div className="delay" style={{ marginTop: "50px" }}>
-                    <Knob
-                      style={knobStyle}
-                      min={0}
-                      max={1}
-                      defaultValue={0}
-                      step={0.1}
-                    />
-                  </div>
-                </div>
-                <div className="fx-knobs">
-                  <div className="verb">
-                    <Knob
-                      style={knobStyle}
-                      min={0}
-                      max={1}
-                      defaultValue={0}
-                      step={0.1}
-                    />
-                  </div>
-                  <div className="delay" style={{ marginTop: "50px" }}>
-                    <Knob
-                      style={knobStyle}
-                      min={0}
-                      max={1}
-                      defaultValue={0}
-                      step={0.1}
-                    />
-                  </div>
-                </div>
-              </div> */}
               <h1>Volume</h1>
                 <div id='vol-ids'>
                   <h4>1</h4>
@@ -487,7 +321,6 @@ function Sampler() {
                   <h4>6</h4>
                   <h4>7</h4>
                   <h4>8</h4>
-
                 </div>
               <div id="vol-slider-wrap">
                 <div id="volOne" className="vol-slider">
@@ -502,7 +335,6 @@ function Sampler() {
                         ...sampleVol,
                         volOne: Number(e.target.value),
                       });
-                      console.log(sampleVol.volOne);
                     }}
                   />
                 </div>
@@ -518,7 +350,6 @@ function Sampler() {
                         ...sampleVol,
                         volTwo: Number(e.target.value),
                       });
-                      console.log(sampleVol.volTwo);
                     }}
                     orient={"vertical"}
                   />
@@ -535,7 +366,6 @@ function Sampler() {
                         ...sampleVol,
                         volThree: Number(e.target.value),
                       });
-                      console.log(sampleVol.volThree);
                     }}
                     orient={"vertical"}
                   />
@@ -552,7 +382,6 @@ function Sampler() {
                         ...sampleVol,
                         volFour: Number(e.target.value),
                       });
-                      console.log(sampleVol.volFour);
                     }}
                     orient={"vertical"}
                   />
@@ -569,7 +398,6 @@ function Sampler() {
                         ...sampleVol,
                         volFive: Number(e.target.value),
                       });
-                      console.log(sampleVol.volFive);
                     }}
                     orient={"vertical"}
                   />
@@ -584,7 +412,6 @@ function Sampler() {
                       e.stopPropagation();
                       setSampleVol({
                         ...sampleVol,
-                        volSix: Number(e.target.value),
                       });
                       console.log(sampleVol.volSix);
                     }}
@@ -603,7 +430,6 @@ function Sampler() {
                         ...sampleVol,
                         volSeven: Number(e.target.value),
                       });
-                      console.log(sampleVol.volSeven);
                     }}
                     orient={"vertical"}
                   />
@@ -620,7 +446,6 @@ function Sampler() {
                         ...sampleVol,
                         volEight: Number(e.target.value),
                       });
-                      console.log(sampleVol.volEight);
                     }}
                     orient={"vertical"}
                   />
