@@ -162,7 +162,7 @@ function Sequencer({
         </div>
         <div>
           <label htmlFor="chooseKey" className="key-select-label">
-            Pick a Key:
+            {`Pick a Key: `}
             <select
               className="key-select"
               name="chooseKey"
