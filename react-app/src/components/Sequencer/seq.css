@@ -22,9 +22,28 @@
 }
 .play-state > a:hover{
   color: #ad9889;
+  cursor: pointer;
+}
+#seq-id-wrap{
+  display: flex;
+  flex-direction: row;
+}
+#seq-row-ids{
+  display: flex;
+  flex-direction:column;
 }
 .grid{
   border: 1px solid #a8a8a8
+}
+.row{
+  display: flex;
+  flex-direction: row;
+}
+#seq-row-ids > h3{
+  margin:0;
+  margin-right: 10px;
+  margin-top: 3.5px;
+  margin-bottom: 3.5px;
 }
 .cell{
   display: "flex";
@@ -61,4 +80,5 @@ width: 120px;
 }
 .key-select-label:hover{
 color: #ad9889;
+cursor: pointer;
 }

@@ -83,7 +83,8 @@ function Sampler() {
       samplerId,
       samples,
     };
-    dispatch(receiveSamples(sendData));
+    dispatch(receiveSamples(sendData)).then(() => {window.location.reload();})
+
   }, [dispatch, samples, samplerId]);
 
   const slideTempo = (e) => {
@@ -98,10 +99,6 @@ function Sampler() {
     } else {
       history.push("/home");
     }
-  };
-  const knobStyle = {
-    width: "25px",
-    height: "25px",
   };
 
   return (
@@ -119,63 +116,14 @@ function Sampler() {
       <div id="sampler-show">
         <div id="sampler-mixer-house">
           <div id="sampler-wrap">
-            <div id="knobs-wrap">
-              <div id="knob-container">
-                <span>Main</span>
-                <Knob
-                  min={-60}
-                  max={6}
-                  step={1}
-                  value={mainOut.mainVol}
-                  onChange={(e) => {
-                    setMainOut({ ...mainOut, mainVol: Number(e) });
-                  }}
-                />
-              </div>
-              <div id="knob-container">
-                <span>Filter</span>
-                <Knob
-                  min={0}
-                  max={24000}
-                  value={mainOut.filter}
-                  step={2400}
-                  onChange={(e) => {
-                    setMainOut({ ...mainOut, filter: Number(e) });
-                  }}
-                />
-              </div>
-              <div id="knob-container">
-                <span>Vibe</span>
-                <Knob
-                  min={1}
-                  max={16}
-                  value={mainOut.vibeMain}
-                  step={2}
-                  onChange={(e) => {
-                    setMainOut({ ...mainOut, mainVibe: Number(e) });
-                  }}
-                />
-              </div>
-              <div id="knob-container">
-                <span>Crush</span>
-                <Knob
-                  min={1}
-                  max={16}
-                  value={mainOut.crushed}
-                  step={2}
-                  onChange={(e) => {
-                    setMainOut({ ...mainOut, crushed: Number(e) });
-                  }}
-                />
-              </div>
-            </div>
             <div id="bpm-wrap">
               <div id="bpm-house">
                 <h1 id="bpm-text">{tempo}</h1>
+                <h4>Bpm</h4>
               </div>
             </div>
             <div id="bpm-slider">
-              <span>Tempo</span>
+              <span id='tempo-text'>Tempo</span>
               <input
                 type="range"
                 id="tempo"
@@ -370,7 +318,7 @@ function Sampler() {
           </div>
           <div id="mixer-wrap">
             <div id="mixer">
-              <div id="fx-send-wrap">
+              {/* <div id="fx-send-wrap">
                 <div className="fx-knobs">
                   <div className="verb">
                     <Knob style={knobStyle} min={0} max={1} step={0.1} />
@@ -528,7 +476,19 @@ function Sampler() {
                     />
                   </div>
                 </div>
-              </div>
+              </div> */}
+              <h1>Volume</h1>
+                <div id='vol-ids'>
+                  <h4>1</h4>
+                  <h4>2</h4>
+                  <h4>3</h4>
+                  <h4>4</h4>
+                  <h4>5</h4>
+                  <h4>6</h4>
+                  <h4>7</h4>
+                  <h4>8</h4>
+
+                </div>
               <div id="vol-slider-wrap">
                 <div id="volOne" className="vol-slider">
                   <input

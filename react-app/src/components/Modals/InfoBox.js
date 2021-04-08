@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Modal } from "../../context/Modal";
 import "./Modal.css";
+import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
+import {BiCool} from 'react-icons/bi'
+
 
 function InfoBox() {
   const [showModal, setShowModal] = useState(false);
@@ -19,29 +22,37 @@ function InfoBox() {
           <div id="info-box-wrap">
             <div id="the-info">
               <h1>Welcome to mySampler!</h1>
-              <span className="infoLine">
+              <p className="infoLine">
                 Click any pad to upload an audio file.
-              </span>
-              <br />
-              <span className="infoLine">
+                <br />
                 Pads with loaded audio will fill red.
-              </span>
-              <br />
-              <span className="infoLine">
+                <br />
                 Pads 1-4 correspond to keys 'a-f' on your keyboard.
-              </span>
-              <br />
-              <span className="infoLine">
+                <br />
                 Pads 5-8 correspond to keys 'z-v' on your keyboard.
-              </span>
-              <br />
-              <span className="infoLine">
+                <br />
                 Mix audio gain with the mixer to the right of sampler.
-              </span>
-              <br />
-              <span className="infoLine">
+                <br />
+                Make a sequence by selecting portions of the grid and press
+                play.
+                <br />
+                Pick a key for the background synth to play that matches your
+                sample keys! <br />
+                the samples in the demosampler are tuned to Dminor.
+                <br />
                 Click anywhere on the page to play! Have fun!
-              </span>
+              </p>
+            </div>
+            <div id="links">
+              <a href="https://www.dunn.cool/">
+                <BiCool />
+              </a>
+              <a href="https://github.com/dunnjm814/mySampler">
+                <FaGithubSquare />
+              </a>
+              <a href="https://www.linkedin.com/in/jason-dunn-5667a1b7/">
+                <FaLinkedin />
+              </a>
             </div>
             <button
               type="close"

@@ -10,6 +10,7 @@
 }
 #submit-new:hover{
   color: #ad9889;
+  cursor: pointer;
 }
 
 #about-user-form-wrap{

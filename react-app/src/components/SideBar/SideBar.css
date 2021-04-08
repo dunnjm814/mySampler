@@ -31,6 +31,7 @@
 
 .sidebar a:hover {
   color: #ad9889;
+  cursor: pointer;
 }
 
 #home .sidebar {
