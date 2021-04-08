@@ -50,7 +50,7 @@ function InfoBox() {
               <a href="https://github.com/dunnjm814/mySampler">
                 <FaGithubSquare />
               </a>
-              <a href="https://www.linkedin.com/in/jason-dunn-5667a1b7/">
+              <a href="https://www.linkedin.com/in/jason-dunn-software-engineer/">
                 <FaLinkedin />
               </a>
             </div>
