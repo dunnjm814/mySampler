@@ -95,3 +95,15 @@
   color: #998476;
   cursor: pointer;
 }
+.infoLine{
+  margin-top: 50px;
+}
+#links a{
+  font-size: 50px;
+  color: #818181;
+  transition: 0.5s;
+}
+#links a:hover{
+color: #ad9889;
+  cursor: pointer;
+}
