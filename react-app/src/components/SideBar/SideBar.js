@@ -82,7 +82,7 @@ function SideBar() {
         ))
       );
     }
-  }, [userSamplers])
+  }, [userSamplers, openSidebar])
   useEffect(() => {
     if (userFriends) {
       setFriendList(
