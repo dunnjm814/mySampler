@@ -1,7 +1,7 @@
 import './SideBar.css'
 import {AiFillProfile} from "react-icons/ai";
 import { FaUserFriends } from "react-icons/fa";
-import {BsLayoutTextSidebarReverse} from "react-icons/bs"
+import {IoMenu, IoClose} from "react-icons/io5"
 import logo from '../../img/mySamplerLogo.png'
 import React, {useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
@@ -57,21 +57,16 @@ function SideBar() {
   };
 
   useEffect(() => {
+    // this useEffect renders current user samplers under the sampler tab
+    // in sidebar/mobile menu
     if (userSamplers) {
       setDropDown(
         userSamplers.map((sampler) => (
           <div
             key={`sampler-link-wrap-${sampler.id}`}
-            className="sub-menu-link"
           >
-            {/* <a
-              key={`sampler-link-${sampler.id}`}
-              href={`/sampler/${sampler.id}`}
-              onClick={openSidebar}
-            >
-              {sampler.title}
-            </a> */}
             <NavLink
+              className="sub-menu-link"
               key={`sampler-link-${sampler.id}`}
               to={`/sampler/${sampler.id}`}
               onClick={openSidebar}
@@ -82,17 +77,22 @@ function SideBar() {
         ))
       );
     }
-  }, [userSamplers, openSidebar])
+  }, [userSamplers])
+
   useEffect(() => {
+    // this useEffect renders the users friends list in the sidebar / menu
     if (userFriends) {
       setFriendList(
         userFriends.map((user) => (
-          <div key={`friend-link-wrap-${user.id}`} className="sub-menu-link">
+          <div key={`friend-link-wrap-${user.id}`}>
             <NavLink
               key={`friend-link-profile-${user.id}`}
               to={`/profile/${user.id}`}
-            >{user.username}</NavLink>
-            </div>
+              className="sub-menu-link"
+            >
+              {user.username}
+            </NavLink>
+          </div>
         ))
       );
     }
@@ -103,43 +103,43 @@ function SideBar() {
       <div className={`sidebar ${sideBar}`}>
         <div className="side-link" onClick={openSidebar}>
           <div className="side-icon">
-            <a href="#!">
-              <BsLayoutTextSidebarReverse />
-            </a>
+            {sideBar === "" ?
+              <IoMenu /> : <IoClose />
+            }
+            <span className="side-bar-label">Menu</span>
           </div>
         </div>
         <div className="side-link open-sub" onClick={openSubMenuSampler}>
           <div className="side-icon">
-            <a href="#!" >
-              <img
-                className="side-bar-logo"
-                src={logo}
-                alt="logo"
-                style={{ width: "25px", height: "25px" }}
-              />
-              <span>Samplers</span>
-            </a>
+            <img
+              className="side-bar-logo"
+              src={logo}
+              alt="logo"
+              style={{ width: "25px", height: "25px" }}
+            />
+            <span>Samplers</span>
           </div>
         </div>
         <div className={`${subMenuSampler}`}>
           {userSamplers && samplerDropDown}
         </div>
-        <NavLink to={`/profile/${userId}`} onClick={openSidebar}>
+        <NavLink
+          to={`/profile/${userId}`}
+          onClick={openSidebar}
+          style={{ textDecoration: "none" }}
+        >
           <div className="side-link">
             <div className="side-icon">
               <AiFillProfile />
+              <span className="side-bar-label">Profile</span>
             </div>
-            <span>Profile</span>
           </div>
         </NavLink>
-
         <div className="side-link open-sub" onClick={openSubMenuFriends}>
-          <a href="#!">
-            <div className="side-icon">
-              <FaUserFriends />
-              <span id="friend-span">Friends</span>
-            </div>
-          </a>
+          <div className="side-icon">
+            <FaUserFriends />
+            <span id="friend-span">Friends</span>
+          </div>
         </div>
         <div className={`${subMenuFriends}`}>{userFriends && friendList}</div>
       </div>

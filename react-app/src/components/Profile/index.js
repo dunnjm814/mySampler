@@ -4,17 +4,18 @@ import {useParams, NavLink } from "react-router-dom";
 import ProfileForm from './ProfileForm'
 import { getProfile } from '../../store/profile'
 import { newFollow, removeFollower, getFollowerList } from '../../store/friends'
-import {fetchAllUserSamplers} from '../../store/sampler'
+import {fetchAllFriendSamplers} from '../../store/sampler'
 import "./profile.css";
 
 
 function Profile() {
   const dispatch = useDispatch();
   const { userId } = useParams();
+  let userIdInt = parseInt(10, userId);
   const sessionUser = useSelector((state) => state.session.user);
   const userProfile = useSelector((state) => state.profile);
   const userFriends = useSelector((state) => state.friends.userFollows);
-  const userSamplers = useSelector((state) => state.sampler.userSamplers);
+  const friendSamplers = useSelector((state) => state.sampler.friendSamplers);
   const [info, setInfo] = useState(false);
   const [user, setUser] = useState({});
 
@@ -22,6 +23,7 @@ function Profile() {
     setInfo(!info);
   }
   useEffect(() => {
+    console.log(userId)
     dispatch(getProfile(userId))
     if (!userId) {
       return
@@ -31,11 +33,12 @@ function Profile() {
         const user = await response.json();
         await setUser(user);
         await dispatch(getFollowerList({ user_id: sessionUser.id }));
+        console.log(user)
       })()
-    dispatch(fetchAllUserSamplers(userId))
-  }, [dispatch, userId])
+    dispatch(fetchAllFriendSamplers(userId))
+  }, [dispatch, userId, sessionUser.id])
 
-  const followed = userFriends.filter((user) => user.id == userId);
+  const followed = userFriends.filter((user) => user.id === userIdInt);
 
   const addFollow = async (e) => {
     e.preventDefault();
@@ -64,7 +67,7 @@ const unFollow = async (e) => {
           <div id="user-card"></div>
           <div id="about-user">
             <div id="user-header">
-              {sessionUser.id == userId ? (
+              {sessionUser.id === userIdInt ? (
                 <>
                   <h1>Hey there, {sessionUser && sessionUser.username}!</h1>
                   <button id="editprofilebutton" onClick={toggle}>
@@ -104,7 +107,8 @@ const unFollow = async (e) => {
               )}
               <div id="component-wrapper" className={info ? "" : "hidden"}>
                 {!info && (
-                  <div id="profile-info">
+                <>
+                  {userProfile ? (<div id="profile-info">
                     {userProfile.bio && (
                       <div>
                         <h2>Bio</h2>
@@ -129,7 +133,8 @@ const unFollow = async (e) => {
                         <p>{userProfile.website}</p>
                       </div>
                     )}
-                  </div>
+                    </div>) : <div id="profile-info" style={{marginTop: 50, color: "red"}}>No user info to show</div>}
+                </>
                 )}
               </div>
             </div>
@@ -137,26 +142,28 @@ const unFollow = async (e) => {
         </div>
         <div className="dummy"></div>
         <div className="profile-sampler-links">
-          {sessionUser.id == userId ? (
+          {sessionUser.id === userIdInt ? (
             <></>
           ) : (
             <>
-              <h3 id='checkmysampler'>Check out my samplers!</h3>
-              {userSamplers &&
-                  userSamplers.map((sampler) => (
+              <h3 id="checkmysampler">Check out my samplers!</h3>
+              {friendSamplers &&
+                friendSamplers.map((sampler) => (
                   <>
-                  { sampler.priv !== true ? (<div
-                    key={`sampler-link-wrap-${sampler.id}`}
-                  >
-                    <NavLink
-                    className="user-sampler-link"
-                      key={`sampler-link-${sampler.id}`}
-                      to={`/sampler/${sampler.id}`}
-                    >
-                      {sampler.title}
-                    </NavLink>
-                      </div>) : <></>}
-                      </>
+                    {sampler.priv !== true ? (
+                      <div key={`sampler-link-wrap-${sampler.id}`}>
+                        <NavLink
+                          className="user-sampler-link"
+                          key={`sampler-link-${sampler.id}`}
+                          to={`/sampler/${sampler.id}`}
+                        >
+                          {sampler.title}
+                        </NavLink>
+                      </div>
+                    ) : (
+                      <></>
+                    )}
+                  </>
                 ))}
             </>
           )}
