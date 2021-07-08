@@ -23,6 +23,7 @@ function Profile() {
     setInfo(!info);
   }
   useEffect(() => {
+    console.log(userId)
     dispatch(getProfile(userId))
     if (!userId) {
       return
@@ -32,6 +33,7 @@ function Profile() {
         const user = await response.json();
         await setUser(user);
         await dispatch(getFollowerList({ user_id: sessionUser.id }));
+        console.log(user)
       })()
     dispatch(fetchAllFriendSamplers(userId))
   }, [dispatch, userId, sessionUser.id])
@@ -105,7 +107,8 @@ const unFollow = async (e) => {
               )}
               <div id="component-wrapper" className={info ? "" : "hidden"}>
                 {!info && (
-                  <div id="profile-info">
+                <>
+                  {userProfile ? (<div id="profile-info">
                     {userProfile.bio && (
                       <div>
                         <h2>Bio</h2>
@@ -130,7 +133,8 @@ const unFollow = async (e) => {
                         <p>{userProfile.website}</p>
                       </div>
                     )}
-                  </div>
+                    </div>) : <div id="profile-info" style={{marginTop: 50, color: "red"}}>No user info to show</div>}
+                </>
                 )}
               </div>
             </div>

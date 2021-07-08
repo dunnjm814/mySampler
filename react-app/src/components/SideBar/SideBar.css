@@ -20,7 +20,8 @@
 
 }
 
-.sidebar a {
+.sidebar .side-icon,
+.sidebar .sub-menu-link {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
@@ -29,7 +30,8 @@
   transition: 0.5s;
 }
 
-.sidebar a:hover {
+.sidebar .side-icon:hover,
+.sidebar .sub-menu-link:hover {
   color: #ad9889;
   cursor: pointer;
 }
@@ -42,16 +44,19 @@
   margin-left: 50px;
 }
 
-.side-link{
+.side-link,
+.sub-menu-link{
   display:flex;
   flex-direction: row;
   align-items: center;
 }
 
-.side-icon, .side-bar-logo{
+.side-icon,
+.side-bar-logo{
   margin-right: 50px;
 }
-#friend-span{
+#friend-span,
+.side-bar-label{
   margin-left: 50px;
 }
 .sub-menu-sampler{
