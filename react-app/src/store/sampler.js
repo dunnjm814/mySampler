@@ -1,6 +1,7 @@
 const NEW_SAMPLER = "sampler/setNewSampler";
 const GET_SAMPLER = 'sampler/loadSampler'
 const GET_ALL_USER_SAMPLER = 'sampler/getAllUserSampler'
+const GET_ALL_FRIEND_SAMPLER = 'sampler/getAllFriendSampler'
 const DESTROY_SAMPLER = 'sampler/destroySampler'
 
 export const setNewSampler = (sampler) => {
@@ -9,23 +10,30 @@ export const setNewSampler = (sampler) => {
     payload: sampler,
   }
 }
+
 export const loadSampler = (sampler) => {
   return {
     type: GET_SAMPLER,
     payload: sampler,
   }
 }
+
 export const getAllUserSampler = (samplers) => {
   let samplerList = Object.values(samplers)
   return { type: GET_ALL_USER_SAMPLER, samplerList }
 }
+
+export const getAllFriendSampler = (samplers) => {
+  let samplerList = Object.values(samplers)
+  return { type: GET_ALL_FRIEND_SAMPLER, samplerList }
+}
+
 export const destroySampler = (sampler) => {
   return {
     type: DESTROY_SAMPLER,
     payload: sampler
   }
 }
-
 
 export const getSampler = (samplerId) => async (dispatch) => {
   const response = await fetch(`/api/sampler/${samplerId}`, {
@@ -40,12 +48,21 @@ export const getSampler = (samplerId) => async (dispatch) => {
   }
   return response.errors
 }
+
 export const fetchAllUserSamplers = (userId) => async (dispatch) => {
   const response = await fetch(`/api/sampler/all/${userId}`)
   const samplers = await response.json()
   dispatch(getAllUserSampler(samplers));
   return samplers
 }
+
+export const fetchAllFriendSamplers = (userId) => async (dispatch) => {
+  const response = await fetch(`/api/sampler/all/${userId}`)
+  const samplers = await response.json()
+  dispatch(getAllFriendSampler(samplers));
+  return samplers
+}
+
 export const newSampler = (title, priv) => async (dispatch) => {
   const response = await fetch("/api/sampler/new", {
     method: "POST",
@@ -75,7 +92,7 @@ export const deleteSampler = (samplerId) => async (dispatch) => {
   return {}
 }
 
-const samplerReducer = (state = { sampler: null, userSamplers: [] }, action) => {
+const samplerReducer = (state = { sampler: null, userSamplers: [], friendSamplers: [] }, action) => {
   let newState = { ...state }
 
   switch (action.type) {
@@ -87,6 +104,9 @@ const samplerReducer = (state = { sampler: null, userSamplers: [] }, action) => 
       return newState;
     case GET_ALL_USER_SAMPLER:
       newState.userSamplers = [...action.samplerList]
+      return newState
+    case GET_ALL_FRIEND_SAMPLER:
+      newState.friendSamplers = [...action.samplerList]
       return newState
     case DESTROY_SAMPLER:
       delete newState[action.payload]

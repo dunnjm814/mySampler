@@ -57,6 +57,8 @@ function SideBar() {
   };
 
   useEffect(() => {
+    // this useEffect renders current user samplers under the sampler tab
+    // in sidebar/mobile menu
     if (userSamplers) {
       setDropDown(
         userSamplers.map((sampler) => (
@@ -64,13 +66,6 @@ function SideBar() {
             key={`sampler-link-wrap-${sampler.id}`}
             className="sub-menu-link"
           >
-            {/* <a
-              key={`sampler-link-${sampler.id}`}
-              href={`/sampler/${sampler.id}`}
-              onClick={openSidebar}
-            >
-              {sampler.title}
-            </a> */}
             <NavLink
               key={`sampler-link-${sampler.id}`}
               to={`/sampler/${sampler.id}`}
@@ -82,8 +77,10 @@ function SideBar() {
         ))
       );
     }
-  }, [userSamplers, openSidebar])
+  }, [userSamplers])
+
   useEffect(() => {
+    // this useEffect renders the users friends list in the sidebar / menu
     if (userFriends) {
       setFriendList(
         userFriends.map((user) => (
