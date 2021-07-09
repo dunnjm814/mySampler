@@ -8,9 +8,11 @@ import './Nav.css'
 import logo from '../../img/mySamplerLogo.png'
 import InfoBox from '../Modals/InfoBox';
 import Search from '../Search'
+import {IoMenu} from "react-icons/io5"
 
+const NavBar = ({width}) => {
+  const size = width
 
-const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
   return (
     <nav>
@@ -27,29 +29,31 @@ const NavBar = () => {
           </NavLink>
         </div>
       </div>
-      {!sessionUser && (
-        <div id="signlogin-wrap">
-          <div>
-            <LoginModal />
+      {size.width < 400 ? <IoMenu /> :
+      <>
+        {!sessionUser && (
+          <div id="signlogin-wrap">
+            <div>
+              <LoginModal />
+            </div>
+            <div>
+              <SignupModal />
+            </div>
           </div>
-          <div>
-            <SignupModal />
+        )}
+        {sessionUser && (
+          <div id="logout-wrap">
+              <Search />
+            <div>
+              <InfoBox />
+            </div>
+            <div>
+              <LogoutButton />
+            </div>
           </div>
-        </div>
-      )}
-      {sessionUser && (
-        <div id="logout-wrap">
-          
-            <Search />
-
-          <div>
-            <InfoBox />
-          </div>
-          <div>
-            <LogoutButton />
-          </div>
-        </div>
-      )}
+            )}
+        </>
+      }
     </nav>
   );
 }

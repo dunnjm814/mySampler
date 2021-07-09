@@ -18,9 +18,9 @@ function Root() {
   return (
       <ModalProvider>
         <MixerProvider>
-          <Provider store={store}>
-            <App />
-          </Provider>
+            <Provider store={store}>
+              <App />
+            </Provider>
         </MixerProvider>
       </ModalProvider>
   );

@@ -147,7 +147,7 @@ const unFollow = async (e) => {
           ) : (
             <>
               <h3 id="checkmysampler">Check out my samplers!</h3>
-              {friendSamplers &&
+              {friendSamplers.length &&
                 friendSamplers.map((sampler) => (
                   <>
                     {sampler.priv !== true ? (

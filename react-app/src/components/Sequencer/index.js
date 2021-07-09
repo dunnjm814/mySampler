@@ -123,7 +123,7 @@ function Sequencer({
         </div>
         <div className="grid">
           {pattern.map((row, y) => (
-            <div key={`row-wrap-${y}`} class="row">
+            <div key={`row-wrap-${y}`} className="row">
               <div
                 key={y}
                 style={{ display: "flex", justifyContent: "center" }}

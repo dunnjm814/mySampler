@@ -21,9 +21,13 @@ export const getProfile = (userId) => async (dispatch) => {
       "Content-Type": "application/json",
     },
   });
-  const profile = await response.json();
-  dispatch(loadProfile(profile));
-  return profile;
+  if (response.ok) {
+    const profile = await response.json();
+    dispatch(loadProfile(profile));
+    return profile;
+  } else {
+    return "No profile information to show"
+  }
 };
 
 export const submitProfile = (
