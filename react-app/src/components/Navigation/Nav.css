@@ -39,9 +39,11 @@ nav {
 #signlogin-wrap{
   display: flex;
   justify-content: space-between;
+  margin-right: 50px;
 
 }
 #logout-wrap{
   display: flex;
   justify-content: space-between;
+  margin-right: 50px;
 }
