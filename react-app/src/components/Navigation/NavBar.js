@@ -10,6 +10,7 @@ import InfoBox from '../Modals/InfoBox';
 import Search from '../Search'
 import {IconContext} from "react-icons"
 import {IoMenu} from "react-icons/io5"
+import ResponsiveMenu from '../Modals/ResponsiveMenu';
 
 const NavBar = ({width}) => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -29,9 +30,12 @@ const NavBar = ({width}) => {
         </div>
       </div>
       {width < 1000 ?
-        <IconContext.Provider value={{ className: "ham-icon" }}>
+      <>
+        {/* <IconContext.Provider value={{ className: "ham-icon" }}>
           <IoMenu />
-        </IconContext.Provider>
+        </IconContext.Provider> */}
+          <ResponsiveMenu />
+      </>
         :
       <>
         {!sessionUser && (

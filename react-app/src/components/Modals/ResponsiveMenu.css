@@ -1,0 +1,34 @@
+#responsive-menu{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #C0E6E9;
+  animation: slideup 0.8s ease-in-out forwards;
+}
+
+.ham-icon {
+  text-decoration: none;
+  color: white;
+  font-size: 4rem;
+  transition: 0.5s;
+}
+.ham-icon{
+  margin-right: 50px;
+}
+.ham-icon:hover {
+  color: #ad9889;
+  cursor: pointer;
+}
+@keyframes slideup {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: 100%;
+  }
+}
