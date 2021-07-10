@@ -20,18 +20,10 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const [width, setWindowWidth] = useState(0)
 
-  // useEffect(() => {
-  //   updateDimensions();
-
-  //   window.addEventListener('resize', updateDimensions);
-  //   return () => {
-  //     window.removeEventListener('resize', updateDimensions);
-  //   }
-  // }, [])
-
   const updateDimensions = () => {
     const width = window.innerWidth
     setWindowWidth(width)
+    console.log(width)
   }
 
   useEffect(() => {
@@ -84,7 +76,7 @@ function App() {
                 height: "100%",
               }}
             >
-              <SideBar />
+              {(width > 600) && <SideBar />}
               <Home />
             </div>
           </ProtectedRoute>

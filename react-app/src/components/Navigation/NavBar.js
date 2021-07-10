@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { useSelector } from "react-redux";
@@ -8,11 +8,10 @@ import './Nav.css'
 import logo from '../../img/mySamplerLogo.png'
 import InfoBox from '../Modals/InfoBox';
 import Search from '../Search'
+import {IconContext} from "react-icons"
 import {IoMenu} from "react-icons/io5"
 
 const NavBar = ({width}) => {
-  const size = width
-
   const sessionUser = useSelector((state) => state.session.user);
   return (
     <nav>
@@ -29,7 +28,11 @@ const NavBar = ({width}) => {
           </NavLink>
         </div>
       </div>
-      {size.width < 400 ? <IoMenu /> :
+      {width < 1000 ?
+        <IconContext.Provider value={{ className: "ham-icon" }}>
+          <IoMenu />
+        </IconContext.Provider>
+        :
       <>
         {!sessionUser && (
           <div id="signlogin-wrap">
