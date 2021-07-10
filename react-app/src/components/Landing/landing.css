@@ -2,13 +2,16 @@
   display:flex;
   flex-direction: column;
   align-items: center;
-  height:100%;
+ 
+  top: 0;
+  height: calc(100% - 140px);
   width:100%;
 }
 #main-title{
   font-size: 100px;
+  text-align: center;
   background: -webkit-linear-gradient(275deg, #1f878f, #C0E6E9, #ffdac1, #ad9889);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 5px 5px #000000 ;
+  /* text-shadow: 5px 5px #000000 ; */
 }

@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
+import { createLogger } from "redux-logger"
 import sessionReducer from "./session";
 import samplerReducer from './sampler';
 import profileReducer from './profile';
@@ -19,7 +20,7 @@ if (process.env.NODE_ENV === "production") {
   enhancer = applyMiddleware(thunk);
 } else {
   // in development we use redux dev tools and middleware
-  const logger = require("redux-logger").default;
+  const logger = createLogger({ collapsed: true });
   const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   enhancer = composeEnhancers(applyMiddleware(thunk, logger));

@@ -1,5 +1,5 @@
 nav {
-  width: 97vw;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11,22 +11,26 @@ nav {
 }
 
 #mysampler-logo {
-  height: 100px;
+  height: 5rem;
   width: auto;
   margin-right: 5px;
   position: sticky;
 }
-.home-link {
+.home-link,
+.ham-icon {
   text-decoration: none;
   color: white;
-  font-size: 75px;
+  font-size: 4rem;
   transition: 0.5s;
 }
-.home-link:hover {
+.ham-icon{
+  margin-right: 50px;
+}
+.home-link:hover,
+.ham-icon:hover {
   color: #ad9889;
   cursor: pointer;
 }
-
 #nav-wrap{
   display: flex;
   flex-direction: row;
@@ -35,6 +39,7 @@ nav {
 #signlogin-wrap{
   display: flex;
   justify-content: space-between;
+
 }
 #logout-wrap{
   display: flex;

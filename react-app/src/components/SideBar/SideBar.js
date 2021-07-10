@@ -29,6 +29,7 @@ function SideBar() {
   }, [dispatch, userId])
 
   const openSidebar = () => {
+    console.log('clicked!')
     if (!sideBar) {
       setSideBar("open");
     } else {
@@ -89,6 +90,7 @@ function SideBar() {
               key={`friend-link-profile-${user.id}`}
               to={`/profile/${user.id}`}
               className="sub-menu-link"
+              onClick={openSidebar}
             >
               {user.username}
             </NavLink>
@@ -115,7 +117,7 @@ function SideBar() {
               className="side-bar-logo"
               src={logo}
               alt="logo"
-              style={{ width: "25px", height: "25px" }}
+              style={{ width: "1em", height: "1em" }}
             />
             <span>Samplers</span>
           </div>

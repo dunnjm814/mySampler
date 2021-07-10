@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { useSelector } from "react-redux";
@@ -8,9 +8,10 @@ import './Nav.css'
 import logo from '../../img/mySamplerLogo.png'
 import InfoBox from '../Modals/InfoBox';
 import Search from '../Search'
+import {IconContext} from "react-icons"
+import {IoMenu} from "react-icons/io5"
 
-
-const NavBar = () => {
+const NavBar = ({width}) => {
   const sessionUser = useSelector((state) => state.session.user);
   return (
     <nav>
@@ -27,29 +28,35 @@ const NavBar = () => {
           </NavLink>
         </div>
       </div>
-      {!sessionUser && (
-        <div id="signlogin-wrap">
-          <div>
-            <LoginModal />
+      {width < 1000 ?
+        <IconContext.Provider value={{ className: "ham-icon" }}>
+          <IoMenu />
+        </IconContext.Provider>
+        :
+      <>
+        {!sessionUser && (
+          <div id="signlogin-wrap">
+            <div>
+              <LoginModal />
+            </div>
+            <div>
+              <SignupModal />
+            </div>
           </div>
-          <div>
-            <SignupModal />
+        )}
+        {sessionUser && (
+          <div id="logout-wrap">
+              <Search />
+            <div>
+              <InfoBox />
+            </div>
+            <div>
+              <LogoutButton />
+            </div>
           </div>
-        </div>
-      )}
-      {sessionUser && (
-        <div id="logout-wrap">
-          
-            <Search />
-
-          <div>
-            <InfoBox />
-          </div>
-          <div>
-            <LogoutButton />
-          </div>
-        </div>
-      )}
+            )}
+        </>
+      }
     </nav>
   );
 }

@@ -11,19 +11,30 @@ import LoginModal from "./components/Modals/LoginModal";
 import SignupModal from "./components/Modals/SignupModal";
 import Home from './components/Home'
 import Sampler from "./components/Sampler";
-// import AudioPlayers from './components/AudioPlayers'
 import Profile from './components/Profile'
 import NotFound from "./components/NotFound";
 import Landing from "./components/Landing";
 
-
 function App() {
   const dispatch = useDispatch()
   const [loaded, setLoaded] = useState(false);
+  const [width, setWindowWidth] = useState(0)
+
+  const updateDimensions = () => {
+    const width = window.innerWidth
+    setWindowWidth(width)
+    console.log(width)
+  }
 
   useEffect(() => {
     dispatch(authenticate()).then(() => {
       setLoaded(true);
+      updateDimensions();
+
+      window.addEventListener("resize", updateDimensions);
+      return () => {
+        window.removeEventListener("resize", updateDimensions);
+      };
     })}, [dispatch]);
 
   if (!loaded) {
@@ -37,7 +48,7 @@ function App() {
   };
   return (
     <BrowserRouter>
-      <NavBar />
+      <NavBar width={width}/>
       <div style={styling}>
         <Switch>
           <Route path="/" exact={true}>
@@ -65,7 +76,7 @@ function App() {
                 height: "100%",
               }}
             >
-              <SideBar />
+              {(width > 600) && <SideBar />}
               <Home />
             </div>
           </ProtectedRoute>
@@ -81,9 +92,6 @@ function App() {
             >
               <SideBar />
               <Sampler />
-              {/* <div style={{ display: "none" }}>
-                <AudioPlayers />
-              </div> */}
             </div>
           </ProtectedRoute>
           <ProtectedRoute path="/profile/:userId" exact={true}>

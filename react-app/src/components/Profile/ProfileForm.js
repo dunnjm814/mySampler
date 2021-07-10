@@ -22,12 +22,13 @@ function ProfileForm({ userProfile, info, setInfo }) {
     await dispatch(submitProfile(bio, name, location, website, userId))
     toggle()
   }
-    useEffect(() => {
-      setBio(userProfile.bio);
-      setName(userProfile.name);
-      setLocation(userProfile.location);
-      setWebsite(userProfile.website);
-    }, [userProfile]);
+
+  useEffect(() => {
+    setBio(userProfile.bio ?? '');
+    setName(userProfile.name ?? '');
+    setLocation(userProfile.location ?? '');
+    setWebsite(userProfile.website ?? '');
+  }, [userProfile]);
 
   return (
     <div id="edit-about-user">
