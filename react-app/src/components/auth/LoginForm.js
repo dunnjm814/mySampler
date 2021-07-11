@@ -2,7 +2,7 @@ import React, { useState} from "react";
 import { useHistory } from "react-router-dom";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
-import './LoginForm.css'
+import './auth.css'
 
 
 const LoginForm = ({setShowModal }) => {

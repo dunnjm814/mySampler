@@ -2,13 +2,18 @@ import React, { useState, useEffect } from "react";
 import {useLocation} from 'react-router-dom'
 import { Modal } from "../../context/Modal";
 import LoginForm from '../auth/LoginForm'
+import ResponsiveLogin from "./ResponsiveLogin";
 import "./Modal.css";
 
 
-function LoginModal() {
+function LoginModal({width}) {
   const { pathname } = useLocation();
-  console.log(pathname)
   const [showModal, setShowModal] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+
+  function menu() {
+    setShowMenu((showMenu) => !showMenu);
+  }
 
   useEffect(() => {
     if (pathname === '/login') {
@@ -19,11 +24,22 @@ function LoginModal() {
     return (
       <Modal onClose={() => setShowModal(false)}>
           <LoginForm setShowModal={setShowModal} />
-        </Modal>
+      </Modal>
 
     );
   } else {
-    return (
+    return width < 1000 ? (
+      <>
+        <button
+          id="login-button"
+          className="login-modal"
+          onClick={() => setShowMenu(showMenu => !showMenu)}
+        >
+          Log In
+        </button>
+        <ResponsiveLogin showMenu={showMenu} menu={menu}/>
+      </>
+    ) : (
       <>
         <button
           id="login-button"

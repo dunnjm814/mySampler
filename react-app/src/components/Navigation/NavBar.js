@@ -17,49 +17,48 @@ const NavBar = ({width}) => {
       <div>
         <div id="nav-wrap">
           {sessionUser && (
-          <>
-            <img id="mysampler-logo" src={logo} alt="home" />
-            <NavLink
-              to="/home"
-              exact={true}
-              activeClassName="active"
-              className="home-link"
-            >
-            mySampler
-            </NavLink>
-          </>
+            <>
+              <img id="mysampler-logo" src={logo} alt="home" />
+              <NavLink
+                to="/home"
+                exact={true}
+                activeClassName="active"
+                className="home-link"
+              >
+                mySampler
+              </NavLink>
+            </>
           )}
         </div>
       </div>
       {!sessionUser && (
         <div id="signlogin-wrap">
           <div>
-            <LoginModal />
+            <LoginModal width={width} />
           </div>
           <div>
-            <SignupModal />
+            <SignupModal width={width} />
           </div>
         </div>
       )}
-      {sessionUser && (
-        width < 1000 ?
-        <>
+      {sessionUser &&
+        (width < 1000 ? (
+          <>
             <ResponsiveMenu />
-        </>
-          :
-        <>
-          <div id="logout-wrap">
+          </>
+        ) : (
+          <>
+            <div id="logout-wrap">
               <Search />
-            <div>
-              <InfoBox />
+              <div>
+                <InfoBox />
+              </div>
+              <div>
+                <LogoutButton />
+              </div>
             </div>
-            <div>
-              <LogoutButton />
-            </div>
-          </div>
-        </>
-      )}
-
+          </>
+        ))}
     </nav>
   );
 }
