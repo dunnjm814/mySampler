@@ -1,4 +1,4 @@
-#menu {
+.menu {
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -13,7 +13,7 @@
   align-items: center;
   background-color: #C0E6E9;
   transform: translateY(-100%);
-  transition: transform 0.8s linear;
+  transition: transform 800ms ease-in-out;
 }
 .show {
   transform: translateY(0)

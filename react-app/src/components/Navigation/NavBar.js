@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { useSelector } from "react-redux";
@@ -8,8 +8,6 @@ import './Nav.css'
 import logo from '../../img/mySamplerLogo.png'
 import InfoBox from '../Modals/InfoBox';
 import Search from '../Search'
-import {IconContext} from "react-icons"
-import {IoMenu} from "react-icons/io5"
 import ResponsiveMenu from '../Modals/ResponsiveMenu';
 
 const NavBar = ({width}) => {
@@ -18,37 +16,38 @@ const NavBar = ({width}) => {
     <nav>
       <div>
         <div id="nav-wrap">
-          <img id="mysampler-logo" src={logo} alt="home" />
-          <NavLink
-            to="/home"
-            exact={true}
-            activeClassName="active"
-            className="home-link"
-          >
+          {sessionUser && (
+          <>
+            <img id="mysampler-logo" src={logo} alt="home" />
+            <NavLink
+              to="/home"
+              exact={true}
+              activeClassName="active"
+              className="home-link"
+            >
             mySampler
-          </NavLink>
+            </NavLink>
+          </>
+          )}
         </div>
       </div>
-      {width < 1000 ?
-      <>
-        {/* <IconContext.Provider value={{ className: "ham-icon" }}>
-          <IoMenu />
-        </IconContext.Provider> */}
-          <ResponsiveMenu />
-      </>
-        :
-      <>
-        {!sessionUser && (
-          <div id="signlogin-wrap">
-            <div>
-              <LoginModal />
-            </div>
-            <div>
-              <SignupModal />
-            </div>
+      {!sessionUser && (
+        <div id="signlogin-wrap">
+          <div>
+            <LoginModal />
           </div>
-        )}
-        {sessionUser && (
+          <div>
+            <SignupModal />
+          </div>
+        </div>
+      )}
+      {sessionUser && (
+        width < 1000 ?
+        <>
+            <ResponsiveMenu />
+        </>
+          :
+        <>
           <div id="logout-wrap">
               <Search />
             <div>
@@ -58,9 +57,9 @@ const NavBar = ({width}) => {
               <LogoutButton />
             </div>
           </div>
-            )}
         </>
-      }
+      )}
+
     </nav>
   );
 }
