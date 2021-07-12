@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { useSelector } from "react-redux";
@@ -8,8 +8,7 @@ import './Nav.css'
 import logo from '../../img/mySamplerLogo.png'
 import InfoBox from '../Modals/InfoBox';
 import Search from '../Search'
-import {IconContext} from "react-icons"
-import {IoMenu} from "react-icons/io5"
+import ResponsiveMenu from '../Modals/ResponsiveMenu';
 
 const NavBar = ({width}) => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -17,46 +16,49 @@ const NavBar = ({width}) => {
     <nav>
       <div>
         <div id="nav-wrap">
-          <img id="mysampler-logo" src={logo} alt="home" />
-          <NavLink
-            to="/home"
-            exact={true}
-            activeClassName="active"
-            className="home-link"
-          >
-            mySampler
-          </NavLink>
+          {sessionUser && (
+            <>
+              <img id="mysampler-logo" src={logo} alt="home" />
+              <NavLink
+                to="/home"
+                exact={true}
+                activeClassName="active"
+                className="home-link"
+              >
+                mySampler
+              </NavLink>
+            </>
+          )}
         </div>
       </div>
-      {width < 1000 ?
-        <IconContext.Provider value={{ className: "ham-icon" }}>
-          <IoMenu />
-        </IconContext.Provider>
-        :
-      <>
-        {!sessionUser && (
-          <div id="signlogin-wrap">
-            <div>
-              <LoginModal />
-            </div>
-            <div>
-              <SignupModal />
-            </div>
+      {!sessionUser && (
+        <div id="signlogin-wrap">
+          <div>
+            <LoginModal width={width} />
           </div>
-        )}
-        {sessionUser && (
-          <div id="logout-wrap">
+          <div>
+            <SignupModal width={width} />
+          </div>
+        </div>
+      )}
+      {sessionUser &&
+        (width < 1000 ? (
+          <>
+            <ResponsiveMenu />
+          </>
+        ) : (
+          <>
+            <div id="logout-wrap">
               <Search />
-            <div>
-              <InfoBox />
+              <div>
+                <InfoBox />
+              </div>
+              <div>
+                <LogoutButton />
+              </div>
             </div>
-            <div>
-              <LogoutButton />
-            </div>
-          </div>
-            )}
-        </>
-      }
+          </>
+        ))}
     </nav>
   );
 }

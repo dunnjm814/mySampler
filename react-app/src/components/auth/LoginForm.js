@@ -2,10 +2,10 @@ import React, { useState} from "react";
 import { useHistory } from "react-router-dom";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
-import './LoginForm.css'
+import './auth.css'
 
 
-const LoginForm = ({setShowModal }) => {
+const LoginForm = ({setShowModal, menu, width }) => {
   const dispatch = useDispatch();
   const history = useHistory()
   const [errors, setErrors] = useState([]);
@@ -31,7 +31,11 @@ const LoginForm = ({setShowModal }) => {
     if (user.errors) {
       setErrors(user.errors);
     } else {
-      setShowModal(false);
+      if (width < 1000) {
+        menu()
+      } else {
+        setShowModal(false);
+      }
       history.push("/home");
     }
   }
@@ -71,7 +75,7 @@ const LoginForm = ({setShowModal }) => {
         </div>
         <div id='buttons-wrap'>
           <button type="submit" id='log-in'>Login</button>
-          <button type='button' id='demo' onClick={demoLogin}>demo</button>
+          <button type='button' id='demo' onClick={demoLogin}>Demo</button>
         </div>
     </form>
   );

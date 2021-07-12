@@ -1,4 +1,6 @@
-#signup-button{
+#signup-button,
+#login-button,
+#info-box{
   outline: none;
   width: auto;
   height: auto;
@@ -12,29 +14,9 @@
   font-size: 40px;
   transition: 0.5s;
 }
-#signup-button:hover{
-  color: #ad9889;
-  cursor: pointer;
-}
+
 #login-button{
-  outline: none;
-  width: auto;
-  height: auto;
-  background-color: #1f878f;
-  color: #F1EEEC;
-  border-radius: 5px;
-  border: none;
-  padding: 20px;
-  text-align: center;
-  vertical-align: middle;
   margin-right: 0.4px;
-  border-right: 8px #463c35;
-  font-size: 40px;
-  transition: 0.5s;
-}
-#login-button:hover{
-  color: #ad9889;
-  cursor: pointer;
 }
 
 #new-sampler-button{
@@ -47,33 +29,13 @@
   font-size: 40px;
   transition: 0.5s;
 }
-#new-sampler-button:hover{
-  color: #ad9889;
-  cursor: pointer;
-}
+
 #info-box-wrap{
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-#info-box{
-  outline: none;
-  width: auto;
-  height: auto;
-  background-color: #1f878f;
-  color: #F1EEEC;
-  border-radius: 10px;
-  border: none;
-  padding: 20px;
-  text-align: center;
-  vertical-align: middle;
-  font-size: 40px;
-  transition: 0.5s;
-}
-#info-box:hover{
-  color: #998476;
-  cursor: pointer;
-}
+
 #the-info{
   padding: 40px
 }
@@ -91,19 +53,23 @@
   margin-bottom: 20px;
   transition: 0.5s;
 }
-#close-box:hover{
-  color: #998476;
-  cursor: pointer;
-}
+
 .infoLine{
   margin-top: 50px;
 }
+
 #links a{
   font-size: 50px;
   color: #818181;
   transition: 0.5s;
 }
-#links a:hover{
-color: #ad9889;
+
+#login-button:hover,
+#signup-button:hover,
+#new-sampler-button:hover,
+#links a:hover,
+#close-box:hover,
+#info-box:hover {
+  color: #ad9889;
   cursor: pointer;
 }

@@ -1,0 +1,51 @@
+.menu {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #C0E6E9;
+  transform: translateY(-100%);
+  transition: transform 800ms ease-in-out;
+}
+.show {
+  transform: translateY(0)
+}
+#close-menu {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 40px 20px;
+}
+.ham-icon,
+.close-icon {
+  text-decoration: none;
+  color: white;
+  font-size: 4rem;
+  transition: 0.5s;
+}
+.ham-icon,
+.close-icon {
+  margin-right: 50px;
+}
+.ham-icon:hover,
+.close-icon:hover {
+  color: #ad9889;
+  cursor: pointer;
+}
+@keyframes slidedown {
+  from {
+    transform: translateY(-100%)
+  }
+  to {
+    transform: translateY(0)
+  }
+}

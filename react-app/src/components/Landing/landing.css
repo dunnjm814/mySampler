@@ -2,7 +2,7 @@
   display:flex;
   flex-direction: column;
   align-items: center;
- 
+
   top: 0;
   height: calc(100% - 140px);
   width:100%;
@@ -10,8 +10,9 @@
 #main-title{
   font-size: 100px;
   text-align: center;
-  background: -webkit-linear-gradient(275deg, #1f878f, #C0E6E9, #ffdac1, #ad9889);
+  background: -webkit-linear-gradient(300deg, #1f878f, #C0E6E9, #ffdac1, #ad9889);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  /* text-shadow: 5px 5px #000000 ; */
+  filter: drop-shadow(0 0 1px #000);
+  z-index: -10;
 }

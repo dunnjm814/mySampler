@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch} from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signUp } from "../../store/session";
-import './signup.css'
+import './auth.css'
 
 
 const SignUpForm = ({ setShowModal }) => {
@@ -93,7 +93,7 @@ const SignUpForm = ({ setShowModal }) => {
           required={true}
         ></input>
       </div>
-      <button type="submit" id='signup'>Sign Up</button>
+      <button type="submit" id='signup'>Sign up</button>
     </form>
   );
 };
