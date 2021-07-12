@@ -17,15 +17,24 @@ function LoginModal({width}) {
 
   useEffect(() => {
     if (pathname === '/login') {
-        setShowModal(true)
+      // check screen width, use appropriate form handling
+      width < 1000 ? setShowMenu(true) : setShowModal(true)
     }
   }, [pathname])
-  if(pathname === '/login'){
-    return (
-      <Modal onClose={() => setShowModal(false)}>
+  if (pathname === '/login') {
+    // due to protectedRoute component, if user accidentally finds their way
+    // to a part of the app unintended for un-authorized users,
+    // this checks if redirect occurs to /login and immediately opens login form
+    return width < 1000 ? (
+      <>
+        <ResponsiveLogin showMenu={showMenu} menu={menu} width={width} />
+      </>
+    ) : (
+      <>
+        <Modal onClose={() => setShowModal(false)}>
           <LoginForm setShowModal={setShowModal} />
-      </Modal>
-
+        </Modal>
+      </>
     );
   } else {
     return width < 1000 ? (
@@ -35,9 +44,9 @@ function LoginModal({width}) {
           className="login-modal"
           onClick={() => setShowMenu(showMenu => !showMenu)}
         >
-          Log In
+          Login
         </button>
-        <ResponsiveLogin showMenu={showMenu} menu={menu}/>
+        <ResponsiveLogin showMenu={showMenu} menu={menu} width={width}/>
       </>
     ) : (
       <>
@@ -46,7 +55,7 @@ function LoginModal({width}) {
           className="login-modal"
           onClick={() => setShowModal(true)}
         >
-          Log In
+          Login
         </button>
         {showModal && (
           <Modal onClose={() => setShowModal(false)}>

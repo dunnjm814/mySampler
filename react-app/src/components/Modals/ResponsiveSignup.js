@@ -1,12 +1,10 @@
 import React from "react";
 import { IconContext } from "react-icons";
 import { IoClose } from "react-icons/io5";
-import LoginForm from "../auth/LoginForm";
+import SignUpForm from "../auth/SignUpForm";
 import "./ResponsiveMenu.css";
 
-
-function ResponsiveLogin({showMenu, width, menu}) {
-
+function ResponsiveSignup({ showMenu, width, menu }) {
   return (
     <div className={`menu ${showMenu ? "show" : ""}`}>
       <div id="close-menu" onClick={menu}>
@@ -14,9 +12,9 @@ function ResponsiveLogin({showMenu, width, menu}) {
           <IoClose />
         </IconContext.Provider>
       </div>
-      <LoginForm menu={menu} width={width}/>
+      <SignUpForm menu={menu} width={width} />
     </div>
   );
 }
 
-export default ResponsiveLogin
+export default ResponsiveSignup;

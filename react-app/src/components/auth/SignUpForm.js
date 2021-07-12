@@ -93,7 +93,7 @@ const SignUpForm = ({ setShowModal }) => {
           required={true}
         ></input>
       </div>
-      <button type="submit" id='signup'>Sign Up</button>
+      <button type="submit" id='signup'>Sign up</button>
     </form>
   );
 };
