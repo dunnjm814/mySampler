@@ -48,7 +48,7 @@ function App() {
   };
   return (
     <BrowserRouter>
-      <NavBar width={width}/>
+      <NavBar width={width} />
       <div style={styling}>
         <Switch>
           <Route path="/" exact={true}>
@@ -76,7 +76,7 @@ function App() {
                 height: "100%",
               }}
             >
-              {(width > 600) && <SideBar />}
+              {width > 1000 && <SideBar />}
               <Home />
             </div>
           </ProtectedRoute>
@@ -90,7 +90,7 @@ function App() {
                 height: "100%",
               }}
             >
-              <SideBar />
+              {width > 1000 && <SideBar />}
               <Sampler />
             </div>
           </ProtectedRoute>
@@ -104,7 +104,7 @@ function App() {
                 height: "100%",
               }}
             >
-              <SideBar />
+              {width > 1000 && <SideBar />}
               <Profile />
             </div>
           </ProtectedRoute>
