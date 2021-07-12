@@ -14,7 +14,7 @@ function ResponsiveLogin({showMenu, menu}) {
           <IoClose />
         </IconContext.Provider>
       </div>
-      <LoginForm />
+        <LoginForm />
     </div>
   );
 }

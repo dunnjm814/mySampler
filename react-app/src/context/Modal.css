@@ -20,6 +20,7 @@
 
 #modal-content {
   position: absolute;
+  width: auto;
   background-color: white;
   border-radius: 12px;
   animation-name: slideup;

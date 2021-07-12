@@ -71,7 +71,7 @@ const LoginForm = ({setShowModal }) => {
         </div>
         <div id='buttons-wrap'>
           <button type="submit" id='log-in'>Login</button>
-          <button type='button' id='demo' onClick={demoLogin}>demo</button>
+          <button type='button' id='demo' onClick={demoLogin}>Demo</button>
         </div>
     </form>
   );

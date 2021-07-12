@@ -18,6 +18,13 @@
 .show {
   transform: translateY(0)
 }
+#close-menu {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 40px 20px;
+}
 .ham-icon,
 .close-icon {
   text-decoration: none;

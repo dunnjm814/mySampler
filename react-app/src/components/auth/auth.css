@@ -20,7 +20,7 @@ form > div > input {
   height: 50px;
   border: 0.25px solid rgb(170, 166, 166);
   padding-left: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   font-size: 16px;
 }
 #demo,
@@ -31,8 +31,8 @@ form > div > input {
   height: auto;
   background-color: white;
   color: #1f878f;
-  border-radius: 5px;
   border: none;
+  border-radius: 5px;
   padding: 20px;
   text-align: center;
   vertical-align: middle;
@@ -43,6 +43,41 @@ form > div > input {
 #demo:hover,
 #log-in:hover,
 #signup:hover{
- color: #ad9889;
- cursor: pointer;
+  color: #ad9889;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+  form {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    min-width: 300px
+  }
+  form > div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  #buttons-wrap{
+    display: flex;
+    justify-content: space-between;
+    max-width: 530px;
+  }
+  #demo{
+    background-color: #1f878f;
+    color: #C0E6E9;
+    border: 5px solid #1f878f;
+  }
+  #log-in,
+  #signup {
+    background-color: #C0E6E9;
+    color: #1f878f;
+    border: 5px solid #1f878f;
+  }
+  #demo:hover,
+  #log-in:hover,
+  #signup:hover{
+    border: 5px solid #ad9889;
+  }
 }
