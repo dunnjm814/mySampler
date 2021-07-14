@@ -1,6 +1,6 @@
 export const keyOptions = [
   {
-    label: "~~~~~~~~~~",
+    label: "Pick a key!",
     value: [],
   },
   {

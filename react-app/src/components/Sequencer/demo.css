@@ -1,0 +1,23 @@
+#demo-wrap{
+  height: calc(60vh - 150px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+#seq-id-wrap{
+  margin-top: 5%;
+  margin-bottom: 2%;
+  justify-content: center;
+}
+.play-key{
+  justify-content: space-evenly;
+  min-width: 500px;
+  max-width: 800px;
+}
+
+.instructions{
+  display: flex;
+  justify-content: center;
+}

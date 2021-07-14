@@ -14,6 +14,7 @@ import Sampler from "./components/Sampler";
 import Profile from './components/Profile'
 import NotFound from "./components/NotFound";
 import Landing from "./components/Landing";
+import Demo from "./components/Sequencer/Demo";
 
 function App() {
   const dispatch = useDispatch()
@@ -108,6 +109,9 @@ function App() {
               <Profile />
             </div>
           </ProtectedRoute>
+          <Route path="/demo">
+              <Demo />
+          </Route>
           <Route>
             <NotFound />
           </Route>
