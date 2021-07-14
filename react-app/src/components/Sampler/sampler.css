@@ -2,12 +2,12 @@
 
   width: 100%;
   height: auto;
-  position: absolute;
+  position: relative;
 }
 #sampler-show{
   padding: 30px;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,6 +29,10 @@
   align-items: flex-start;
   justify-content: space-between;
   position: absolute;
+}
+#samples{
+  width: 100%;
+  max-width: 200px;
 }
 #samples > button{
     border: 1px solid #ccc;
@@ -64,7 +68,7 @@
   margin-right: 5px;
 
 }
-#bpm-slider{
+/* #bpm-slider{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -93,7 +97,7 @@
 }
 #bpm-text{
   font-size: 50px;
-}
+} */
 input[type="file"] {
     display: none;
 }

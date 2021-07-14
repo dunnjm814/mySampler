@@ -151,13 +151,13 @@ function Sequencer({
           }}
         >
           {playState === "started" ? (
-            <a href="#!">
+            <div>
               <CgPlayStopR />
-            </a>
+            </div>
           ) : (
-            <a href="#!">
+            <div>
               <CgPlayButtonR />
-            </a>
+            </div>
           )}
         </div>
         <div>

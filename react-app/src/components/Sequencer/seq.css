@@ -5,22 +5,26 @@
   justify-content: space-between;
 }
 .play-state{
-  transition: 0.5s
+  height: 75px;
+  width: 75px;
+  margin-top: 15px;
+  align-items: center;
+  transition: 0.5s;
 }
 .play-state:hover{
   cursor: pointer;
 }
-.play-state > a{
+.play-state > div{
   display: flex;
   align-content: center;
   text-decoration: none;
   font-size: 50px;
   color: #818181;
-  margin-top: 15px;
+
 
   transition: 0.5s;
 }
-.play-state > a:hover{
+.play-state > div:hover{
   color: #ad9889;
   cursor: pointer;
 }

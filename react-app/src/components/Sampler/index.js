@@ -109,7 +109,7 @@ function Sampler() {
       <div id="sampler-show">
         <div id="sampler-mixer-house">
           <div id="sampler-wrap">
-            <div id="bpm-wrap">
+            {/* <div id="bpm-wrap">
               <div id="bpm-house">
                 <h1 id="bpm-text">{tempo}</h1>
                 <h4>Bpm</h4>
@@ -125,7 +125,7 @@ function Sampler() {
                 max={240}
                 onChange={slideTempo}
               />
-            </div>
+            </div> */}
             <div id="samples">
               <div id="row-one">
                 <div id="samples-wrap">
